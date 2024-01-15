@@ -1,2 +1,2 @@
 # jorgevelezcs
-personally website
+Personal webpage 

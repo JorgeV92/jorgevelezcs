@@ -1,0 +1,11 @@
+<h1 class=post>Ramsey Theory</h1>
+<span class='meta'>Jan 13, 2024</span>
+<hr/>
+
+
+My interest in Ramsey Theory, a fascinating field that explores the emergence of patterns within sufficiently large systems, was sparked by my exploration of topics in graph theory.
+I was looking to learn about order from choas I started with the example of the pigeonhole principle 
+
+<p style="font-size: 1.5em">Theorem (Pigeonhole Princicple)</p>
+
+If there exists $m$ pigeonoles containing $n$ pigeons, where $n > m$, then at least one of the pigeonholes must contain at least 2 pigeons.

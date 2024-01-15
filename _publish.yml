@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: "aed60b2f-afa8-41cb-b133-92939ee13e7a"
+      url: 'jorgevelezcs.com'

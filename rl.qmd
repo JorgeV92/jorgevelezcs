@@ -1,0 +1,50 @@
+
+<h1 class=post >CS 443</h1>
+<span class='meta'>Nov 22, 2023</span>
+<hr/>
+
+
+All notes are based on the course at UIUC CS 443 taught by professor <a href="https://nanjiang.cs.illinois.edu/" style= "text-decoration: none;"> Nan Jiang (姜楠)</a>.
+
+ As a senior Computer Science student embarking on the CS 443 course on Reinforcement Learning, I am filled with a sense of purpose and enthusiasm. This course, guided by Professor Nam Jiang, represents not just a pivotal point in my academic journey but also an opportunity to create a valuable resource for future students who will navigate the complexities of this advanced field. My decision to take this course in the upcoming semester is driven by a fascination with the dynamic and impactful world of RL. I understand the challenges that lie ahead, having encountered rigorous coursework in my academic path, but my commitment to delving deeper into Reinforcement Learning is unwavering. I am motivated not only by my desire to expand my own understanding but also by the prospect of aiding others in comprehending and appreciating the intricacies of this cutting-edge area of computer science.
+
+
+
+<h1 class=post>Gymnasium</h1>
+Some notes on a RL environment see <a href="gymnasium.qmd#gymnasium" style="text-decoration: none;">HERE!</a>
+</br>
+
+<img src="/images/RL.jpg" alt="RL book" height="400" style="display: block; margin-left: auto; margin-right: auto;" />
+
+<h1 class=post>The Plan</h1>
+<hr/>
+
+- <span style="font-size: larger; font-weight: bold;">DAgger</span> 
+    - <a href="mdp.qmd#mdp" style="text-decoration: none;">MDP Notes</a> 
+
+- <span style="font-size: larger; font-weight: bold;">Markov Decision Process formulation</span> 
+    - <a href="mdp.qmd#mdp" style="text-decoration: none;">MDP Notes</a> 
+- <span style="font-size: larger; font-weight: bold;">Value function</span> 
+    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Value Notes</a> 
+
+- <span style="font-size: larger; font-weight: bold;">Bellman equation</span> 
+    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Bellman equation Notes</a> 
+
+- <span style="font-size: larger; font-weight: bold;">Optimality</span> 
+    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">optimality Notes</a> 
+
+- <span style="font-size: larger; font-weight: bold;">Value Iteration</span> 
+    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Value iteration Notes</a> 
+
+
+<hr/>
+<small>
+<b style="font-weight: bold"> Instead of trying to produce a programme to simulate the adult mind, why not rather try to produce one which simulates the child's? If this were then subjected to an appropriate course of education one would obtain the adult brain.</b>
+<br />
+— Alan Turing
+
+<b style="font-weight: bold">You insist that there is something a machine cannot do. If you tell me precisely what it is a machine cannot do, then I can always make a machine which will do just that.</b>
+<br />
+— John von Neumann
+</small>
+<hr/>

@@ -1,0 +1,32 @@
+project:
+  type: website
+
+website:
+  title: "Jorge Velez"
+  open-graph: true
+  navbar:
+    right:
+      # - href: index.qmd
+      #   text: Home
+      - href: algorithms.qmd
+        text: Algorithms
+      - href: rl.qmd
+        text: Reinforcement Learning 
+      - href: DavidMarr.qmd
+        text: David Marr Technology
+      - href: cs.qmd
+        text: Computer Science
+      - href: about.qmd
+        text: About
+
+
+format: 
+  html:
+    theme: cosmo
+    css: styles.css
+    # toc: true
+    code-fold: true
+
+
+jupyter: python3
+

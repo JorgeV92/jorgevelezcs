@@ -1,0 +1,7 @@
+<h1 class=post>About</h1><br/>
+
+See my <a href="index.qmd#home" style= "text-decoration: none;"> website </a>
+
+This blog was largerly motivated by  <a href="https://karpathy.ai/" style= "color: blue; text-decoration: none;"> Andrej Karpathy </a> and a personal professor at the University of Illinois at Urbana-Champaign <a href="https://jeffe.cs.illinois.edu/" style= "color: blue; text-decoration: none;"> Jeff Erickson</a>.
+<hr/>
+

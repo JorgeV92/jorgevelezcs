@@ -1,0 +1,67 @@
+<h1 class=post>Markov decision process</h1>
+<span class='meta'>Nov 22, 2023</span>
+<hr/>
+
+$$
+\def\emph#1{\textit{#1}}
+$$
+
+In reinforcement learning, the interactions between the agent and the environment are often described by a state space $\mathcal{S}$, action space $\mathcal{A}$, transition function $P : \mathcal{S} \times \mathcal{A} \rightarrow \Delta(\mathcal{S})$; where $\Delta(\mathcal{S})$ is the space of probability distributions over $\mathcal{S}$ (i.e., the probability simplex). $P(s^\prime \mid s, a)$ is the probability of transitioning into state $s^\prime$ upton taking action $a$ in state $s$. A reward function 
+ $R : \mathcal{S} \times \mathcal{A} \rightarrow [0, R_{max}]$. where $R_{max} > 0$ is a constant. $R(s, a)$ is the immediate reward associated with taking action $a$ in state $s$. A discount factor $\gamma \in [0, 1)$ , which defines the horizon for the problem.
+
+### State Space $\mathcal{S}$
+ This represents all possible states in which the agent can be. In code, it's often represented as a range of values or discrete states.
+
+### Action Space $\mathcal{A}$
+This defines all possible actions the agent can take. Like state space, it can be a range of values (continuous) or discrete actions.
+
+### Transition Function $P$
+This function gives the probability $P(s^\prime \mid s, a)$ of transitioning to state $s^\prime$ after taking action $a$ in state $s$. In a simulated environment, this is often part of the environment's dynamics and not explicitly coded by the agent.
+
+### Reward Function $R$
+This function returns the immediate reward received after taking an action $a$ in state $s$. It can be a simple function or a complex one depending on the problem.
+
+### Discount Factor $\gamma$
+This is a value between 0 and 1 that represents the importance of future rewards. A value close to 0 makes the agent short-sighted (caring only about immediate rewards), while a value close to 1 makes it far-sighted (caring about long-term rewards).
+
+In a given Markov model $\mathcal{M} = (\mathcal{S}, \mathcal{A}, P, R, \gamma)$ the agent interacts with the environment according to the following protocol: the agent starts at some state $s_1$ at eact time step $t = 1, 2, ...$, the agent takes an action $a_t \in \mathcal{A}$, obtains the immediate reward $r_t = R(s_t, a_t)$, and observes the next state $s_{t + 1}$ sampled from 
+$P(s_t, a_t)$, or $s_{t + 1} \sim P(s_t, a_t)$  
+
+At each time, $t$, the agent is in some state $s_t \in \mathcal{S}$, and takes an action $a_t \in \mathcal{A}$. This action causes a trnasition to a new state $s_{t + 1} \in \mathcal{S}$ at time $t + 1$. The transition function gives the probability distribution across the states at time $t + 1$
+
+## OpenGym
+### Initialize the Environment 
+
+```python
+import gym 
+env = gym.make('MountainCar-v0')
+```
+### Mountain car
+In the Mountain Car Markov Decision Process (MDP), a car is randomly positioned at the lowest point of a sinusoidally-shaped valley. This MDP operates deterministically, providing a set of possible accelerative actions that can be executed to move the car either forward or backward. The objective is to judiciously use these accelerations to navigate the car to the target location, situated at the peak of the hill to the right. Within the gym framework, the mountain car scenario comes in two variants: one allowing for a discrete set of actions, and the other permitting a continuum of actions. The variant in question here is the one that employs discrete actions.
+
+```python
+class MountainCarEnv(gym.Env):
+    def __init__(self, render_mode: Optional[str] = None, goal_velocity=0):
+        self.min_position = -1.2
+        self.max_position = 0.6
+        self.max_speed = 0.07
+        self.goal_position = 0.5
+        self.goal_velocity = goal_velocity
+
+        self.force = 0.001
+        self.gravity = 0.0025
+
+        self.low = np.array([self.min_position, -self.max_speed], dtype=np.float32)
+        self.high = np.array([self.max_position, self.max_speed], dtype=np.float32)
+
+        self.render_mode = render_mode
+
+        self.screen_width = 600
+        self.screen_height = 400
+        self.screen = None
+        self.clock = None
+        self.isopen = True
+
+        self.action_space = spaces.Discrete(3)
+        self.observation_space = spaces.Box(self.low, self.high, dtype=np.float32)
+```

@@ -1,0 +1,17 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/about.html"
+    ]
+  },
+  {
+    "listing": "/algorithms.html",
+    "items": [
+      "/about.html",
+      "/index.html",
+      "/rl.html",
+      "/lab1a.html"
+    ]
+  }
+]

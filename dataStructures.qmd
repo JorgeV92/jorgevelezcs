@@ -1,0 +1,35 @@
+<h1 class=post>Data Strcutures</h1>
+<span class='meta'>Dec 31, 2023</span>
+<hr/>
+
+<style>
+    .custom-link {
+        text-decoration: none;
+        color: black; /* Sets the default color to black */
+        border-bottom: 1px dotted black; /* Creates a dotted underline */
+        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
+    }
+
+    .custom-link:hover {
+        text-decoration: underline solid black; /* Changes to solid underline on hover */
+    }
+</style>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Linked List: notes</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Hash Table: notes</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Binary Tress</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Random Binary Search Trees</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Red-Black Trees</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Heaps</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Sorting algorithms: notes</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">Graph: notes</a>
+
+<a href="lab1a.qmd#lab1a" class="custom-link">External Memory Searching</a>
+

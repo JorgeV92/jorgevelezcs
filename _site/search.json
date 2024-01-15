@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "gymnasium.html",
+    "href": "gymnasium.html",
+    "title": "\nGymnasium\n",
+    "section": "",
+    "text": "Gymnasium\n\nJan 12, 2024\n\n\nEnv"
+  },
+  {
+    "objectID": "rl.html",
+    "href": "rl.html",
+    "title": "\nCS 443\n",
+    "section": "",
+    "text": "CS 443\n\nNov 22, 2023\n\nAll notes are based on the course at UIUC CS 443 taught by professor  Nan Jiang (姜楠).\nAs a senior Computer Science student embarking on the CS 443 course on Reinforcement Learning, I am filled with a sense of purpose and enthusiasm. This course, guided by Professor Nam Jiang, represents not just a pivotal point in my academic journey but also an opportunity to create a valuable resource for future students who will navigate the complexities of this advanced field. My decision to take this course in the upcoming semester is driven by a fascination with the dynamic and impactful world of RL. I understand the challenges that lie ahead, having encountered rigorous coursework in my academic path, but my commitment to delving deeper into Reinforcement Learning is unwavering. I am motivated not only by my desire to expand my own understanding but also by the prospect of aiding others in comprehending and appreciating the intricacies of this cutting-edge area of computer science.\n\nGymnasium\n\nSome notes on a RL environment see HERE! \n\n\nThe Plan\n\n\n\nDAgger\n\nMDP Notes\n\nMarkov Decision Process formulation\n\nMDP Notes\n\nValue function\n\nValue Notes\n\nBellman equation\n\nBellman equation Notes\n\nOptimality\n\noptimality Notes\n\nValue Iteration\n\nValue iteration Notes\n\n\n\n  Instead of trying to produce a programme to simulate the adult mind, why not rather try to produce one which simulates the child’s? If this were then subjected to an appropriate course of education one would obtain the adult brain.  — Alan Turing\nYou insist that there is something a machine cannot do. If you tell me precisely what it is a machine cannot do, then I can always make a machine which will do just that.  — John von Neumann"
+  },
+  {
+    "objectID": "mdp.html",
+    "href": "mdp.html",
+    "title": "\nMarkov decision process\n",
+    "section": "",
+    "text": "Markov decision process\n\\[\n\\def\\emph#1{\\textit{#1}}\n\\]\nIn reinforcement learning, the interactions between the agent and the environment are often described by a state space \\(\\mathcal{S}\\), action space \\(\\mathcal{A}\\), transition function \\(P : \\mathcal{S} \\times \\mathcal{A} \\rightarrow \\Delta(\\mathcal{S})\\); where \\(\\Delta(\\mathcal{S})\\) is the space of probability distributions over \\(\\mathcal{S}\\) (i.e., the probability simplex). \\(P(s^\\prime \\mid s, a)\\) is the probability of transitioning into state \\(s^\\prime\\) upton taking action \\(a\\) in state \\(s\\). A reward function \\(R : \\mathcal{S} \\times \\mathcal{A} \\rightarrow [0, R_{max}]\\). where \\(R_{max} &gt; 0\\) is a constant. \\(R(s, a)\\) is the immediate reward associated with taking action \\(a\\) in state \\(s\\). A discount factor \\(\\gamma \\in [0, 1)\\) , which defines the horizon for the problem."
+  },
+  {
+    "objectID": "mdp.html#opengym",
+    "href": "mdp.html#opengym",
+    "title": "\nMarkov decision process\n",
+    "section": "OpenGym",
+    "text": "OpenGym\n\nInitialize the Environment\nimport gym \nenv = gym.make('MountainCar-v0')\n\n\nMountain car\nIn the Mountain Car Markov Decision Process (MDP), a car is randomly positioned at the lowest point of a sinusoidally-shaped valley. This MDP operates deterministically, providing a set of possible accelerative actions that can be executed to move the car either forward or backward. The objective is to judiciously use these accelerations to navigate the car to the target location, situated at the peak of the hill to the right. Within the gym framework, the mountain car scenario comes in two variants: one allowing for a discrete set of actions, and the other permitting a continuum of actions. The variant in question here is the one that employs discrete actions.\nclass MountainCarEnv(gym.Env):\n    def __init__(self, render_mode: Optional[str] = None, goal_velocity=0):\n        self.min_position = -1.2\n        self.max_position = 0.6\n        self.max_speed = 0.07\n        self.goal_position = 0.5\n        self.goal_velocity = goal_velocity\n\n        self.force = 0.001\n        self.gravity = 0.0025\n\n        self.low = np.array([self.min_position, -self.max_speed], dtype=np.float32)\n        self.high = np.array([self.max_position, self.max_speed], dtype=np.float32)\n\n        self.render_mode = render_mode\n\n        self.screen_width = 600\n        self.screen_height = 400\n        self.screen = None\n        self.clock = None\n        self.isopen = True\n\n        self.action_space = spaces.Discrete(3)\n        self.observation_space = spaces.Box(self.low, self.high, dtype=np.float32)"
+  },
+  {
+    "objectID": "algorithms.html",
+    "href": "algorithms.html",
+    "title": "\nCS 374\n",
+    "section": "",
+    "text": "CS 374\nAs a senior Computer Science student creating this resource, I felt a deep sense of responsibility not just towards my own academic growth but also for the benefit of future students grappling with the complexities of the renowned CS 374 algorithms course. My journey through this course, taught by Professor Erickson during the Fall 2023 semester, was challenging. Despite struggling significantly with the material, I was driven by a desire to immerse myself more deeply in the subjects taught.\nThis endeavor is not just an exercise in comprehension but a step towards mastery. By diving into and clearly explaining the course content, I’m hoping to deepen my understanding and get more comfortable with these complex ideas. My hope is that this process will not only aid my own progression in computer science but also serve as a valuable guide for others on a similar path. Please see  Jeff’s website and  Jeff’s book as his book is freely available online.\nSome notes on data structures HERE!"
+  },
+  {
+    "objectID": "algorithms.html#coursework",
+    "href": "algorithms.html#coursework",
+    "title": "\nCS 374\n",
+    "section": "Coursework",
+    "text": "Coursework\n\nSection 1\n\nString induction\n\nLab1a: String induction\n\nLanguages and regular expressions\n\nLab1b: Regular expressions\n\nDFAs: intuition, definition, examples\n\nLab2a: DFAs\n\nDFAs: product construction, closure, automatic=regular\n\nLab2b: DFA product construction\n\nProving nonregularity via fooling sets; NFAs: intuition and examples \n\nLab3a: Proving nonregularity\n\nNFAs; ε-transitions, equivalence with DFAs\n\nLab3b: Regular expression to NFA to DFA (to regular expression)\n\nLanguage transformations\n\nLab4a: Language transformations\n\nContext-free languages and grammars \n\nLab4b: Context-free languages and grammars\n\nTuring machines \n\nLab5a: More language transformations\n\n\n\n\nSection 2\n\nRecursion: Hanoi, mergersort, quicksort\n\nLab6a: Binary search\n\nDevide and conquer: selection, multiplication\n\nLab6b: Fun with Karatsuba\n\nBactracking: n queens, game trees, text segmentation\n\nLab7a: Backtracking\n\nDynamic programming: Fibonacci, text segmentation again\n\nLab7b: Dynamic programming\n\nSequence dynamic programming: Edit distance \n\nLab8a: More dynamic programming\n\nTree-shaped dynamic programming: Carpentry\n\nLab8b: Return of the son of revenge of dynamic programming\n\nGraphs: definitions, representations, data structures, traversal\n\nLab9a: Graph modeling\n\nDepth-first search, topological sort \n\nLab9b: Topological sort\n\nDAG DP, strong components; generic shortest paths, BFS, DFS, and Dijkstra \n\nLab10a: Shortest paths\n\nShortest paths via Dijkstra and Bellman-Ford \n\nLab10b: All-pairs shortest paths\n\nBellman-Ford again and Floyd-Warshall \n\nLab11a: Solve it both ways\n\n\n\n\nSection 3\n\nReductions: Cliques and friends, Hamiltoninan cycles\n\nLab12a: Reductions\n\nP vs NP, NP-hardness, 3SAT, reduction to max independent set\n\nLab12b: NP-hardness proofs\n\nNP-harness: Vertex cover to Hamiltoninan cycle\n\nLab13a: More NP-hardness proofs\n\nNP-harness: Why bother, Choosing which problem to reduce from\n\nLab13b: Even more NP-hardness proofs\n\nUndecidability: code is data, the halting problem \n\nLab14a: Yet even still more NP-hardness practice\n\nUndecidability: reductions and Rice’s theorem\n\nLab14b: Using Rice’s Theorem\nLab14c: Undecidability Reductions\n\n\n\n  I propose to consider the question, “Can machines think?”  — Alan Turing, “Computing Machinery and Intelligence” (1950)\nIf you find that you’re spending almost all your time on theory, start turning some attention to practical things; it will improve your theories. If you find that you’re spending almost all your time on practice, start turning some attention to theoretical things; it will improve your practice.  — Donald Knuth\nPremature optimization is the root of all evil.  — Donald Knuth, “Structured Programming with Go To Statements” (1974)\nYoung man, in mathematics you don’t understand things. You just get used to them.  — John von Neumannxw\nDealing with failure is easy: Work hard to improve. Success is also easy to handle: You’ve solved the wrong problem. Work hard to improve.  — Alan Perlis, “Epigrams on Programming” (1982)"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "\nAbout\n",
+    "section": "",
+    "text": "About\n\n\nSee my  website \nThis blog was largerly motivated by  Andrej Karpathy  and a personal professor at the University of Illinois at Urbana-Champaign  Jeff Erickson."
+  },
+  {
+    "objectID": "lab7b.html",
+    "href": "lab7b.html",
+    "title": "\nDymamic programming\n",
+    "section": "",
+    "text": "Dymamic programming\nNov 22, 2023\nHow long is the longest increasing subsequence?\n4 1 2 7 6 5 8 9 3   1 2 6 8 9\nLets define a couple defintions to fromulate this:"
+  },
+  {
+    "objectID": "lab7b.html#visulization-of-sequence",
+    "href": "lab7b.html#visulization-of-sequence",
+    "title": "\nDymamic programming\n",
+    "section": "Visulization of sequence",
+    "text": "Visulization of sequence\n\n\nCode\nlibrary(ggplot2)\n\n# Your original sequence\nsequence &lt;- c(4, 1, 2, 7, 6, 5, 8, 9, 3)\n\n# The known LIS\nlis &lt;- c(1, 2, 7, 8, 9)\n\n# Create a data frame for the original sequence\ndata &lt;- data.frame(x = 1:length(sequence), y = sequence)\n\n# Identify the indices of the LIS in the original sequence\nlis_indices &lt;- match(lis, sequence)\n\n# Create a data frame for the LIS\nlis_data &lt;- data.frame(x = lis_indices, y = lis)\n\n# Plotting the sequence and the LIS\nggplot(data, aes(x, y)) + \n  geom_point() + \n  geom_line(color = \"gray\") +\n  geom_point(data = lis_data, aes(x, y), color = \"red\") +\n  geom_line(data = lis_data, aes(x, y), color = \"red\") +\n  scale_x_continuous(breaks = 1:length(sequence)) +  \n  scale_y_continuous(breaks = 1:max(sequence)) +  \n  labs(x = \"Index\", y = \"Value\", title = \"Sequence with Highlighted LIS 1 2 7 8 9\")\n\n\n\n\n\n\n\n\nFigure 1: Plot of the sequence with the highlighted LIS 1 2 7 8 9\n\n\n\n\n\nThere could be multiple subsequences but we only care about the maximum increasing subsequence.\n\nHere is my animated plot:\n\n\n\nAnimated Plot\n\n\n\nDymamic programming\n\n\nDescribe and analyze dynamic programming algorithms for the following longest-subsequence problems.\n\nGiven an array \\(A[1...n]\\) of integers, compute the length of a longest increasing subsequence of \\(A\\)."
+  },
+  {
+    "objectID": "ramsey3.html",
+    "href": "ramsey3.html",
+    "title": "\nRamsey Theory\n",
+    "section": "",
+    "text": "Ramsey Theory\n\nJan 13, 2024\n\nMy interest in Ramsey Theory, a fascinating field that explores the emergence of patterns within sufficiently large systems, was sparked by my exploration of topics in graph theory. I was looking to learn about order from choas I started with the example of the pigeonhole principle\n\nTheorem (Pigeonhole Princicple)\n\nIf there exists \\(m\\) pigeonoles containing \\(n\\) pigeons, where \\(n &gt; m\\), then at least one of the pigeonholes must contain at least 2 pigeons."
+  },
+  {
+    "objectID": "lab1a.html",
+    "href": "lab1a.html",
+    "title": "\nString Induction\n",
+    "section": "",
+    "text": "String Induction\n\nNov 22, 2023"
+  },
+  {
+    "objectID": "DavidMarr.html",
+    "href": "DavidMarr.html",
+    "title": "\nHow do we build intelligent machines?\n",
+    "section": "",
+    "text": "How do we build intelligent machines?\n\n\nComing Soon!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Jorge Velez",
+    "section": "",
+    "text": "I drink a lot of coffee and I try to be a better computer scientist over time. ☕ 🌎 🌌 This blog serves as an information space focusing on areas that interest me and that I would like to research..\n\nSorry for any delays, broken links, and ugly layouts; still working on finishing this up."
+  },
+  {
+    "objectID": "index.html#hello-world",
+    "href": "index.html#hello-world",
+    "title": "Jorge Velez",
+    "section": "",
+    "text": "I drink a lot of coffee and I try to be a better computer scientist over time. ☕ 🌎 🌌 This blog serves as an information space focusing on areas that interest me and that I would like to research..\n\nSorry for any delays, broken links, and ugly layouts; still working on finishing this up."
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Jorge Velez",
+    "section": "Education",
+    "text": "Education\n University of Illinois at Urbana-Champaign | Bachelros of Science in Computer Science | Aug 2022 - Dec 2024\n Atttend my local community college to study computer science and mathematics | Agust 2021 - May 2022"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Jorge Velez",
+    "section": "Experience",
+    "text": "Experience\n Argonne National Lab| Research | May 2022 - August 2022"
+  },
+  {
+    "objectID": "cs.html",
+    "href": "cs.html",
+    "title": "\nComputer Science\n",
+    "section": "",
+    "text": "Computer Science\n\n\nJan 12, 2023 Ramsey Theory: Order From Chaos\nNov 22, 2023 Progrmg Languages & Compilers Notes dedicated to CS 421\nDec 31, 2023 Neural Networks Initially, neural networks were met with skepticism. However, a dedicated few persevered, pushing the boundaries of artificial intelligence. Their relentless pursuit and innovation turned a once-doubtful idea into a groundbreaking reality. Today, their work stands as a testament to human ingenuity, having significantly transformed technology and our understanding of machine learning.\nDec 31, 2023 The story of out time Llama2: Open Foundation and Fine-Tuned Chat Models.” This post offers a comprehensive and engaging analysis of LLMs, starting from their foundational concepts to their complex mechanisms of learning from extensive datasets to mimic human language. We delve into the intricacies of the Llama2 model, discussing its innovative approaches in open foundation training and the nuances of its fine-tuning for chat applications. Our journey through this post not only highlights the transformative impact of LLMs across various sectors but also addresses the ethical dilemmas and potential future advancements in this field.\nDec 31, 2023 P vs NP computational complexity in the heavens The P vs NP problem, often regarded as the most significant unresolved issue in theoretical computer science, is one of the seven Millennium Prize Problems identified by the Clay Mathematics Institute, offering a reward of one million dollars for a conclusive proof or disproof. In simple terms, ‘P’ represents a category of problems that are comparatively easy to solve, whereas ‘NP’ encompasses problems that are, on the surface, extremely challenging. If P were equal to NP, it would suggest that these seemingly difficult problems actually have straightforward solutions. However, the intricacies of this concept are more complex.\n\nFinance"
+  },
+  {
+    "objectID": "cs421.html",
+    "href": "cs421.html",
+    "title": "\nCS 421\n",
+    "section": "",
+    "text": "CS 421\n\n\nClass notes coming soon!"
+  },
+  {
+    "objectID": "lab8a.html",
+    "href": "lab8a.html",
+    "title": "\nEdit distance\n",
+    "section": "",
+    "text": "Edit distance\n\n\n\nThe minimum number of character insertions, deletions, and substitutions needed to convert one string into another is known as the edit distance between those two strings.\nGiven two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.\nYou have the following three operations permitted on a word:\n\nInsert a character\nDelete a character\nReplace a character"
+  },
+  {
+    "objectID": "dataStructures.html",
+    "href": "dataStructures.html",
+    "title": "\nData Strcutures\n",
+    "section": "",
+    "text": "Data Strcutures\n\nDec 31, 2023\n\n\nLinked List: notes\nHash Table: notes\nBinary Tress\nRandom Binary Search Trees\nRed-Black Trees\nHeaps\nSorting algorithms: notes\nGraph: notes\nExternal Memory Searching"
+  }
+]

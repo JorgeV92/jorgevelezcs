@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #fff;
+    /* background-color: #F5F5F5; */
+    font-weight: 300;
+    color: black;
+  }
+  
+  h1.post, h2.post, h3.post, h4.post, h5.post, h6.post {
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: -1.75px;
+    line-height: 1;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+ span.meta {
+    font-size: 15px;
+    color: #818181;
+    text-align: left;
+    margin-top: 0;
+  }
+
+
+
+.hover-link {
+  color: black; /* Default color */
+  text-decoration: none;
+}
+
+.hover-link:hover {
+  color: blue; /* Color changes to blue on hover */
+}

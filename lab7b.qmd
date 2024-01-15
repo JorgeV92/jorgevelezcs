@@ -1,0 +1,119 @@
+
+<h1 class=post>Dymamic programming</h1> 
+<span class='meta'>Nov 22, 2023</span>
+
+How long is the longest increasing subsequence?
+
+<p style= "font-size: 2.5em; color:darkblue; text-align: center" >4 1 2 7 6 5 8 9 3 <br />
+<span style="color: red"> 1 2 6 8 9</span>
+</p>
+
+Lets define a couple defintions to fromulate this:
+
+- $\sigma_n \leftarrow$ A uniform random distribution of permuation $\{1...n\}$  
+
+- $L(\sigma_n) \leftarrow$ The length of longest increading subsequence of $\sigma_n$
+
+## Visulization of sequence
+
+```{r}
+#| label: fig-lis-plot
+#| fig-cap: "Plot of the sequence with the highlighted LIS 1 2 7 8 9"
+#| warning: false
+
+library(ggplot2)
+
+# Your original sequence
+sequence <- c(4, 1, 2, 7, 6, 5, 8, 9, 3)
+
+# The known LIS
+lis <- c(1, 2, 7, 8, 9)
+
+# Create a data frame for the original sequence
+data <- data.frame(x = 1:length(sequence), y = sequence)
+
+# Identify the indices of the LIS in the original sequence
+lis_indices <- match(lis, sequence)
+
+# Create a data frame for the LIS
+lis_data <- data.frame(x = lis_indices, y = lis)
+
+# Plotting the sequence and the LIS
+ggplot(data, aes(x, y)) + 
+  geom_point() + 
+  geom_line(color = "gray") +
+  geom_point(data = lis_data, aes(x, y), color = "red") +
+  geom_line(data = lis_data, aes(x, y), color = "red") +
+  scale_x_continuous(breaks = 1:length(sequence)) +  
+  scale_y_continuous(breaks = 1:max(sequence)) +  
+  labs(x = "Index", y = "Value", title = "Sequence with Highlighted LIS 1 2 7 8 9")
+
+
+```
+
+There could be multiple subsequences but we only care about the maximum increasing subsequence.
+
+<!-- ```{r}
+library(ggplot2)
+library(gganimate)
+
+set.seed(123)  # Setting a seed for reproducibility
+n = 50  # This can be any integer
+initial_points = 10  # Initial number of points
+points_to_add = 10    # Points to add in each frame
+
+
+
+initial_data <- data.frame(x = sample(n, initial_points, replace = TRUE), 
+                           y = sample(n, initial_points, replace = TRUE))
+
+add_points <- function(df, n = points_to_add, max_val = 50) {
+  new_points <- data.frame(x = sample(max_val, n, replace = TRUE), 
+                           y = sample(max_val, n, replace = TRUE))
+  rbind(df, new_points)
+}
+
+
+frames <- list(initial_data)
+for(i in 2:20) {  # Assuming we want 20 frames
+  frames[[i]] <- add_points(frames[[i-1]])
+}
+
+animation_data <- do.call(rbind, lapply(1:length(frames), function(i) {
+  cbind(frames[[i]], frame = i)
+}))
+
+p <- ggplot(animation_data, aes(x = x, y = y)) +
+  geom_point() +
+  scale_x_continuous(breaks = 1:n) +
+  scale_y_continuous(breaks = 1:n) +
+  transition_time(frame) +
+  labs(title = 'Frame: {frame}') +
+  theme(
+    axis.title.x = element_blank(),   # Remove x-axis label
+    axis.title.y = element_blank(),   # Remove y-axis label
+    axis.text.x = element_blank(),    # Remove x-axis text
+    axis.text.y = element_blank(),    # Remove y-axis text
+    axis.ticks = element_blank(),     # Remove axis ticks
+    panel.background = element_rect(fill = "white"),  # Set background to white
+    panel.border = element_rect(colour = "blue", fill = NA, linewidth = 1)  # Add border
+  )
+
+animated_plot <- animate(p, nframes = 20, fps = 2, width = 450, height = 600)
+
+anim_save("animated_plot.gif", animation = animated_plot)
+``` -->
+
+Here is my animated plot:
+
+![Animated Plot](animated_plot.gif)
+
+<h1 class=post>Dymamic programming</h1> <br />
+
+Describe and analyze dynamic programming algorithms for the following longest-subsequence problems.
+
+1. Given an array $A[1...n]$ of integers, compute the length of a longest increasing subsequence of $A$.
+
+<img src="/images/lis.png" alt="longest increasing subsequence" height="350" style="display: block; margin-left: auto; margin-right: auto;"  />
+
+

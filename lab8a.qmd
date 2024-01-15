@@ -1,0 +1,13 @@
+<h1 class=post>Edit distance</h1> <br />
+
+<img src="/images/edit.png" alt="edit distance" height="200" style="display: block; margin-left: auto; margin-right: auto;"  />
+
+The minimum number of character insertions, deletions, and substitutions needed to convert one string into another is known as the edit distance between those two strings.
+
+Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
+
+You have the following three operations permitted on a word:
+
+- Insert a character
+- Delete a character
+- Replace a character

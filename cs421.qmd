@@ -1,0 +1,4 @@
+<h1 class=post>CS 421</h1>
+<hr/>
+
+Class notes coming soon!

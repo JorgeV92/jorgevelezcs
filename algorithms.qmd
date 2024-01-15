@@ -1,0 +1,117 @@
+<!-- ---
+navbar: false
+--- -->
+
+<h1 class=post>CS 374</h1>
+<span class='meta'>Nov 22, 2023</span>
+<hr/>
+
+As a senior Computer Science student creating this resource, I felt a deep sense of responsibility 
+not just towards my own academic growth but also for the benefit of future students grappling with the 
+complexities of the renowned CS 374 algorithms course. My journey through this course, taught 
+by Professor Erickson during the Fall 2023 semester, was challenging. Despite struggling significantly 
+with the material, I was driven by a desire to immerse myself more deeply in the subjects taught.
+
+This endeavor is not just an exercise in comprehension but a step towards mastery. By diving into and clearly explaining the course content, I'm hoping to deepen my understanding and get more comfortable with these complex ideas.
+My hope is that this process will not only aid my own progression in computer science but also serve as a valuable guide 
+for others on a similar path. Please see <a href="https://jeffe.cs.illinois.edu/" style= "color: blue; text-decoration: none;"> Jeff's website</a>  and <a href="https://jeffe.cs.illinois.edu/teaching/algorithms/" style="color: blue; text-decoration: none;"> Jeff's book</a> as his book is freely available online. 
+
+<h1 class=post>Data Structures</h1>
+Some notes on data structures <a href="dataStructures.qmd#Data" style="text-decoration: none;">HERE!</a>
+</br>
+
+<img src="/images/FrontCover.png" alt="Jeff's book" height="400" style="display: block; margin-left: auto; margin-right: auto;" />
+
+## Coursework
+
+### Section 1
+
+- <span style="font-size: larger; font-weight: bold;">String induction</span> 
+    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Lab1a:</a> String induction 
+- <span style="font-size: larger; font-weight: bold;">Languages and regular expressions</span> 
+    - <a href="#lab1b" style="text-decoration: none;">Lab1b:</a> Regular expressions
+- <span style="font-size: larger; font-weight: bold;">DFAs: intuition, definition, examples</span> 
+    - <a href="#lab2a" style="text-decoration: none;">Lab2a:</a> DFAs
+- <span style="font-size: larger; font-weight: bold;">DFAs: product construction, closure, automatic=regular</span> 
+    - <a href="#lab2b" style="text-decoration: none;">Lab2b:</a> DFA product construction
+- <span style="font-size: larger; font-weight: bold;">Proving nonregularity via fooling sets; NFAs: intuition and examples </span> 
+    - <a href="#lab3a" style="text-decoration: none;">Lab3a:</a> Proving nonregularity
+- <span style="font-size: larger; font-weight: bold;">NFAs; ε-transitions, equivalence with DFAs</span> 
+    - <a href="#lab3b" style="text-decoration: none;">Lab3b:</a> Regular expression to NFA to DFA (to regular expression)
+- <span style="font-size: larger; font-weight: bold;">Language transformations</span> 
+    - <a href="#lab4a" style="text-decoration: none;">Lab4a:</a> Language transformations
+- <span style="font-size: larger; font-weight: bold;">Context-free languages and grammars </span> 
+    - <a href="#lab4b" style="text-decoration: none;">Lab4b:</a> Context-free languages and grammars
+- <span style="font-size: larger; font-weight: bold;">Turing machines </span> 
+    - <a href="#lab5a" style="text-decoration: none;">Lab5a:</a> More language transformations
+
+
+### Section 2
+
+- <span style="font-size: larger; font-weight: bold;">Recursion: Hanoi, mergersort, quicksort</span> 
+    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Lab6a:</a>  Binary search
+- <span style="font-size: larger; font-weight: bold;">Devide and conquer: selection, multiplication</span> 
+    - <a href="#lab1b" style="text-decoration: none;">Lab6b:</a>  Fun with Karatsuba
+- <span style="font-size: larger; font-weight: bold;">Bactracking: n queens, game trees, text segmentation</span> 
+    - <a href="#lab2a" style="text-decoration: none;">Lab7a:</a> Backtracking
+- <span style="font-size: larger; font-weight: bold;">Dynamic programming: Fibonacci, text segmentation again</span> 
+    - <a href="lab7b.qmd#lab7b" style="text-decoration: none;">Lab7b:</a> Dynamic programming
+- <span style="font-size: larger; font-weight: bold;">Sequence dynamic programming: Edit distance </span> 
+    - <a href="lab8a.qmd#lab8a" style="text-decoration: none;">Lab8a:</a> More dynamic programming
+- <span style="font-size: larger; font-weight: bold;">Tree-shaped dynamic programming: Carpentry</span> 
+    - <a href="#lab3b" style="text-decoration: none;">Lab8b:</a>  Return of the son of revenge of dynamic programming
+- <span style="font-size: larger; font-weight: bold;">Graphs: definitions, representations, data structures, traversal</span> 
+    - <a href="#lab4a" style="text-decoration: none;">Lab9a:</a> Graph modeling
+- <span style="font-size: larger; font-weight: bold;">Depth-first search, topological sort </span> 
+    - <a href="#lab4b" style="text-decoration: none;">Lab9b:</a> Topological sort
+- <span style="font-size: larger; font-weight: bold;">DAG DP, strong components; generic shortest paths, BFS, DFS, and Dijkstra </span> 
+    - <a href="#lab5a" style="text-decoration: none;">Lab10a:</a> Shortest paths
+- <span style="font-size: larger; font-weight: bold;">Shortest paths via Dijkstra and Bellman-Ford </span> 
+    - <a href="#lab4b" style="text-decoration: none;">Lab10b:</a> All-pairs shortest paths
+- <span style="font-size: larger; font-weight: bold;">Bellman-Ford again and Floyd-Warshall </span> 
+    - <a href="#lab4b" style="text-decoration: none;">Lab11a:</a> Solve it both ways
+
+### Section 3
+
+- <span style="font-size: larger; font-weight: bold;">Reductions: Cliques and friends, Hamiltoninan cycles</span> 
+    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Lab12a:</a> Reductions
+- <span style="font-size: larger; font-weight: bold;">P vs NP, NP-hardness, 3SAT, reduction to max independent set</span> 
+    - <a href="#lab1b" style="text-decoration: none;">Lab12b:</a> NP-hardness proofs
+- <span style="font-size: larger; font-weight: bold;">NP-harness: Vertex cover to Hamiltoninan cycle</span> 
+    - <a href="#lab2a" style="text-decoration: none;">Lab13a:</a> More NP-hardness proofs
+- <span style="font-size: larger; font-weight: bold;">NP-harness: Why bother, Choosing which problem to reduce from</span> 
+    - <a href="lab7b.qmd#lab7b" style="text-decoration: none;">Lab13b:</a> Even more NP-hardness proofs
+- <span style="font-size: larger; font-weight: bold;">Undecidability: code is data, the halting problem </span> 
+    - <a href="#lab3a" style="text-decoration: none;">Lab14a:</a> Yet even still more NP-hardness practice
+- <span style="font-size: larger; font-weight: bold;">Undecidability: reductions and Rice's theorem</span> 
+    - <a href="#lab3b" style="text-decoration: none;">Lab14b:</a>  Using Rice's Theorem
+    - <a href="#lab3b" style="text-decoration: none;">Lab14c:</a>  Undecidability Reductions
+
+
+
+<hr/>
+
+<small>
+<b style="font-weight: bold"> I propose to consider the question, <i>"Can machines think?"</i></b>
+<br />
+— Alan Turing, "Computing Machinery and Intelligence" (1950)
+
+<b style="font-weight: bold">If you find that you're spending almost all your time on theory, start turning some attention to practical things; it will improve your theories. If you find that you're spending almost all your time on practice, start turning some attention to theoretical things; it will improve your practice.</b>
+<br />
+— Donald Knuth
+
+<b style="font-weight: bold">Premature optimization is the root of all evil.</b>
+<br />
+— Donald Knuth, "Structured Programming with Go To Statements" (1974)
+
+<b style="font-weight: bold">Young man, in mathematics you don't understand things. You just get used to them.</b>
+<br />
+— John von Neumannxw
+
+<b style="font-weight: bold">Dealing with failure is easy: Work hard to improve. Success is also easy to handle: You've solved the wrong problem. Work hard to improve.</b>
+<br />
+— Alan Perlis, "Epigrams on Programming" (1982)
+</small>
+
+<hr/>
+

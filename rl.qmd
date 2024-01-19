@@ -8,10 +8,12 @@ All notes are based on the course at UIUC CS 443 taught by professor <a href="ht
 
  As a senior Computer Science student embarking on the CS 443 course on Reinforcement Learning, I am filled with a sense of purpose and enthusiasm. This course, guided by Professor Nam Jiang, represents not just a pivotal point in my academic journey but also an opportunity to create a valuable resource for future students who will navigate the complexities of this advanced field. My decision to take this course in the upcoming semester is driven by a fascination with the dynamic and impactful world of RL. I understand the challenges that lie ahead, having encountered rigorous coursework in my academic path, but my commitment to delving deeper into Reinforcement Learning is unwavering. I am motivated not only by my desire to expand my own understanding but also by the prospect of aiding others in comprehending and appreciating the intricacies of this cutting-edge area of computer science.
 
-
+<h1 class=post>Mathematics</h1>
+Some notes on mahtematics see  <a href="/RL/mathematics.qmd#mathematics" style="text-decoration: none;">HERE!</a>
+</br>
 
 <h1 class=post>Gymnasium</h1>
-Some notes on a RL environment see <a href="gymnasium.qmd#gymnasium" style="text-decoration: none;">HERE!</a>
+Some notes on a RL environment see <a href="/RL/gymnasium.qmd#gymnasium" style="text-decoration: none;">HERE!</a>
 </br>
 
 <img src="/images/RL.jpg" alt="RL book" height="400" style="display: block; margin-left: auto; margin-right: auto;" />
@@ -20,7 +22,10 @@ Some notes on a RL environment see <a href="gymnasium.qmd#gymnasium" style="text
 <hr/>
 
 - <span style="font-size: larger; font-weight: bold;">DAgger</span> 
-    - <a href="mdp.qmd#mdp" style="text-decoration: none;">MDP Notes</a> 
+    - <a href="/RL/mdp.qmd#mdp" style="text-decoration: none;">MDP Notes</a> 
+
+- <span style="font-size: larger; font-weight: bold;">Introduction</span> 
+    - <a href="/RL/intro.qmd#intro" style="text-decoration: none;">Notes</a> 
 
 - <span style="font-size: larger; font-weight: bold;">Markov Decision Process formulation</span> 
     - <a href="mdp.qmd#mdp" style="text-decoration: none;">MDP Notes</a> 

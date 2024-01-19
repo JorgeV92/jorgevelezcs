@@ -1,0 +1,29 @@
+<h1 class=post>Discrete Random Variables 1</h1>
+<span class='meta'>Jan 17, 2024</span>
+<hr/>
+
+<span style="font-size: 1.5em">Terminology</span> 
+
+Informally, a $\textbf{random variable}$ is a quantity $X$ whose value depends on some random event. The $\textbf{space (or range)}$ of $X$ is the set $S$ of possible values of $X$. If this set $S$ is finite or countable (i.e., can be listed as a sequence $(x_1. x_2, \cdots$), the random variable is called $\textbf{discrete}$.
+
+<span style="font-size: 1.5em">General formulas</span> 
+
+- $\textbf{Probability mass function (p.m.f):}$ 
+    - $f(x) = \mathbb{P}(X = x)$ for all $x \in S$ 
+    - $f(x) \geq 0$ and $\underset{x \in S}{\sum} f(x) = 1$
+    - $\textbf{Uniform distribution}$ on a set $S$: Each of the values $x \in S$ has the same probability, i.e., $f(x) = 1/n$ for each value $x$, where $n$ is the number of values. 
+
+- $\textbf{Expectation (mean):}$
+    - $\mu = \mathbb{E}(X) = \underset{x \in S}{\sum} x \cdot f(x)$
+    - $\mathbb{E}(c) = c, \:\: \mathbb{E}(cX) = c\mathbb{E}(X), \:\: \mathbb{E}(X + Y) = \mathbb{E}(X) + \mathbb{E}(Y)$
+    - $\textbf{Expectation of a function of } X: \mathbb{E}(u(X)) = \underset{x \in S}{\sum} u(x)f(x)$ 
+
+- $\textbf{Variance:}$
+    - $\sigma^2 = \text{Var}(X) = \mathbb{E}(X^2) - \mathbb{E}(X)^2$
+    - $\text{Var}(X) = \mathbb{E}((X - \mu)^2)$
+    - $\text{Var}(c) = 0, \:\: \text{Var}(cX) = c^2\:\text{Var}(X), \:\: \text{Var}(X + c) = \text{Var}(X)$
+    - $\textbf{Standard deviation}: \sigma = \sqrt{\text{Var}(X)}$
+
+- $\textbf{Moment-generating function:}$
+    - $M(t) = \mathbb{E}(\mathcal{e}^{tX}) = \underset{x \in S}{\sum} \mathcal{e}^{tx} f(x)$
+    - The derivatives of $M(t)$ at 0 generate the moments of $X: M^{\prime} (0) = \mathbb{E}(X), M^{\prime\prime}(0) = \mathbb{E}(X^2), \:\: M^{\prime\prime\prime} (0) = \mathbb{E}(X^3),$ etc.

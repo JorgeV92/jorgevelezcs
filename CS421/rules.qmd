@@ -1,0 +1,42 @@
+<h1 class=post>Polymoprhic Typing Rule</h1>
+<hr/>
+
+We will say a monomorphic type $\tau$ is an $\textbf{instance}$ of a polymorphic type $\sigma$ if there exists a monomorphic type $\tau^\prime$, (a possibly empty) list of type variables $\alpha_1, \cdots, \alpha_n$, and a corresponding list of monomorphic types  $\tau_1, \cdots, \tau_n$ such that $\sigma = \forall \alpha_1, \cdots, \alpha_n$. $\tau^\prime$ and $\tau = \tau^\prime\left[\tau_1 / \alpha_1, \cdots, \tau_n / \alpha_n\right]$, the type gotten by replacing each occurence of $\alpha_i$ in $\tau^\prime$ by $\tau_i$. 
+When using the rule below that require one type to be an instance of another, you should give the instantiation: $\left[\tau_1 / \alpha_1, \cdots, \tau_n / \alpha_n\right]$.
+
+In simpler terms, think of a polymorphic type like a template and a monomorphic type like a filled-out form of that template. The process described is like saying, "To prove that this filled-out form is based on a specific template, show me how you substituted the placeholders in the template with actual information to get this form.
+
+# Signatures
+
+<span style="font-size: 1.2em">Polymorphic constant signatures:</span>
+
+| $\text{sig(true) = bool}$ | $\text{sig(true) = bool}$  |
+|---------------------------|----------------------------|
+| $\text{sig}(n) = \text{int } n \text{ an integer constant}$ | $\text{sig}(f) = \text{float } f \text{ a floating point (real) constant}$| 
+|$\text{sig}(s) = \text{string } s \text{ a string constant}$ | $\text{sig}([ \:\: ]) = \forall \alpha.\alpha\text{list}$ |
+
+<span style="font-size: 1.2em">Polymorphic Unary Primitive Operators:</span>
+
+| $\text{sig(fst)} = \forall\alpha\beta.(\alpha * \beta) \rightarrow \alpha$ | $\text{sig(snd)} = \forall\alpha\beta.(\alpha * \beta) \rightarrow \beta$  |
+|---------------------------|----------------------------|
+| $\text{sig(hd)} = \forall\alpha.\alpha\text{list} \rightarrow \alpha$ | $\text{sig(tl)} = \forall\alpha.\alpha\text{list} \rightarrow \alpha \text{ list}$ |
+| $\text{sig}(\sim) = \text{int } \rightarrow \text{ int}$ | $\text{sig(print\_string)} = \text{string } \rightarrow \text{ unit}$ |
+| $\text{sig(not)} = \text{bool } \rightarrow \text{ bool}$
+
+<span style="font-size: 1.2em">Polymorphic Binary Primitive Operators:</span>
+
+| $\text{sig}(\oplus) = \text{int} \rightarrow \text{ int} \rightarrow \text{ int for } \oplus \in \{+, -, *, \text{mod}, /\}$ | $\text{sig}( ^\wedge ) = \text{string } \rightarrow \text{ stirng} \rightarrow \text{ string}$  |
+|---------------------------|----------------------------|
+| $\text{sig}(\oplus) = \text{float} \rightarrow \text{ float} \rightarrow \text{ float for } \oplus \in \{+., -., *., /., **\}$  | $\text{sig}((\_, \_)) = \forall\alpha\beta.\alpha \rightarrow \beta \rightarrow \alpha * \beta$ |
+| $\text{sig}(\wr) = \text{bool} \rightarrow \text{ bool} \rightarrow \text{ bool for } \wr \in \{\vert \vert, \&\&\}$ | $\text{sig}(::) = \forall\alpha.\alpha \rightarrow \alpha \text{ list} \rightarrow \alpha \text{ list}$ |
+| $\text{sig}(\approx) = \forall\alpha.\alpha \rightarrow \alpha \rightarrow \text{bool for } \approx  \:\: \in \{<, >, =, <=, >=, <>\}$
+
+# Rules
+
+Constants:
+
+$\large{\frac{}{\Gamma \:\: \vdash \: c \: : \: \tau }}$ $\text{\large{CONST} } \text{where }  c \text{ is a constant listed above, and } \tau \text{ is an instance of sig}(c)$
+
+Variables:
+
+$\large{\frac{}{\Gamma \:\: \vdash \: x \: : \: \tau }}$ $\text{\large{VAR}}$ $\text{ where } x \text{ is a variable and } \tau \text{ is an instance of } \Gamma(x)$ 

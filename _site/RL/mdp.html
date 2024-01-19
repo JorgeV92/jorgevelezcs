@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +101,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Jorge Velez">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Jorge Velez">
@@ -81,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jorge Velez</span>
     </a>
   </div>
@@ -92,23 +155,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./algorithms.html"> 
+    <a class="nav-link" href="../algorithms.html"> 
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./rl.html"> 
+    <a class="nav-link" href="../rl.html"> 
 <span class="menu-text">Reinforcement Learning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./DavidMarr.html"> 
+    <a class="nav-link" href="../DavidMarr.html"> 
 <span class="menu-text">David Marr Technology</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cs.html"> 
+    <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -130,24 +193,74 @@ ul.task-list li input[type="checkbox"] {
 
 
 <h1 class="post">
-CS 421
+Markov decision process
 </h1>
+<span class="meta">Nov 22, 2023</span>
 <hr>
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
+<p><span class="math display">\[
+\def\emph#1{\textit{#1}}
+\]</span></p>
+<p>In reinforcement learning, the interactions between the agent and the environment are often described by a state space <span class="math inline">\(\mathcal{S}\)</span>, action space <span class="math inline">\(\mathcal{A}\)</span>, transition function <span class="math inline">\(P : \mathcal{S} \times \mathcal{A} \rightarrow \Delta(\mathcal{S})\)</span>; where <span class="math inline">\(\Delta(\mathcal{S})\)</span> is the space of probability distributions over <span class="math inline">\(\mathcal{S}\)</span> (i.e., the probability simplex). <span class="math inline">\(P(s^\prime \mid s, a)\)</span> is the probability of transitioning into state <span class="math inline">\(s^\prime\)</span> upton taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>. A reward function <span class="math inline">\(R : \mathcal{S} \times \mathcal{A} \rightarrow [0, R_{max}]\)</span>. where <span class="math inline">\(R_{max} &gt; 0\)</span> is a constant. <span class="math inline">\(R(s, a)\)</span> is the immediate reward associated with taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>. A discount factor <span class="math inline">\(\gamma \in [0, 1)\)</span> , which defines the horizon for the problem.</p>
+<section id="state-space-mathcals" class="level3">
+<h3 class="anchored" data-anchor-id="state-space-mathcals">State Space <span class="math inline">\(\mathcal{S}\)</span></h3>
+<p>This represents all possible states in which the agent can be. In code, it’s often represented as a range of values or discrete states.</p>
+</section>
+<section id="action-space-mathcala" class="level3">
+<h3 class="anchored" data-anchor-id="action-space-mathcala">Action Space <span class="math inline">\(\mathcal{A}\)</span></h3>
+<p>This defines all possible actions the agent can take. Like state space, it can be a range of values (continuous) or discrete actions.</p>
+</section>
+<section id="transition-function-p" class="level3">
+<h3 class="anchored" data-anchor-id="transition-function-p">Transition Function <span class="math inline">\(P\)</span></h3>
+<p>This function gives the probability <span class="math inline">\(P(s^\prime \mid s, a)\)</span> of transitioning to state <span class="math inline">\(s^\prime\)</span> after taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>. In a simulated environment, this is often part of the environment’s dynamics and not explicitly coded by the agent.</p>
+</section>
+<section id="reward-function-r" class="level3">
+<h3 class="anchored" data-anchor-id="reward-function-r">Reward Function <span class="math inline">\(R\)</span></h3>
+<p>This function returns the immediate reward received after taking an action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span>. It can be a simple function or a complex one depending on the problem.</p>
+</section>
+<section id="discount-factor-gamma" class="level3">
+<h3 class="anchored" data-anchor-id="discount-factor-gamma">Discount Factor <span class="math inline">\(\gamma\)</span></h3>
+<p>This is a value between 0 and 1 that represents the importance of future rewards. A value close to 0 makes the agent short-sighted (caring only about immediate rewards), while a value close to 1 makes it far-sighted (caring about long-term rewards).</p>
+<p>In a given Markov model <span class="math inline">\(\mathcal{M} = (\mathcal{S}, \mathcal{A}, P, R, \gamma)\)</span> the agent interacts with the environment according to the following protocol: the agent starts at some state <span class="math inline">\(s_1\)</span> at eact time step <span class="math inline">\(t = 1, 2, ...\)</span>, the agent takes an action <span class="math inline">\(a_t \in \mathcal{A}\)</span>, obtains the immediate reward <span class="math inline">\(r_t = R(s_t, a_t)\)</span>, and observes the next state <span class="math inline">\(s_{t + 1}\)</span> sampled from <span class="math inline">\(P(s_t, a_t)\)</span>, or <span class="math inline">\(s_{t + 1} \sim P(s_t, a_t)\)</span></p>
+<p>At each time, <span class="math inline">\(t\)</span>, the agent is in some state <span class="math inline">\(s_t \in \mathcal{S}\)</span>, and takes an action <span class="math inline">\(a_t \in \mathcal{A}\)</span>. This action causes a trnasition to a new state <span class="math inline">\(s_{t + 1} \in \mathcal{S}\)</span> at time <span class="math inline">\(t + 1\)</span>. The transition function gives the probability distribution across the states at time <span class="math inline">\(t + 1\)</span></p>
+</section>
+<section id="opengym" class="level2">
+<h2 class="anchored" data-anchor-id="opengym">OpenGym</h2>
+<section id="initialize-the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="initialize-the-environment">Initialize the Environment</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gym </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>env <span class="op">=</span> gym.make(<span class="st">'MountainCar-v0'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mountain-car" class="level3">
+<h3 class="anchored" data-anchor-id="mountain-car">Mountain car</h3>
+<p>In the Mountain Car Markov Decision Process (MDP), a car is randomly positioned at the lowest point of a sinusoidally-shaped valley. This MDP operates deterministically, providing a set of possible accelerative actions that can be executed to move the car either forward or backward. The objective is to judiciously use these accelerations to navigate the car to the target location, situated at the peak of the hill to the right. Within the gym framework, the mountain car scenario comes in two variants: one allowing for a discrete set of actions, and the other permitting a continuum of actions. The variant in question here is the one that employs discrete actions.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MountainCarEnv(gym.Env):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, render_mode: Optional[<span class="bu">str</span>] <span class="op">=</span> <span class="va">None</span>, goal_velocity<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.min_position <span class="op">=</span> <span class="op">-</span><span class="fl">1.2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_position <span class="op">=</span> <span class="fl">0.6</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_speed <span class="op">=</span> <span class="fl">0.07</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.goal_position <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.goal_velocity <span class="op">=</span> goal_velocity</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.force <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gravity <span class="op">=</span> <span class="fl">0.0025</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.low <span class="op">=</span> np.array([<span class="va">self</span>.min_position, <span class="op">-</span><span class="va">self</span>.max_speed], dtype<span class="op">=</span>np.float32)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.high <span class="op">=</span> np.array([<span class="va">self</span>.max_position, <span class="va">self</span>.max_speed], dtype<span class="op">=</span>np.float32)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.render_mode <span class="op">=</span> render_mode</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.screen_width <span class="op">=</span> <span class="dv">600</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.screen_height <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.screen <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.clock <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.isopen <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.action_space <span class="op">=</span> spaces.Discrete(<span class="dv">3</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.observation_space <span class="op">=</span> spaces.Box(<span class="va">self</span>.low, <span class="va">self</span>.high, dtype<span class="op">=</span>np.float32)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
-<p><a href="./lab1a.html#lab1a" class="custom-link">Basic OCaml Programming</a></p>
 
-
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,0 +1,158 @@
+<h1 class=post >Linear Algebra</h1>
+<span class='meta'>Jan 15, 2024</span>
+<hr/>
+
+
+<span style="font-size: 1.5em"> Vector spaces</span>
+
+A vector space $V$ is a set, the elements of which are called $\textbf{vectors}$, on which two operations are defined: vectors can be added together, and vectors can be multiploed by real numbers ($\textbf{scalars}$).
+
+With this $V$ must statisfy the following:
+
+1. There exists an additive identity $\mathbf{0}$ in $V$ such that $\mathbf{x} + \mathbf{0} = \mathbf{x}$ for all $\mathbf{x} \in V$
+
+2. For each  $\mathbf{x} \in V$, there exists and additive inverse, $-\mathbf{x}$, such that $\mathbf{x} + (-\mathbf{x}) = \mathbf{0}$
+
+3. There exists a multiplicative identity (written 1) in $\mathbb{R}$ such that $1\mathbf{x} = \mathbf{x}$ for all $\mathbf{x} \in V$
+
+4. Commutativity: $\mathbf{x} + \mathbf{y} = \mathbf{y} + \mathbf{x}$ for all $\mathbf{x}, \mathbf{y} \in V$
+
+5. Associativity: $(\mathbf{x} + \mathbf{y}) + \mathbf{z} = \mathbf{x} + (\mathbf{y} + \mathbf{z})$ and $\alpha(\beta \mathbf{x}) = (\alpha\beta)\mathbf{x}$  for all $\mathbf{x}, \mathbf{y}, \mathbf{z} \in V$ and $\alpha, \beta \in \mathbb{R}$
+
+6. Distributivity: $\alpha(\mathbf{x} + \mathbf{y}) = \alpha\mathbf{x} + \alpha\mathbf{y}$ and $(\alpha + \beta)\mathbf{x} = \alpha\mathbf{x} + \beta\mathbf{x}$ for all $\mathbf{x}, \mathbf{y} \in V$ and $\alpha, \beta \in \mathbb{R}$
+
+A set of vectors $\mathbf{v}_1, \cdots, \mathbf{v}_n \in V$ is said to be $\textbf{linearly independent}$ if
+
+$$
+    \alpha \mathbf{v}_n + \cdots + \alpha_n\mathbf{v}_n = \mathbf{0} \quad \text{ imlpies } \quad\alpha_1 = \cdots = \alpha_n = 0. 
+$$
+
+The $\textbf{span}$ of $\mathbf{v}_1, \cdots, \mathbf{v}_n \in V$ is the set of all vectors that can be expressed of a linear combination of them:
+
+$$
+    \text{span}\{\mathbf{v}_1, \cdots, \mathbf{v}_n\} = \{\mathbf{v} \in V : \exists\alpha, \cdots, \alpha_n \text{ such that } \alpha\mathbf{v}_1 + \cdots + \alpha_n\mathbf{v}_n = \mathbf{v}\}
+$$
+
+If the set of vectors is linearly independent and its span is the whole $V$, those vectors are said to be a $\textbf{basis}$ for $V$. In fact, every linear independent set of vectors forms a basis for its span.
+
+If a vector space is spanned by a finite numbers of vectors, it is said to be $\textbf{finite-dimensional}$. Otherwise it is $\textbf{infinite-dimensional}$. The number of vectors in a basis for a finite-dimensional vector space $V$ is called the $\textbf{dimension}$ of $V$ and demoted dim $V$. 
+
+<span style="font-size: 1.5em"> Euclidean space</span>
+
+The quintessential vector space is $\textbf{Eculidean space}$, which we denote $\mathbb{R}^n$. The vectors in this space consist of $n$-tuples of real numbers:
+
+$$
+    \mathbf{x} = \left(x_1, x_2, \cdots, x_n\right)
+$$
+
+It is also useful to consider them as a $n \times 1$ matrices, or $\textbf{column vectors}$:
+
+$$
+    \mathbf{x} = \begin{bmatrix}
+        x_{1} \\
+        x_{1} \\
+        \vdots \\
+        x_{n} 
+        \end{bmatrix}
+$$
+
+Addition and scalar multiplication are defined component-wise on vectors in $\mathbb{R}^n$.
+$$
+    \mathbf{x} + \mathbf{y} = \begin{bmatrix}
+        x_{1} + y{1} \\
+        x_{1} + y_{2}\\
+        \vdots \\
+        x_{n} + y_{n}
+        \end{bmatrix}, \qquad \alpha\mathcal{x} = \begin{bmatrix} 
+                                                    \alpha x_{1} \\
+                                                    \vdots \\
+                                                    \alpha x_{n}
+                                                    \end{bmatrix}
+$$
+
+Euclidean space is used to mathematically represent physical space, with notions such as distance, length, and angles. Although it becomes hard to visualize fot $n > 3$, these concepts generalize mathematically in obvious ways. Even when you're wokring in more general settings than $\mathbb{R}^n$, it is often useful to visualize vector addition and scalalr multiplication in terms of $2D$ vectors in the plane or $3D$ vectors in space.
+
+<span style="font-size: 1.5em">Subspaces</span>
+
+Vector spaces can contain other vector spaces. If $V$ is a vector space, then $\mathcal{S} \subseteq V$ is said to be a $\textbf{subspace}$ of $V$ if:
+
+1. $\mathbf{0} \in \mathcal{S}$
+
+2. $\mathcal{S}$ is closed under addition: $\mathbf{x}, \mathbf{y} \in \mathcal{S}$ implies $\mathbf{x} + \mathbf{y} \in \mathcal{S}$
+
+3. $\mathcal{S}$ is closed under scalar multiplication: $\mathbf{x} \in \mathcal{S}, \alpha \in \mathbb{R}$ implies $\alpha\mathbf{x} \in \mathcal{S}$
+
+Note that $V$ is always a subsapce of $V$, as is the trivial vector space which contains only $\mathbf{0}$. As a concrete example, a line passing through the origin is a subsapce of Eculidean space. 
+If $U$ and $W$ are subspaces of $V$, then their sum is defined as 
+
+$$
+    U + W = \{\mathbf{u} + \mathbf{w} \mid \mathbf{u} \in U, \mathbf{w} \in W \}
+$$
+
+If $U \cap W = \{\mathbf{0}\}$, the sum is said to be a $\textbf{direct sum}$ and written $U \oplus W$. Every vector in $U \oplus W$ can be written uniquely as $\mathbf{u} + \mathbf{w}$ for some $\mathbf{u} \in U$ and $\mathbf{w} \in W$.
+
+The dimensions of sums of subspaces obey a friendly relationship:
+
+$$
+    \text{dim}(U + W) = \text{dim } U + \text{dim } W - \text{dim}(U \cap W)  
+$$
+
+It follows that 
+
+$$
+    \text{dim}(U \oplus W) = \text{dim } U + \text{dim } W
+$$
+
+since $\text{dim}(U \cap W) = \text{dim}(\{\mathbf{0}\}) = 0$ if the sum is direct.
+
+<span style="font-size: 1.5em">Linear maps</span>
+
+A $\textbf{linear map}$ is a function $T: V \rightarrow W$, where $V$ and $W$ are vector spaces, that statisfies 
+
+1. $T(\mathbf{x} + \mathbf{y}) = T\mathbf{x} + T\mathbf{y} \text{ for all } \mathbf{x}, \mathbf{y} \in V$ 
+
+2. $T(\alpha\mathbf{x}) = \alpha T\mathbf{x} \text{ for all } \mathbf{x} \in V, \alpha \in \mathbb{R}$
+
+A linear map from $V$ to itself is called a $\textbf{linear operator}$.
+ 
+<span style="font-size: 1.5em"> Matrices and transposes</span>
+
+- $A$ is a $m \times n$ real matrix, wrtitten $A \in \mathbb{R}^{m \times n}$, if:
+$$
+A = \begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}
+$$
+
+where  $a_{i, j} \in \mathbb{R}$. The $(i, j)$th entry of $A$ is $A_{i, j} = a_{i, j}$.
+
+- The transpose of $A \in \mathbb{R}$ is define as: 
+$$
+A^{T} = \begin{bmatrix}
+a_{11} & a_{21} & \cdots & a_{m1} \\
+a_{12} & a_{22} & \cdots & a_{m2} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{1n} & a_{2n} & \cdots & a_{mn}
+\end{bmatrix}
+$$
+
+such that, $(A^{T})_{i, j} = A_{j, i}$
+
+Note: $x \in \mathbb{R}^{n}$ is considered to be a columnn vector in $\mathbb{R}^{n \times 1}$
+
+<span style="font-size: 1.5em">Sums and products of matrcies </span>
+
+- The sum of matrices $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{m \times n}$ is the matrix $A + B \in \mathbb{R}^{m \times n}$ such that 
+$$
+    (A + B)_{i, j} = A_{i, j} + B_{i, j}
+$$
+
+- The product of matrices $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times \ell}$ is the matrix $AB \in \mathbb{R}^{m \times \ell}$ such that
+
+$$
+    (AB)_{i, j} = \sum_{k=1}^n   A_{i, k} B_{k, j}
+$$
+

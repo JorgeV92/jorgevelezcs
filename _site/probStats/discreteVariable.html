@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Jorge Velez">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Jorge Velez">
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jorge Velez</span>
     </a>
   </div>
@@ -92,23 +121,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./algorithms.html"> 
+    <a class="nav-link" href="../algorithms.html"> 
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./rl.html"> 
+    <a class="nav-link" href="../rl.html"> 
 <span class="menu-text">Reinforcement Learning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./DavidMarr.html"> 
+    <a class="nav-link" href="../DavidMarr.html"> 
 <span class="menu-text">David Marr Technology</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cs.html"> 
+    <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -130,22 +159,39 @@ ul.task-list li input[type="checkbox"] {
 
 
 <h1 class="post">
-CS 421
+Discrete Random Variables 1
 </h1>
+<span class="meta">Jan 17, 2024</span>
 <hr>
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
-
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
-<p><a href="./lab1a.html#lab1a" class="custom-link">Basic OCaml Programming</a></p>
+<p><span style="font-size: 1.5em">Terminology</span></p>
+<p>Informally, a <span class="math inline">\(\textbf{random variable}\)</span> is a quantity <span class="math inline">\(X\)</span> whose value depends on some random event. The <span class="math inline">\(\textbf{space (or range)}\)</span> of <span class="math inline">\(X\)</span> is the set <span class="math inline">\(S\)</span> of possible values of <span class="math inline">\(X\)</span>. If this set <span class="math inline">\(S\)</span> is finite or countable (i.e., can be listed as a sequence <span class="math inline">\((x_1. x_2, \cdots\)</span>), the random variable is called <span class="math inline">\(\textbf{discrete}\)</span>.</p>
+<p><span style="font-size: 1.5em">General formulas</span></p>
+<ul>
+<li><span class="math inline">\(\textbf{Probability mass function (p.m.f):}\)</span>
+<ul>
+<li><span class="math inline">\(f(x) = \mathbb{P}(X = x)\)</span> for all <span class="math inline">\(x \in S\)</span></li>
+<li><span class="math inline">\(f(x) \geq 0\)</span> and <span class="math inline">\(\underset{x \in S}{\sum} f(x) = 1\)</span></li>
+<li><span class="math inline">\(\textbf{Uniform distribution}\)</span> on a set <span class="math inline">\(S\)</span>: Each of the values <span class="math inline">\(x \in S\)</span> has the same probability, i.e., <span class="math inline">\(f(x) = 1/n\)</span> for each value <span class="math inline">\(x\)</span>, where <span class="math inline">\(n\)</span> is the number of values.</li>
+</ul></li>
+<li><span class="math inline">\(\textbf{Expectation (mean):}\)</span>
+<ul>
+<li><span class="math inline">\(\mu = \mathbb{E}(X) = \underset{x \in S}{\sum} x \cdot f(x)\)</span></li>
+<li><span class="math inline">\(\mathbb{E}(c) = c, \:\: \mathbb{E}(cX) = c\mathbb{E}(X), \:\: \mathbb{E}(X + Y) = \mathbb{E}(X) + \mathbb{E}(Y)\)</span></li>
+<li><span class="math inline">\(\textbf{Expectation of a function of } X: \mathbb{E}(u(X)) = \underset{x \in S}{\sum} u(x)f(x)\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\textbf{Variance:}\)</span>
+<ul>
+<li><span class="math inline">\(\sigma^2 = \text{Var}(X) = \mathbb{E}(X^2) - \mathbb{E}(X)^2\)</span></li>
+<li><span class="math inline">\(\text{Var}(X) = \mathbb{E}((X - \mu)^2)\)</span></li>
+<li><span class="math inline">\(\text{Var}(c) = 0, \:\: \text{Var}(cX) = c^2\:\text{Var}(X), \:\: \text{Var}(X + c) = \text{Var}(X)\)</span></li>
+<li><span class="math inline">\(\textbf{Standard deviation}: \sigma = \sqrt{\text{Var}(X)}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\textbf{Moment-generating function:}\)</span>
+<ul>
+<li><span class="math inline">\(M(t) = \mathbb{E}(\mathcal{e}^{tX}) = \underset{x \in S}{\sum} \mathcal{e}^{tx} f(x)\)</span></li>
+<li>The derivatives of <span class="math inline">\(M(t)\)</span> at 0 generate the moments of <span class="math inline">\(X: M^{\prime} (0) = \mathbb{E}(X), M^{\prime\prime}(0) = \mathbb{E}(X^2), \:\: M^{\prime\prime\prime} (0) = \mathbb{E}(X^3),\)</span> etc.</li>
+</ul></li>
+</ul>
 
 
 

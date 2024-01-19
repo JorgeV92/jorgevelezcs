@@ -1,12 +1,20 @@
 <h1 class=post>Computer Science</h1>
 <hr/>
 
-<span class='meta'>Jan 12, 2023</span><br/>
-<a href="ramsey3.qmd#ramsey3" style="text-decoration: none;">Ramsey Theory:</a><br/>
+<span class='meta'>Jan 16, 2024</span><br/>
+<a href="/probStats/stat410.qmd#" style="text-decoration: none;">Statistics and Probability 2</a><br/>
+Notes dedicated to Stat 410 
+
+<span class='meta'>Jan 15, 2024</span><br/>
+<a href="/CS411/cs411.qmd#" style="text-decoration: none;">Database Systems</a><br/>
+Notes dedicated to CS 411
+
+<span class='meta'>Jan 12, 2024</span><br/>
+<a href="ramsey3.qmd#ramsey3" style="text-decoration: none;">Ramsey Theory</a><br/>
 Order From Chaos
 
 <span class='meta'>Nov 22, 2023</span><br/>
-<a href="cs421.qmd#c2421" style="text-decoration: none;">Progrmg Languages & Compilers</a><br/>
+<a href="/CS421/cs421.qmd#c2421" style="text-decoration: none;">Progrmg Languages & Compilers</a><br/>
 Notes dedicated to CS 421
 
 <span class="meta">Dec 31, 2023</span><br/>

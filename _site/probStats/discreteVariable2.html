@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Jorge Velez">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Jorge Velez">
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jorge Velez</span>
     </a>
   </div>
@@ -92,23 +121,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./algorithms.html"> 
+    <a class="nav-link" href="../algorithms.html"> 
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./rl.html"> 
+    <a class="nav-link" href="../rl.html"> 
 <span class="menu-text">Reinforcement Learning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./DavidMarr.html"> 
+    <a class="nav-link" href="../DavidMarr.html"> 
 <span class="menu-text">David Marr Technology</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cs.html"> 
+    <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -130,22 +159,60 @@ ul.task-list li input[type="checkbox"] {
 
 
 <h1 class="post">
-CS 421
+Discrete Random Variables 2
 </h1>
+<span class="meta">Jan 17, 2024</span>
 <hr>
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
-
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
-<p><a href="./lab1a.html#lab1a" class="custom-link">Basic OCaml Programming</a></p>
+<p><span style="font-size: 1.5em">The Big Three</span></p>
+<p>The following is a list of essentail formulaas for the three most important discrete distributions: <span class="math inline">\(\textbf{binomial, geometric, and Poisson.}\)</span></p>
+<ul>
+<li><span class="math inline">\(\textbf{Binomial distribution } b(n, p):\)</span>
+<ul>
+<li><span class="math inline">\(n \text{ (positive integer), } p \: (0 \leq p \leq 1)\)</span></li>
+<li><span class="math inline">\(\textbf{p.m.f: } f(x) = {n \choose x}p^x (1 - p)^{n - x} \:\: (x = 0, 1, 2, ..., n)\)</span></li>
+<li><span class="math inline">\(\textbf{Expectation and variance: } \mu = np, \:\: \sigma^2 = np(1 - p)\)</span></li>
+<li><span class="math inline">\(\textbf{Arises as: }\)</span> Distribution of number of successes in success/failure trials (Bernoulli trials)</li>
+</ul></li>
+<li><span class="math inline">\(\textbf{Geometric distribution:}\)</span>
+<ul>
+<li><span class="math inline">\(p \: (0 &lt; p &lt; 1)\)</span></li>
+<li><span class="math inline">\(\textbf{p.m.f: } f(x) = (1 - p)^{x - 1} p \:\: (x =1, 2, ...)\)</span></li>
+<li><span class="math inline">\(\textbf{Expectation and variance: } \mu = 1/p, \: \sigma^2 = (1 - p)/p^2\)</span></li>
+<li><span class="math inline">\(\textbf{Geometric series: } \overset{\infty}{\underset{n=0}{\sum}} r^n = \frac{1}{1 - r} (| r | &lt; 1)\)</span></li>
+<li><span class="math inline">\(\textbf{Arises as: }\)</span> Distribution of trial at which the first success occurs in success/failure trial sequence</li>
+</ul></li>
+<li><span class="math inline">\(\textbf{Poisson disctribution:}\)</span>
+<ul>
+<li><span class="math inline">\(\lambda &gt; 0\)</span></li>
+<li><span class="math inline">\(\textbf{p.m.f: } f(x) = \mathcal{e}^{-\lambda \frac{\lambda^x}{x!}} \:\: (x = 0, 1, 2, ...)\)</span></li>
+<li><span class="math inline">\(\textbf{Expectation and variance: }\overset{\infty}{\underset{n=0}{\sum}} \frac{\lambda^n}{n!} = \mathcal{e}^\lambda\)</span></li>
+<li><span class="math inline">\(\textbf{Arises as: }\)</span> Distribution of number of occurrences of rare events, such as accidents, insurance claims, etc.</li>
+</ul></li>
+</ul>
+<p><span style="font-size: 1.5em">Other discrete distributions</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(\textbf{Hypergeometric distribution:} f(x) = \frac{ {N_1 \choose x} {N_2 \choose n - x} }{N \choose n}\)</span>, <span class="math inline">\(x = 0, 1, ..., N_1, n - x \leq N_2\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Negative binomial distribution:} f(x) = {x - 1 \choose r - 1}(1 - p)^{x - r}p^r\)</span>, <span class="math inline">\(\quad x = r, r + 1, ...\)</span></p></li>
+</ol>
+<p><span style="font-size: 1.5em">Binomial coefficients</span></p>
+<ul>
+<li><p><span class="math inline">\(\textbf{Definition: } \text{For } n = 1, 2, ... \text{ and } k = 0, 1, ..., n, {n \choose k} = \frac{n!}{k!(n - k)!}\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Alternate notations: } {}_n C_k \text{ or } C(n, k)\)</span></p></li>
+<li><p><span class="math inline">\(\text{Other definition:} {n \choose k} = \frac{n(n-1)...(n - k + 1)}{k!}\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Symmetry property: } {n \choose k} = {n \choose n - k}\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Special cases: } {n \choose 0} = {n \choose n} = 1, \:\: {n \choose 1} = {n \choose n - 1} = n\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Binomial Theorem: } (x + y)^n = \overset{n}{\underset{k=0}{\sum}} {n \choose k} x^k y^{n - k}\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Binomial Theorem, special case: } (x + y)^n = \overset{n}{\underset{k=0}{\sum}} {n \choose k} p^k(1 - p)^{n - k} = 1\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Combinatorial Interpretations: } {n \choose k} \text{ represents }\)</span></p></li>
+</ul>
+<ol type="1">
+<li><p>the number of ways to select <span class="math inline">\(k\)</span> objects out of <span class="math inline">\(n\)</span> given objects (in the sense of unordered samples wihtout replacement)</p></li>
+<li><p>the number of <span class="math inline">\(k\)</span>-element subsets of an <span class="math inline">\(n\)</span>-element set</p></li>
+<li><p>the number of <span class="math inline">\(n\)</span>-letter <span class="math inline">\(\text{HT}\)</span> sequences with exactly <span class="math inline">\(k\)</span> <span class="math inline">\(\text{H's}\)</span> and <span class="math inline">\(n - k\)</span> <span class="math inline">\(\text{T's}\)</span></p></li>
+</ol>
+<ul>
+<li><span class="math inline">\(\textbf{Binomial distribution: }\)</span> Given a positive integer <span class="math inline">\(n\)</span> and a number <span class="math inline">\(p\)</span> with <span class="math inline">\(0 &lt; p &lt; 1\)</span>, the binomial distribution <span class="math inline">\(b(n, p)\)</span> is the distribution with density (p.m.f) <span class="math inline">\(f(x) = {n \choose x} p^x(1 - p)^{n - x}\)</span>, for <span class="math inline">\(x = 0, 1, ..., n\)</span>.</li>
+</ul>
 
 
 

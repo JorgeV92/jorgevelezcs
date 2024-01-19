@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Jorge Velez">
@@ -130,22 +159,45 @@ ul.task-list li input[type="checkbox"] {
 
 
 <h1 class="post">
-CS 421
+Probability
 </h1>
+<span class="meta">Jan 15, 2024</span>
 <hr>
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
-
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
-<p><a href="./lab1a.html#lab1a" class="custom-link">Basic OCaml Programming</a></p>
+<p>Probability theory helps us deal with modeling with uncertainty.</p>
+<p>Suppose we perform a experiment like tossing a coin which has a fixed set of possible outcomes. This set is called the <span class="math inline">\(\textbf{sample sapce}\)</span> and we denote this space with <span class="math inline">\(\Omega\)</span>.</p>
+<p>We would like to define probabilities for some <span class="math inline">\(\textbf{events}\)</span>, which are subsets of <span class="math inline">\(\Omega\)</span>. The set of events is denoted <span class="math inline">\(\mathcal{F}\)</span>. The <span class="math inline">\(\textbf{complement}\)</span> of the event <span class="math inline">\(\mathcal{A}\)</span> is another event, <span class="math inline">\(\mathcal{A}^{c} = \Omega \setminus \mathcal{A}\)</span></p>
+<p>Then we can define a <span class="math inline">\(\textbf{probability measure} \:\: \mathbb{P}: \mathcal{F} \rightarrow [0, 1]\)</span> which must satisfy</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mathbb{P}(\Omega) = 1\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Countable addivity:}\)</span> for any countable collection of disjoint sets <span class="math inline">\(\{\mathcal{A}_i\} \subseteq \mathcal{F}\)</span>,</p></li>
+</ol>
+<p><span class="math display">\[
+    \mathbb{P}\left(\bigcup_i \mathcal{A}_i\right) = \sum_i \mathbb{P}(\mathcal{A}_i)
+\]</span></p>
+<p>The triple <span class="math inline">\((\Omega, \mathcal{F}, \mathbb{P})\)</span> is called a <span class="math inline">\(\textbf{probability space}\)</span>.</p>
+<p>If <span class="math inline">\(\mathbb{P}(\mathcal{A}) = 1\)</span>, we say that <span class="math inline">\(\mathcal{A}\)</span> occurs <span class="math inline">\(\textbf{almost surely}\)</span>, and conversely <span class="math inline">\(\mathcal{A}\)</span> occurs <span class="math inline">\(\textbf{almost never}\)</span> if <span class="math inline">\(\mathbb{P}(\mathcal{A}) = 0.\)</span></p>
+<p><span class="math inline">\(\textbf{Proposition}\)</span>: Let <span class="math inline">\(\mathcal{A}\)</span> be an event. Then</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mathbb{P}(\mathcal{A^c}) = 1 - \mathbb{P}(\mathcal{A})\)</span></p></li>
+<li><p>If <span class="math inline">\(\mathcal{B}\)</span> is an event and <span class="math inline">\(\mathcal{B} \subseteq \mathcal{A}\)</span>, then <span class="math inline">\(\mathbb{P}(\mathcal{B}) \leq \mathbb{P}(\mathcal{A})\)</span>.</p></li>
+<li><p><span class="math inline">\(0 = \mathbb{P}(\varnothing) \leq \mathbb{P}(\mathcal{A}) \leq \mathbb{P}(\Omega) = 1\)</span></p></li>
+</ol>
+<p><span class="math inline">\(Proof\)</span>:</p>
+<p>Using the countable additivity of <span class="math inline">\(\mathbb{P}\)</span>, we have</p>
+<p><span class="math display">\[
+    \mathbb{P}(\mathcal{A}) + \mathbb{P}(\mathcal{A^c}) = \mathbb{P}(\mathcal{A} \cup \mathcal{A}^c) = \mathbb{P}(\Omega) = 1
+\]</span></p>
+<p>To show 2. suppose <span class="math inline">\(\mathcal{B} \in \mathcal{F}\)</span> and <span class="math inline">\(\mathcal{B} \subseteq \mathcal{A}\)</span>. Then</p>
+<p><span class="math display">\[
+    \mathbb{P}(\mathcal{A}) = \mathbb{P}(\mathcal{B} \cup (\mathcal{A} \setminus \mathcal{B})) = \mathbb{P}(\mathcal{B}) + \mathbb{P}(\mathcal{A} \setminus \mathcal{B}) \geq \mathbb{P}(\mathcal{B})
+\]</span></p>
+<p>as claimed.</p>
+<p><span style="font-size: 1.5em">Discrete random variables</span></p>
+<ul>
+<li><p>A random variable denoted as <span class="math inline">\(\text{r.v}\)</span> is a quantity that probabilistically takes on any of a possible range of values.</p></li>
+<li><p>A random variable <span class="math inline">\(X\)</span> is descrete if it takes values in a countable set <span class="math inline">\(\mathcal{X} = \{x_1, x_2, \cdots,\}.\)</span></p></li>
+<li><p>Most random varibales have some certain distributioin for example Bernoulli, Binomial, Poisson, Geometric.</p></li>
+</ul>
 
 
 

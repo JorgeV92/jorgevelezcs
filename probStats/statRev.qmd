@@ -1,0 +1,88 @@
+<h1 class=post>Statistics and Probability review</h1>
+<hr/>
+
+<span style="font-size: 1.5em">Random variables</span>
+
+| Discrete (Probability Mass Function, p.m.f) | Continuous (Probability Density Function, p.d.f) |
+|---------------------------------------------|--------------------------------------------------|
+| $p(x) = \mathbb{P}(X = x)$              | $f(x)$                                      |
+| $\forall x \quad 0 \leq p(x) \leq 1$    | $\forall x \quad f(x) \geq 0$             |
+| $\sum_{\text{all } x} p(x) = 1$         | $\int_{-\infty}^{\infty} f(x) \, dx = 1$    |
+
+
+<span style="font-size: 1.5em">Cumulative distributioin function</span>
+
+$\text{c.d.f }$ 
+
+$F(x) = \mathbb{P}(X \leq x)$
+
+| Discrete (c.d.f)                                | Continuous (c.d.f)                           |
+|-------------------------------------------------|----------------------------------------------|
+| $F(x) = \sum_{y \leq x} p(y)$               | $F(x) = \int_{-\infty}^{x} f(y) \, dy$   |
+
+<span style="font-size: 1.5em">Expected value</span>
+
+$\mathbb{E}(X) = \mathbf{\mu}_X$
+
+| Discrete Expected value                                 | Continuous Expected value              |
+|-------------------------------------------------|----------------------------------------------|
+| $\text{If }\underset{\text{all } x} \sum | x | \cdot p(x) < \infty$               | $\int_{-\infty}^{\infty} | x | \cdot f(x)dx < \infty$     |
+| $\mathbb{E}(X) = \underset{\text{all } x} \sum x \cdot p(x)$ | $\mathbb{E}(X) = \int_{-\infty}^{\infty} x\cdot f(x)dx$ | 
+| $\text{If }\underset{\text{all } x} \sum | g(x) | \cdot p(x) < \infty$ | $\int_{-\infty}^{\infty} | g(x) | \cdot f(x)dx < \infty$   |
+| $\mathbb{E}(g(X)) = \underset{\text{all } x} \sum g(x) \cdot p(x)$ | $\mathbb{E}(g(X)) = \int_{-\infty}^{\infty} g(x) \cdot f(x)dx$ | 
+
+<span style="font-size: 1.5em">Variance</span>
+
+$\text{Var}(X) = \sigma^2_X = \mathbb{E}(\left[ X - \mu_{X} \right]^2) = \mathbb{E}(X^2) - \left[\mathbb{E}(X)\right]^2$
+
+| Discrete Variance                               | Continuous Variance             |
+|-------------------------------------------------|----------------------------------------------|
+| $\text{Var}(X) = \underset{\text{all } x} \sum (x - \mu_X)^2 \cdot p(x)$ | $\text{Var}(X) = \int_{-\infty}^{\infty} (x - \mu_X)^2 \cdot f(x)dx$ |
+| $= \underset{\text{all } x} \sum x^2 \cdot p(x) - \left[\mathbb{E}(X)\right]^2$ | $= \left[\int_{-\infty}^{\infty} x^2 \cdot f(x)dx\right] - \left[\mathbb{E}(X)\right]^2$ |
+
+<span style="font-size: 1.5em">Moment-generating function</span>
+
+$M_X(t) = \mathbb{E}(\mathcal{e}^{tX})$
+
+| Discrete moment-generating function             | Continuous moment-generating function       |
+|-------------------------------------------------|----------------------------------------------|
+| $M_X(t) = \underset{\text{all } x} \sum \mathcal{e}^{tx} \cdot p(x)$ | $M_X(t) = \int_{-\infty}^{\infty}  \mathcal{e}^{tx} \cdot f(x)dx$ | 
+
+<span style="font-size: 1.5em">Example 1</span>
+
+| $x$ | $p(x)$ | $F(x)$ |
+|-----|--------|---------------|
+|$1$| $0.2$ | $0.2$ |
+|$2$| $0.4$ | $0.6$ |
+|$3$| $0.3$ | $0.9$ |
+|$4$| $0.1$ | $1.0$ |
+
+
+$$
+    F(x) = \begin{cases} 
+            0 & x < 1 \\
+            0.2 & 1 \leq x < 2 \\
+            0.6 & 2 \leq x < 3 \\
+            0.9 & 3 \leq x < 4 \\
+            1 & x \geq 4
+    \end{cases}
+$$
+
+```{r}
+library(ggplot2)
+
+# Data
+x <- c(1, 2, 3, 4)
+Fx <- c(0.2, 0.6, 0.9, 1.0)
+
+# Creating a data frame
+data_cdf <- data.frame(x, Fx)
+
+# CDF Plot
+ggplot(data_cdf, aes(x = x, y = Fx)) +
+  geom_step(direction = "hv", linewidth=1) +  # Creates the step plot
+  geom_point(color="red") +  # Optional: adds points at steps
+  ggtitle("Cumulative Distribution Function (CDF)") +
+  xlab("x") + ylab("F(x)") +
+  theme_minimal()  # Optional: a cleaner theme for the plot
+```

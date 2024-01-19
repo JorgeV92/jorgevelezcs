@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Jorge Velez">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Jorge Velez">
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jorge Velez</span>
     </a>
   </div>
@@ -92,23 +121,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./algorithms.html"> 
+    <a class="nav-link" href="../algorithms.html"> 
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./rl.html"> 
+    <a class="nav-link" href="../rl.html"> 
 <span class="menu-text">Reinforcement Learning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./DavidMarr.html"> 
+    <a class="nav-link" href="../DavidMarr.html"> 
 <span class="menu-text">David Marr Technology</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cs.html"> 
+    <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -130,24 +159,100 @@ ul.task-list li input[type="checkbox"] {
 
 
 <h1 class="post">
-CS 421
+Polymoprhic Typing Rule
 </h1>
 <hr>
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
+<p>We will say a monomorphic type <span class="math inline">\(\tau\)</span> is an <span class="math inline">\(\textbf{instance}\)</span> of a polymorphic type <span class="math inline">\(\sigma\)</span> if there exists a monomorphic type <span class="math inline">\(\tau^\prime\)</span>, (a possibly empty) list of type variables <span class="math inline">\(\alpha_1, \cdots, \alpha_n\)</span>, and a corresponding list of monomorphic types <span class="math inline">\(\tau_1, \cdots, \tau_n\)</span> such that <span class="math inline">\(\sigma = \forall \alpha_1, \cdots, \alpha_n\)</span>. <span class="math inline">\(\tau^\prime\)</span> and <span class="math inline">\(\tau = \tau^\prime\left[\tau_1 / \alpha_1, \cdots, \tau_n / \alpha_n\right]\)</span>, the type gotten by replacing each occurence of <span class="math inline">\(\alpha_i\)</span> in <span class="math inline">\(\tau^\prime\)</span> by <span class="math inline">\(\tau_i\)</span>. When using the rule below that require one type to be an instance of another, you should give the instantiation: <span class="math inline">\(\left[\tau_1 / \alpha_1, \cdots, \tau_n / \alpha_n\right]\)</span>.</p>
+<p>In simpler terms, think of a polymorphic type like a template and a monomorphic type like a filled-out form of that template. The process described is like saying, “To prove that this filled-out form is based on a specific template, show me how you substituted the placeholders in the template with actual information to get this form.</p>
+<section id="signatures" class="level1">
+<h1>Signatures</h1>
+<p><span style="font-size: 1.2em">Polymorphic constant signatures:</span></p>
+<table class="table">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\text{sig(true) = bool}\)</span></th>
+<th><span class="math inline">\(\text{sig(true) = bool}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\text{sig}(n) = \text{int } n \text{ an integer constant}\)</span></td>
+<td><span class="math inline">\(\text{sig}(f) = \text{float } f \text{ a floating point (real) constant}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\text{sig}(s) = \text{string } s \text{ a string constant}\)</span></td>
+<td><span class="math inline">\(\text{sig}([ \:\: ]) = \forall \alpha.\alpha\text{list}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size: 1.2em">Polymorphic Unary Primitive Operators:</span></p>
+<table class="table">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\text{sig(fst)} = \forall\alpha\beta.(\alpha * \beta) \rightarrow \alpha\)</span></th>
+<th><span class="math inline">\(\text{sig(snd)} = \forall\alpha\beta.(\alpha * \beta) \rightarrow \beta\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\text{sig(hd)} = \forall\alpha.\alpha\text{list} \rightarrow \alpha\)</span></td>
+<td><span class="math inline">\(\text{sig(tl)} = \forall\alpha.\alpha\text{list} \rightarrow \alpha \text{ list}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\text{sig}(\sim) = \text{int } \rightarrow \text{ int}\)</span></td>
+<td><span class="math inline">\(\text{sig(print\_string)} = \text{string } \rightarrow \text{ unit}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\text{sig(not)} = \text{bool } \rightarrow \text{ bool}\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size: 1.2em">Polymorphic Binary Primitive Operators:</span></p>
+<table class="table">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\text{sig}(\oplus) = \text{int} \rightarrow \text{ int} \rightarrow \text{ int for } \oplus \in \{+, -, *, \text{mod}, /\}\)</span></th>
+<th><span class="math inline">\(\text{sig}( ^\wedge ) = \text{string } \rightarrow \text{ stirng} \rightarrow \text{ string}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\text{sig}(\oplus) = \text{float} \rightarrow \text{ float} \rightarrow \text{ float for } \oplus \in \{+., -., *., /., **\}\)</span></td>
+<td><span class="math inline">\(\text{sig}((\_, \_)) = \forall\alpha\beta.\alpha \rightarrow \beta \rightarrow \alpha * \beta\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\text{sig}(\wr) = \text{bool} \rightarrow \text{ bool} \rightarrow \text{ bool for } \wr \in \{\vert \vert, \&amp;\&amp;\}\)</span></td>
+<td><span class="math inline">\(\text{sig}(::) = \forall\alpha.\alpha \rightarrow \alpha \text{ list} \rightarrow \alpha \text{ list}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\text{sig}(\approx) = \forall\alpha.\alpha \rightarrow \alpha \rightarrow \text{bool for } \approx  \:\: \in \{&lt;, &gt;, =, &lt;=, &gt;=, &lt;&gt;\}\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rules" class="level1">
+<h1>Rules</h1>
+<p>Constants:</p>
+<p><span class="math inline">\(\large{\frac{}{\Gamma \:\: \vdash \: c \: : \: \tau }}\)</span> <span class="math inline">\(\text{\large{CONST} } \text{where }  c \text{ is a constant listed above, and } \tau \text{ is an instance of sig}(c)\)</span></p>
+<p>Variables:</p>
+<p><span class="math inline">\(\large{\frac{}{\Gamma \:\: \vdash \: x \: : \: \tau }}\)</span> <span class="math inline">\(\text{\large{VAR}}\)</span> <span class="math inline">\(\text{ where } x \text{ is a variable and } \tau \text{ is an instance of } \Gamma(x)\)</span></p>
 
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
-<p><a href="./lab1a.html#lab1a" class="custom-link">Basic OCaml Programming</a></p>
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

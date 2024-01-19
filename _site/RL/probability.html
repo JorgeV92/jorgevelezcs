@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Jorge Velez">
 <meta property="og:description" content="">
 <meta property="og:site_name" content="Jorge Velez">
@@ -81,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Jorge Velez</span>
     </a>
   </div>
@@ -92,23 +121,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./algorithms.html"> 
+    <a class="nav-link" href="../algorithms.html"> 
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./rl.html"> 
+    <a class="nav-link" href="../rl.html"> 
 <span class="menu-text">Reinforcement Learning</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./DavidMarr.html"> 
+    <a class="nav-link" href="../DavidMarr.html"> 
 <span class="menu-text">David Marr Technology</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cs.html"> 
+    <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -130,22 +159,49 @@ ul.task-list li input[type="checkbox"] {
 
 
 <h1 class="post">
-CS 421
+Probability
 </h1>
+<span class="meta">Jan 15, 2024</span>
 <hr>
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
-
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
-<p><a href="./lab1a.html#lab1a" class="custom-link">Basic OCaml Programming</a></p>
+<p>Probability theory helps us deal with modeling with uncertainty.</p>
+<p>Suppose we perform a experiment like tossing a coin which has a fixed set of possible outcomes. This set is called the <span class="math inline">\(\textbf{sample sapce}\)</span> and we denote this space with <span class="math inline">\(\Omega\)</span>.</p>
+<p>We would like to define probabilities for some <span class="math inline">\(\textbf{events}\)</span>, which are subsets of <span class="math inline">\(\Omega\)</span>. The set of events is denoted <span class="math inline">\(\mathcal{F}\)</span>. The <span class="math inline">\(\textbf{complement}\)</span> of the event <span class="math inline">\(A\)</span> is another event, <span class="math inline">\(A^{c} = \Omega \setminus A\)</span></p>
+<p>Then we can define a <span class="math inline">\(\textbf{probability measure} \:\: \mathbb{P}: \mathcal{F} \rightarrow [0, 1]\)</span> which must satisfy</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mathbb{P}(\Omega) = 1\)</span></p></li>
+<li><p><span class="math inline">\(\textbf{Countable addivity:}\)</span> for any countable collection of disjoint sets <span class="math inline">\(\{\mathcal{A}_i\} \subseteq \mathcal{F}\)</span>,</p></li>
+</ol>
+<p><span class="math display">\[
+    \mathbb{P}\left(\bigcup_i A_i\right) = \sum_i \mathbb{P}(A_i)
+\]</span></p>
+<p>The triple <span class="math inline">\((\Omega, \mathcal{F}, \mathbb{P})\)</span> is called a <span class="math inline">\(\textbf{probability space}\)</span>.</p>
+<p>If <span class="math inline">\(\mathbb{P}(A) = 1\)</span>, we say that <span class="math inline">\(A\)</span> occurs <span class="math inline">\(\textbf{almost surely}\)</span>, and conversely <span class="math inline">\(A\)</span> occurs <span class="math inline">\(\textbf{almost never}\)</span> if <span class="math inline">\(\mathbb{P}(A) = 0.\)</span></p>
+<p><span class="math inline">\(\textbf{Proposition}\)</span>: Let <span class="math inline">\(A\)</span> be an event. Then</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mathbb{P}(A^c) = 1 - \mathbb{P}(A)\)</span></p></li>
+<li><p>If <span class="math inline">\(B\)</span> is an event and <span class="math inline">\(B \subseteq A\)</span>, then <span class="math inline">\(\mathbb{P}(B) \leq \mathbb{P}(A)\)</span>.</p></li>
+<li><p><span class="math inline">\(0 = \mathbb{P}(\varnothing) \leq \mathbb{P}(A) \leq \mathbb{P}(\Omega) = 1\)</span></p></li>
+</ol>
+<p><span class="math inline">\(Proof\)</span>:</p>
+<p>Using the countable additivity of <span class="math inline">\(\mathbb{P}\)</span>, we have</p>
+<p><span class="math display">\[
+    \mathbb{P}(A) + \mathbb{P}(A^c) = \mathbb{P}(A \cup A^c) = \mathbb{P}(\Omega) = 1
+\]</span></p>
+<p>To show 2. suppose <span class="math inline">\(B \in \mathcal{F}\)</span> and <span class="math inline">\(B \subseteq A\)</span>. Then</p>
+<p><span class="math display">\[
+    \mathbb{P}(A) = \mathbb{P}(B \cup (A \setminus B)) = \mathbb{P}(B) + \mathbb{P}(A \setminus B) \geq \mathbb{P}(B)
+\]</span></p>
+<p>as claimed.</p>
+<p>For 3: the middle inequality follows from 2 since <span class="math inline">\(\varnothing \subseteq A \subseteq \Omega\)</span>. We also have:</p>
+<p><span class="math display">\[
+    \mathbb{P}(\varnothing) = \mathbb{P}(\varnothing \cup \varnothing) = \mathbb{P}(\varnothing) + \mathbb{P}(\varnothing)
+\]</span></p>
+<p><span style="font-size: 1.5em">Discrete random variables</span></p>
+<ul>
+<li><p>A random variable denoted as <span class="math inline">\(\text{r.v}\)</span> is a quantity that probabilistically takes on any of a possible range of values.</p></li>
+<li><p>A random variable <span class="math inline">\(X\)</span> is descrete if it takes values in a countable set <span class="math inline">\(\mathcal{X} = \{x_1, x_2, \cdots,\}.\)</span></p></li>
+<li><p>Most random varibales have some certain distributioin for example Bernoulli, Binomial, Poisson, Geometric.</p></li>
+</ul>
 
 
 

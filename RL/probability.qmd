@@ -1,0 +1,63 @@
+<h1 class=post >Probability</h1>
+<span class='meta'>Jan 15, 2024</span>
+<hr/>
+
+Probability theory helps us deal with modeling with uncertainty.
+
+Suppose we perform a experiment like tossing a coin which has a fixed set of possible outcomes. This set is called the $\textbf{sample sapce}$ and we denote this space with $\Omega$.
+
+We would like to define probabilities for some $\textbf{events}$, which are subsets of $\Omega$. The set of events is denoted $\mathcal{F}$. The $\textbf{complement}$ of the event $A$ is another event, $A^{c} = \Omega \setminus A$
+
+Then we can define a $\textbf{probability measure} \:\: \mathbb{P}: \mathcal{F} \rightarrow [0, 1]$ 
+which must satisfy 
+
+1. $\mathbb{P}(\Omega) = 1$ 
+
+2. $\textbf{Countable addivity:}$ for any countable collection of disjoint sets $\{\mathcal{A}_i\} \subseteq \mathcal{F}$,
+
+$$
+    \mathbb{P}\left(\bigcup_i A_i\right) = \sum_i \mathbb{P}(A_i)
+$$
+
+The triple $(\Omega, \mathcal{F}, \mathbb{P})$ is called a $\textbf{probability space}$.
+
+If $\mathbb{P}(A) = 1$, we say that $A$ occurs $\textbf{almost surely}$, and conversely $A$ occurs $\textbf{almost never}$ if $\mathbb{P}(A) = 0.$
+
+$\textbf{Proposition}$: Let $A$ be an event. Then 
+
+1. $\mathbb{P}(A^c) = 1 - \mathbb{P}(A)$
+
+2. If $B$ is an event and $B \subseteq A$, then $\mathbb{P}(B) \leq \mathbb{P}(A)$.
+
+3. $0 = \mathbb{P}(\varnothing) \leq \mathbb{P}(A) \leq \mathbb{P}(\Omega) = 1$ 
+
+$Proof$:
+
+Using the countable additivity of $\mathbb{P}$, we have
+
+$$
+    \mathbb{P}(A) + \mathbb{P}(A^c) = \mathbb{P}(A \cup A^c) = \mathbb{P}(\Omega) = 1 
+$$
+
+To show 2. suppose $B \in \mathcal{F}$ and $B \subseteq A$. Then
+
+$$
+    \mathbb{P}(A) = \mathbb{P}(B \cup (A \setminus B)) = \mathbb{P}(B) + \mathbb{P}(A \setminus B) \geq \mathbb{P}(B)
+$$
+
+as claimed.
+
+For 3: the middle inequality follows from 2 since $\varnothing \subseteq A \subseteq \Omega$. We also have: 
+
+$$
+    \mathbb{P}(\varnothing) = \mathbb{P}(\varnothing \cup \varnothing) = \mathbb{P}(\varnothing) + \mathbb{P}(\varnothing) 
+$$
+
+
+<span style="font-size: 1.5em">Discrete random variables</span>
+
+- A random variable denoted as $\text{r.v}$ is a quantity that  probabilistically takes on any of a possible range of values.
+
+- A random variable $X$ is descrete if it takes values in a countable set $\mathcal{X} = \{x_1, x_2, \cdots,\}.$
+
+- Most random varibales have some certain distributioin for example Bernoulli, Binomial, Poisson, Geometric. 

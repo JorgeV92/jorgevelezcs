@@ -1,0 +1,20 @@
+<h1 class=post>CS 411</h1>
+<hr/>
+
+
+<style>
+    .custom-link {
+        text-decoration: none;
+        color: black; /* Sets the default color to black */
+        border-bottom: 1px dotted black; /* Creates a dotted underline */
+        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
+    }
+
+    .custom-link:hover {
+        text-decoration: underline solid black; /* Changes to solid underline on hover */
+    }
+</style>
+
+<a href="RDBMS.qmd#" class="custom-link">The Relational Model & Basic SQL</a>
+
+<a href="dataModels.qmd#" class="custom-link">High-Level Database Models </a>

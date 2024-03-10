@@ -17,7 +17,7 @@ My hope is that this process will not only aid my own progression in computer sc
 for others on a similar path. Please see <a href="https://jeffe.cs.illinois.edu/" style= "color: blue; text-decoration: none;"> Jeff's website</a>  and <a href="https://jeffe.cs.illinois.edu/teaching/algorithms/" style="color: blue; text-decoration: none;"> Jeff's book</a> as his book is freely available online. 
 
 <h1 class=post>Data Structures</h1>
-Some notes on data structures <a href="dataStructures.qmd#Data" style="text-decoration: none;">HERE!</a>
+Some notes on data structures <a href="/CS374/dataStructures.qmd#Data" style="text-decoration: none;">HERE!</a>
 </br>
 
 <img src="/images/FrontCover.png" alt="Jeff's book" height="400" style="display: block; margin-left: auto; margin-right: auto;" />
@@ -27,7 +27,7 @@ Some notes on data structures <a href="dataStructures.qmd#Data" style="text-deco
 ### Section 1
 
 - <span style="font-size: larger; font-weight: bold;">String induction</span> 
-    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Lab1a:</a> String induction 
+    - <a href="/CS374/lab1a.qmd#lab1a" style="text-decoration: none;">Lab1a:</a> String induction 
 - <span style="font-size: larger; font-weight: bold;">Languages and regular expressions</span> 
     - <a href="#lab1b" style="text-decoration: none;">Lab1b:</a> Regular expressions
 - <span style="font-size: larger; font-weight: bold;">DFAs: intuition, definition, examples</span> 
@@ -55,9 +55,9 @@ Some notes on data structures <a href="dataStructures.qmd#Data" style="text-deco
 - <span style="font-size: larger; font-weight: bold;">Bactracking: n queens, game trees, text segmentation</span> 
     - <a href="#lab2a" style="text-decoration: none;">Lab7a:</a> Backtracking
 - <span style="font-size: larger; font-weight: bold;">Dynamic programming: Fibonacci, text segmentation again</span> 
-    - <a href="lab7b.qmd#lab7b" style="text-decoration: none;">Lab7b:</a> Dynamic programming
+    - <a href="/CS374/lab7b.qmd#lab7b" style="text-decoration: none;">Lab7b:</a> Dynamic programming
 - <span style="font-size: larger; font-weight: bold;">Sequence dynamic programming: Edit distance </span> 
-    - <a href="lab8a.qmd#lab8a" style="text-decoration: none;">Lab8a:</a> More dynamic programming
+    - <a href="/CS374/lab8a.qmd#lab8a" style="text-decoration: none;">Lab8a:</a> More dynamic programming
 - <span style="font-size: larger; font-weight: bold;">Tree-shaped dynamic programming: Carpentry</span> 
     - <a href="#lab3b" style="text-decoration: none;">Lab8b:</a>  Return of the son of revenge of dynamic programming
 - <span style="font-size: larger; font-weight: bold;">Graphs: definitions, representations, data structures, traversal</span> 
@@ -106,7 +106,7 @@ Some notes on data structures <a href="dataStructures.qmd#Data" style="text-deco
 
 <b style="font-weight: bold">Young man, in mathematics you don't understand things. You just get used to them.</b>
 <br />
-— John von Neumannxw
+— John von Neumann
 
 <b style="font-weight: bold">Dealing with failure is easy: Work hard to improve. Success is also easy to handle: You've solved the wrong problem. Work hard to improve.</b>
 <br />

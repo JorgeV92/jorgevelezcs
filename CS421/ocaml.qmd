@@ -1,0 +1,67 @@
+<h1 class=post >Introduction to Objective OCaml</h1>
+<span class='meta'>March 2, 2024</span><br>
+<!-- <span class='meta'>All notes are expanded based on </span> -->
+<hr/>
+
+
+### Variables and Functions
+
+In ML, variables are names for values. Variable bindings are bind with the keyword $\text{let}$.
+
+$$ \text{let identifier = expression}$$
+
+Definitions using $\text{let}$ can also be nested using the $\text{in}$ form.
+
+$$
+    \text{let identifier = } \text{expression}_1 \text{ in } \text{expression}_2
+$$
+
+The expression $\text{expression}_2$ is called the body of the $\text{let}$ The variable named $\text{identifier}$ is defined as the value of $\text{expression}_1$ within the body. The $\text{identifier}$ is defined only in the body $\text{expression}_2$ and not $\text{expression}_1$.
+A $\text{let}$ with a body is an expression; the value of a $\text{let}$ expression is the value of the body.
+
+Functions are defined with the keyword $\text{Fun}$
+
+$$ \text{fun } v_1 \quad v_2 \quad \cdots\quad v_n \rightarrow expression$$
+
+### Higher order functions
+
+#### Exercise 3.3:
+We write a function $\text{sum}$ that, given two integers bounds n and m and a function f, computes a summation.
+$$   \text{sum n m f } = \sum_{i=1}^{m} f(i) $$
+
+```ocaml
+let sum n m f = 
+    if n > m then
+        0
+    else
+        f n + sum (n + 1) m f
+```
+
+#### Exercise 3.4:
+Euclid's algorithm computes the greatest common divisor (GCD) of two integers. 
+
+
+
+\begin{align*}
+    &\text{gcd}(n, k) = \\
+    &\quad \text{while } m \neq 0 \\
+    & \qquad \text{if } n > m \\
+    & \qquad \quad n \gets n - m \\
+    & \qquad \text{else} \\
+    & \qquad \quad m \gets m - n \\
+    &\quad \text{return } n
+\end{align*}
+
+```ocaml
+(* Method 1 *)
+let rec gcd n m =
+  if m = 0 then n
+  else if n > m then gcd (n - m) m
+  else gcd n (m - n);;
+
+(* Method 2 *)
+let rec gcd n m =
+  if m = 0 then n
+  else gcd m (n mod m)
+```
+

@@ -1,0 +1,55 @@
+<h1 class=post >The Relational Model & Basic SQL</h1>
+<span class='meta'>Jan 19, 2024</span>
+<hr/>
+
+<span style="font-size: 1.5em;"> Data models</span>
+
+A data model is a notation for describing data or information. 
+
+1. _Structure of the data_  
+2. _Operations of the data_
+3. _Constraints on the data_ 
+
+The relational model is based on tables, which I try to formulate in the bottom example. This relation, or table describes a databse for a students in undergrad who are pursuing a computer science majors: each entry as the university of attendends, their name, current year, and major. 
+
+| university | student_name | year | major |
+|-------------|-------------|-------------|-------------|
+| UIUC | Jogre Velez | senior | computer science |
+
+ A relational database is a big spreadsheet that several people can update simultaneously.
+ 
+ In the context of a banking system, a relational database functions like a highly organized and efficient digitial ledger, allowing multiple transactions and operations to be processed simultaneously. 
+
+ Each table in this database can be likened to a distinct ledger or register. For instance, consider a table specifically designed to store bank account information. In this table, each column represents a different attribute of a bank account, such as the account number, account holder's name, balance, and account type. Every row in the table corresponds to an individual bank account, containing all the relevant details for that account.
+
+Unlike a traditional spreadsheet, a relational database management system (RDBMS) requires that all data within a single column be of the same data type, like integer, decimal, string, or date. This ensures data integrity and consistency. Another key difference is that rows in an RDBMS are not inherently ordered. While you can create an indexed column, such as account_number, to organize and retrieve data in a specific order, the database itself does not automatically assign a sequential order like spreadsheet applications (e.g., Excel).
+
+To illustrate, here's an example of SQL code used to create a basic table for storing bank account information in a banking application:
+
+```sql 
+CREATE TABLE bank_accounts (
+    account_number VARCHAR(100) NOT NULL PRIMARY KEY,
+    account_holder_name VARCHAR(100) NOT NULL,
+    account_balance DECIMAL(10, 2),
+    account_type VARCHAR(50)
+);
+
+```
+
+<span style="font-size: 1.5em;"> SQL Queries and Relational Algebra </span>
+
+The simple SQL queires that we will see all have the form: 
+
+```sql 
+SELECT L
+FROM R
+WHERE C
+```
+
+in which $L$ is a list of expressions, $R$ is a relation, and $C$ is a condition. The meaning of any such expression is the same as that of the relational algebra epsression 
+
+$$
+    \pi_L (\sigma_C(R))
+$$
+
+That is, we start with the relation in the $\textbf{FROM}$ clause, apply to each tuple whatever condition is indicated in the $\textbf{WHERE}$ clause, and then project onto the list of attributes and/or expressions in the $\textbf{SELECT}$ clause.

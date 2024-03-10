@@ -1,0 +1,16 @@
+<h1 class=post >Closures and Evaluation of Function Application, Order of Evaluation in OCaml</h1>
+<span class='meta'>Jan 25, 2024</span>
+<hr/>
+
+
+<span style="font-size: 1.5em;"> Functions with more than one argument </span>
+
+```ocaml
+# let add_three x + y + z = x + y + z;;
+val add_three : int -> int -> int -> int = <fun> 
+# let t = add_three 6 3 2;;
+val t : int = 11
+# let add_three = 
+  fun x -> (fun y -> (fun z -> x + y + z));;
+val add_three : int -> int -> int -> int = <fun> 
+```

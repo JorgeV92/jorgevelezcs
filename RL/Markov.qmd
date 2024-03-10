@@ -1,0 +1,91 @@
+<h1 class=post >Markov decision process</h1>
+<span class='meta'>Jan 19, 2024</span>
+<hr/>
+
+The learner and decisiojn maker is called the agent. In, mathematics a $\textbf{Markov decision process}$ is a discrete-time stochastic control process. It provides a mathematical framework for modeling decision making in situation where outcomes are partly random and partly under the control of a dicsion maker.
+
+We formulate the $\text{MDP}$ as $\mathcal{M} = (S, A ,P, R, \gamma)$
+
+- $S$ is the state space
+
+- $A$ is the action space 
+
+- $P : S \times A \to \Delta(S)$ Note: $\Delta(S)$ is the probability simplex over $S$, i.e., all non-negative vectors of length $|S|$ that sums up to 1
+
+- $R: S \times A \to \mathbb{R}$. Note: A deterministic reward function 
+
+- $\gamma \in [0, 1]$ 
+
+To formulate my understanding of the above MDP, I can begin to think about it as the agent starts in some state $s_1$, begins with taking action $a_1$, which it then receives a reward $r_1 = R(s_1, a_1)$, transitions to $s_2 \sim P(s_1, a_1)$, takes action $a_2, ...$  the sequence continues on forever.
+
+The objective is the expected total reward or (discounted reward) and in other literature could be refered as the return, value, utility, long-term reward, etc
+
+- $P(s^\prime \mid s, a)$ The probability of transitiong to a particular state
+
+Sometimes the reward is random and/or depends on the next-state. e.g., $R(s, a, s^\prime)$, or $R(s, a)$ is a random variable. The most general case when given $(s, a), (r, s^\prime)$ is drawn from some joint distribution.
+
+-----------
+
+<span style="font-size: 1.5em;"> Theory and Methodology </span>
+
+A MDP makes decisions using information about the system's current state, the actions being performed by the agent and the rewards earned based on states and actions.
+
+The MDP is made up of multiple fundamental elements: the agent, states, a model, actions, rewards, and a policy. The agent is the object or system being controlled that has to make decisions and perfrom actions. The agent lives in an environmnet that can be decribed using states, which contain information about the agent and the environment. The model determines the rules of the world in which the agent lives, in other words, how certain states and actions lead to other states. The agent can perform fixed set of actions in any given state. The agent receives rewards based on its current state. A policy is a function that determines the agent's next action based on its current state. 
+
+
+<span style="font-size: 1.2em;"> MDP Framework: </span>
+
+- $S \to$ States $(s \in S)$
+
+- $A \to$ Actions $(a \in A)$
+
+- $P(S_{t + 1} | s_t, a_t) \to$ Model determining transition probabilities 
+
+- $R(s) \to$ Reward
+
+In order to understand how the MDP works, first the Markov Property must be defined. The Markov Property states that the future is independent of the past given the present. In other words, only the present is needed to determine the future, since the present contains all necessary information from the past. The Markov Property can be described in mathematical terms below:
+
+$$
+    P[S_{t + 1} | S_t] = P[S_{t + 1} | S_1, S_2, S_3, ..., S_t]
+$$
+
+The above notation conveys that the probability of the next state given current state is equal to the probability of the next state given all previous states. The Markov Property is relevant to the MDP because only the current state is used to determine the next action, the previous states and actions are not needed. 
+
+<span style="font-size: 1.2em;"> The Policy and Value Function  </span>
+
+The policy, $\Pi$ is a function that maps actions to states. The policy determines which is the optimal action given the current state to achieve the maximum total reward. 
+
+$$
+    \Pi : S \times A
+$$
+
+Before the best policy can be determined, a goal or return must be defined to quantify rewards at every state. There are various ways to define the return. Each variation of the return function tries to maximize rewards in some way, but differs in which accumulation of rewards should be maximized. The first method is to choose the action that maximizes the expected reward given the current state. This is the myopic method, which weighs each time-step decision equally. Next is the finite-horizon method, which tries to maximizes the accumulated reward over a fixed number of time steps. But because many applications may have inifinite horizons, meaning the agent will always have to make decisions and continuously try to maximize its reward, another method is commonly used, known as the infinite-horizon method. In the infinite-horizon method, the goal is to maximize the expected sum of rewards over all steps in the future. When performing an infinite sum of rewards that are all weighed equally, the results may not converge and the policy algorithm may get stuck in a loop. In order to avoid this, and the able prioritize short-term or long term-reawrds, a discount factor, $\gamma$, is added. If $\gamma$ is closer to 0, the policy will choose actions that prioritize more immediate reawrds, if $\gamma$ is closer to 1, long-term rewards are prioritized.
+
+Return/Goal Variations:
+
+- Myopic: Maximize $E[r_t | \Pi, s_t],$ maximize expceted reward for each state
+
+- Finite-horizon: Maximize $E[\sum_{t=0}^k r_t | \Pi, s_t],$ maximize sum of expected reward over finite horizon
+
+- Discounted Infinite-horizon: Maximize $E[\sum_{t=0}^\infty \gamma^t r_t | \Pi, s_t] \quad \gamma \in [0, 1]$, maximize sum of discounted expected reward over infinite horizon 
+
+The value function $V(s)$, characterizes the return at a given state. Most commonly, the discounted infinite horizon return method is used to determined the best policy. Below the value function is defined as the expected sum of discounted future rewards. 
+
+$$
+    V(s) = E\left[\sum^\infty_{t=0} \gamma^t r_t | s_t\right]
+$$
+
+The value function can be decomposed into two parts, the immediate reward of the currrent state, and the discounted value of the next state. This decomposition leads to the derivation of the Bellman Eqaution. Because the actions and rewards are dependent on the policy, the value function of an MDP is associated with a given policy. 
+
+$$
+    \begin{align*}
+        V(s) &= E[r_{t + 1} + \gamma V(s_{t+1}) | s_t], \quad s_{t+1} = s^\prime \\
+        V(s) &= R(s, \Pi(s)) + \gamma \underset{s^\prime \in S} {\sum} P_{ss^\prime}V(s^\prime) \\
+        V^\Pi (s) &= R(s, \Pi(s)) + \gamma \underset{s^\prime \in S} {\sum} P(s^\prime | s, \Pi(s)) V(s^\prime) \\
+        V^*(s) &= \max_a \left[R(s, a) + \gamma \underset{s^\prime \in S} {\sum} P(s^\prime | s, a) V^*(s^\prime) \right]
+    \end{align*}
+$$
+
+--------------------------------------
+
+A Markov decision Processes (MDP) we label as $\mathcal{M} = (S, A, P, R, \gamma)$ 

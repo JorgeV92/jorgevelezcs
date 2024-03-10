@@ -1,0 +1,34 @@
+<h1 class=post>CS 421</h1>
+<hr/>
+
+
+<style>
+    .custom-link {
+        text-decoration: none;
+        color: black; /* Sets the default color to black */
+        border-bottom: 1px dotted black; /* Creates a dotted underline */
+        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
+    }
+
+    .custom-link:hover {
+        text-decoration: underline solid black; /* Changes to solid underline on hover */
+    }
+</style>
+
+
+ <a href="ocaml.qmd#" class="custom-link">Introduction to Objective OCaml</a> 
+
+<a href="rules.qmd#" class="custom-link">Polymoprhic Typing Rules</a>
+
+<a href="../index.qmd"  class="custom-link">Basic OCaml Programming</a>
+
+<a href="lect3.qmd"  class="custom-link">Closures and Evaluation of Function Application, Order of Evaluation in OCaml</a>
+
+<a href="lect4.qmd"  class="custom-link">Higher-Order Functions, Pattern Matching and Recursion over Lists</a>
+
+<a href="lect9.qmd"  class="custom-link">User Defined Types in Ocaml, Data Constructors and Pattern Matching</a>
+
+<a href="lect11.qmd"  class="custom-link">Types and Type Systems</a>
+
+<a href="midterm2.qmd"  class="custom-link">Midterm 2 concepts review </a>
+

@@ -1,0 +1,24 @@
+<h1 class=post>Statistics and Probability 2</h1>
+<span class='meta'>Jan 16, 2024</span>
+<hr/>
+
+<style>
+    .custom-link {
+        text-decoration: none;
+        color: black; /* Sets the default color to black */
+        border-bottom: 1px dotted black; /* Creates a dotted underline */
+        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
+    }
+
+    .custom-link:hover {
+        text-decoration: underline solid black; /* Changes to solid underline on hover */
+    }
+</style>
+
+<a href="statRev.qmd#" class="custom-link">Stats and Probability review</a>
+
+<a href="discreteVariable.qmd#" class="custom-link">Discrete Random Variables 1</a>
+
+<a href="discreteVariable2.qmd#" class="custom-link">Discrete Random Variables 2</a>
+
+<a href="Exam1.qmd#" class="custom-link">Review Exam 1</a>

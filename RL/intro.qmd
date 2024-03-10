@@ -1,0 +1,19 @@
+<h1 class=post>Introduction</h1>
+<hr/>
+
+
+<span style="font-size: 1.5em">Introduction to MDPs and RL</span><br/>
+
+<span style="font-size: 1.5em">Shortest Path</span><br/>
+
+Finding the shortest path:
+
+Where we have a graph $G = (V, E)$ where $V$ are the vertices and $E$ are the edges with weights $w$. The vertices are the $\textbf{states}$ and the edges are the $\textbf{actions}$. Tne goal is you have a starting state and you wanna reach the end state while attating the least cost of the wieghts $w$ along the edges.
+If the startegy is $\textbf{Greedy}$ then it is suboptimal due to dealyed affects of long term decisions. There must be a better way to long-term planning.
+
+
+<img src="/images/sp.png" alt="Shortest path" height="350" style="display: block; margin-left: auto; margin-right: auto; padding-left: 100px;"  />
+
+Based on actions taken by the agent 
+
+<img src="/images/spA.png" alt="Shortest path based on actions" height="350" style="display: block; margin-left: auto; margin-right: auto; padding-left: 100px;"  />

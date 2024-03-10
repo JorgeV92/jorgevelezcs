@@ -1,0 +1,139 @@
+<h1 class="post" style="padding-bottom: 9px;">Types and Type Systems</h1>
+<span class='meta'>March 1, 2024</span><br>
+<span class='meta'>All notes are expanded based on </span>
+
+
+<!--  Debugging only. Scrolls all the way to the bottom  Comment out when done.-->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
+
+<!-- -----------------------------END-------------------------------- -->
+
+<h1 class=post >Why Data Types?</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>Data types play a key role in:</li>
+    <ul class="red-square">
+        <li> $\textcolor{blue}{\text{Data abstraction}}$ in the design of programs</li>
+        <li>$\textcolor{blue}{\text{Type checking}}$ in the analysis of programs</li>
+        <li>$\textcolor{blue}{\text{Compile-time code generation}}$ in the translation and execution of programs</li>
+        <li>Data layout (how many words; which are data and which are pointers) dictated by type</li>
+    </ul>
+</ul>
+
+<h1 class=post >Terminology</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>Type: A $\textcolor{blue}{\text{type}} \:\: \textcolor{red}{\text{t}}$ defines a set of ppssible data values</li>
+    <ul class="red-square">
+        <li>E.g. $\textcolor{red}{\text{short}}$ in C is $\{x \mid 2^{15} - 1 \geq x \geq -2^{15}\}$</li>
+        <li>A value in this set is said to have type $\textcolor{blue}{t}$</li>
+    </ul>
+</ul>
+
+<ul class="blue-square">
+    <li>Type system: rules of a language assigning types to expressions</li>
+</ul>
+
+
+<h1 class=post >Types as Specifications</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>Types describe properties</li>
+    <li>Different type systems describe different properties, e.g.</li>
+    <ul class="red-square">
+        <li>Data is read write-versus read-only </li>
+        <li>Operation has authority to access data</li>
+        <li>Data came from right source</li>
+        <li>Operation might or could not raise an exception</li>
+    </ul>
+    <li>Common type systems focus on types describing same data layout and access methods</li>
+</ul>
+
+<h1 class=post >Sound Type System </h1>
+<hr />
+
+<ul class="blue-square">
+    <li>If an expression is assigned type $\textcolor{red}{\text{t}}$, and it evaluates toa value $\textcolor{red}{\text{v}}$, then $\textcolor{red}{\text{v}}$ is in the set of values defined by $\textcolor{red}{\text{t}}$</li>
+    <li>SML, OCAML, Scheme and Ada have sound type systems </li>
+    <li>Most implementations of C and C++ do not</li>
+</ul>
+
+<h1 class=post >Strongly Typed Language</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>When no appliaction of an operator to arguments can lead to a run-time type error, langauge is $\textcolor{red}{\text{stronly typed}}$</li>
+    <ul class="red-square">
+        <li>E.g. 1 + 2.3;;</li>
+    </ul>
+    <li>Depends on definition of type error </li>
+    <li>C++ claimed to be strongly typed, but </li>
+    <ul class="red-square">
+        <li>Union types allow creating a value at one type and using it at another</li>
+        <li>Type coercions may cause unexpected (underirable) effects</li>
+        <li>No array bounds check (in fact, no runtime checks at all)</li>
+    </ul>
+    <li>SML, OCAML strongly type but still must do dynamic array bounds checks, runtime type case analysis, and other checks</li>
+</ul>
+
+<h1 class=post >Static vs Dynamic Types</h1>
+<hr />
+
+- $\textcolor{red}{\text{Static type}}:$ type assigned to an expression at compile time 
+- $\textcolor{red}{\text{Dynamic type}}:$ type assigned to a storage location at run time
+- $\textcolor{red}{\text{Statically typed language}}:$ static type assigned to every expression at compile time
+- $\textcolor{red}{\text{Dynamically typed language}}:$ type of an expression determined ar run time
+
+<h1 class=post >Type Checking</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>When is op(arg1, ..., argn) allowed?</li>
+    <li>$\textcolor{red}{\text{Type checking}}$ assures that operations are applied to the right number of arguments of the right types</li>
+    <ul class="red-square">
+        <li>Right type may mean same type as was specified, or may mean that there is a predefined implicit coercion that will be applied</li>
+    </ul>
+    <li>Used to resolve overloaded operations</li>
+    <li>Type checking may be done $\textcolor{red}{\text{statically}}$ at compile time or $\textcolor{red}{\text{dynimically}}$ at run time</li>
+    <li>Dynamically typed (aka untyped) languages (e.g. LISP, Prolog) do only dynamic type checking</li> 
+    <li>Statically typed languages can do most typed checking statically</li>
+</ul>
+
+<h1 class=post >Dynamic Type Checking</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>Performed at run-time before each operation is applied</li>
+    <li>Types of variables and operations left unspecified until run-time</li>
+    <ul class="red-square">
+        <li>Same variable may be used at different types</li>
+    </ul>
+    <li>Data object must contain type information</li>
+    <li>Errors aren't detected until violating application is execurted (maybe years after the code was written)</li>
+</ul>
+
+<h1 class=post >Static Type Checking</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>Performed after parsing, before code generation</li>
+    <li>Type of every variable and signature of every operator must be known at compile time</li>
+    <li>Can eliminate need to store type information in data object if no dynamic type checking is needed</li>
+    <li>Catches many programming arrors at earliest point</li>
+    <li>Can't check types that depend on dynamically computed values</li>
+    <ul class="red-square">
+        <li>E.g. array bounds</li>
+    </ul>
+    <li>Typically places restriction on languages</li>
+    <ul class="red-square">
+        <li>Garbage collection</li>
+        <li>References instead of pointers </li>
+    </ul>
+</ul>

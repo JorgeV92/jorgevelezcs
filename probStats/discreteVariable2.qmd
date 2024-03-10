@@ -1,0 +1,58 @@
+<h1 class=post>Discrete Random Variables 2</h1>
+<span class='meta'>Jan 17, 2024</span>
+<hr/>
+
+<span style="font-size: 1.5em">The Big Three</span> 
+
+The following is a list of essentail formulaas for the three most important discrete distributions: $\textbf{binomial, geometric, and Poisson.}$ 
+
+- $\textbf{Binomial distribution } b(n, p):$ 
+    - $n \text{ (positive integer), } p \: (0 \leq p \leq 1)$ 
+    - $\textbf{p.m.f: } f(x) = {n \choose x}p^x (1 - p)^{n - x} \:\: (x = 0, 1, 2, ..., n)$
+    - $\textbf{Expectation and variance: } \mu = np, \:\: \sigma^2 = np(1 - p)$
+    - $\textbf{Arises as: }$ Distribution of number of successes in success/failure trials (Bernoulli trials)
+
+- $\textbf{Geometric distribution:}$
+    - $p \: (0 < p < 1)$
+    - $\textbf{p.m.f: } f(x) = (1 - p)^{x - 1} p \:\: (x =1, 2, ...)$
+    - $\textbf{Expectation and variance: } \mu = 1/p, \: \sigma^2 = (1 - p)/p^2$
+    - $\textbf{Geometric series: } \overset{\infty}{\underset{n=0}{\sum}} r^n = \frac{1}{1 - r} (| r | < 1)$
+    - $\textbf{Arises as: }$ Distribution of trial at which the first success occurs in success/failure trial sequence
+
+- $\textbf{Poisson disctribution:}$
+    - $\lambda > 0$
+    - $\textbf{p.m.f: } f(x) = \mathcal{e}^{-\lambda \frac{\lambda^x}{x!}} \:\: (x = 0, 1, 2, ...)$
+    - $\textbf{Expectation and variance: }\overset{\infty}{\underset{n=0}{\sum}} \frac{\lambda^n}{n!} = \mathcal{e}^\lambda$
+    - $\textbf{Arises as: }$ Distribution of number of occurrences of rare events, such as accidents, insurance claims, etc.
+
+<span style="font-size: 1.5em">Other discrete distributions</span> 
+
+1. $\textbf{Hypergeometric distribution:} f(x) = \frac{ {N_1 \choose x} {N_2 \choose n - x} }{N \choose n}$, $x = 0, 1, ..., N_1, n - x \leq N_2$
+
+2. $\textbf{Negative binomial distribution:} f(x) = {x - 1 \choose r - 1}(1 - p)^{x - r}p^r$, $\quad x = r, r + 1, ...$
+
+<span style="font-size: 1.5em">Binomial coefficients</span> 
+
+- $\textbf{Definition: } \text{For } n = 1, 2, ... \text{ and } k = 0, 1, ..., n, {n \choose k} = \frac{n!}{k!(n - k)!}$
+
+- $\textbf{Alternate notations: } {}_n C_k \text{ or } C(n, k)$ 
+
+- $\text{Other definition:} {n \choose k} = \frac{n(n-1)...(n - k + 1)}{k!}$ 
+
+- $\textbf{Symmetry property: } {n \choose k} = {n \choose n - k}$
+
+- $\textbf{Special cases: } {n \choose 0} = {n \choose n} = 1, \:\: {n \choose 1} = {n \choose n - 1} = n$
+
+- $\textbf{Binomial Theorem: } (x + y)^n = \overset{n}{\underset{k=0}{\sum}} {n \choose k} x^k y^{n - k}$
+
+- $\textbf{Binomial Theorem, special case: } (x + y)^n = \overset{n}{\underset{k=0}{\sum}} {n \choose k} p^k(1 - p)^{n - k} = 1$
+
+- $\textbf{Combinatorial Interpretations: } {n \choose k} \text{ represents }$
+
+1. the number of ways to select $k$ objects out of $n$ given objects (in the sense of unordered samples wihtout replacement)
+
+2. the number of $k$-element subsets of an $n$-element set
+
+3. the number of $n$-letter $\text{HT}$ sequences with exactly $k$ $\text{H's}$ and $n - k$ $\text{T's}$
+
+- $\textbf{Binomial distribution: }$ Given a positive integer $n$ and a number $p$ with $0 < p < 1$, the binomial distribution $b(n, p)$ is the distribution with density (p.m.f) $f(x) = {n \choose x} p^x(1 - p)^{n - x}$, for $x = 0, 1, ..., n$.

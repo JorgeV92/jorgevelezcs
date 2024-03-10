@@ -1,0 +1,84 @@
+<h1 class=post >Recursion</h1>
+<span class='meta'>Jan 25, 2024</span>
+<hr/>
+
+Functional programmers are defined by their love of recursive functions, and in many ways recursive functions in functional programming are the equivalent of loops in imperative programming. In functional languages, loops are second-class citizens, whlist recursive get all the best support.
+
+Writing recursive functions requires a change in mindset from writing for loops and while loops, so this section will be just an introduction and a few examples.
+
+In the first example, we'll read the whole file into memory (into a long string). There are essentially three possible approaches to this:
+
+<span style="font-size: 1.5em;"> Approach 1</span>
+
+Get the length of the file and read it all at once using the really_input method. This is the simplest, but it might not work on channels that are not really files (e.g., reading keyboard input) which is why we have two other approaches.
+
+<span style="font-size: 1.5em;"> Forward Recursion and fold_right, even_count_fr</span>
+
+Outcome learn more about Forward recursion and how to use fold_right.
+
+ - Write a function even_count_fr : int list -> int that returns the number of even integers found in the input list. The function is required to use (only) forward recursion (no other form of recursion). You may not use any library functions or any problems later in this set.
+
+```ocaml
+let rec even_count_fr list = 
+    match list with 
+    | [] -> 0
+    | (x::xs) -> let count_result = even_count_fr xs in 
+    if (x mod 2) = 0 then (1 + count_result) else count_result
+```
+- Write a value even_count_fr_base and function even_count_fr_rec : int -> int -> int such that (fun l -> List.fold_right even_count_fr_rec l even_count_fr_base) computes the same results as even_count_fr of the problem above. There should be no use of recursion or library functions in defining even_count_fr_rec.
+
+```ocaml
+# let even_count_fr_base = 0;;
+val even_count_fr_base : int = 
+# let even_count_fr_rec r x = if (x mod r) = 0 then (1 + x) else x;;
+val even_count_fr_rec : int -> int -> int = <fun>
+# (fun l -> List.fold_right even_count_fr_rec l even_count_fr_base) [1; 2; 3]
+```
+
+<span style="font-size: 1.5em;"> Forward Recursion and fold_right, remove_even </span>
+
+- Write a function remove_even : int list -> int list that returns a list in the same order as the input list, but with all the even numbers removed. The function is required to use (only) forward recursion (no other form of recursion). You may use mod for testing whether an integer is even. You may not use any library functions.
+
+```ocaml
+let rec remove_even list = 
+    match list with 
+    | [] -> []
+    | (x::xs) -> let result_list = remove_even xs in 
+    if (x mod 2) <> 0 then x::result_list else result_list
+```
+
+- Write a value remove_even_base and function remove_even_rec : int -> int list -> int list such that (fun list -> List.fold_right remove_even_rec list remove_even_base) computes the same results as remove_even of the problem above. There should be no use of recursion or library functions in defining remove_even_rec.
+
+```ocaml
+# let remove_even_base = []
+  val remove_even_base : ...
+# let remove_even_rec n r = if (n mod 2) <> 0 then n::r else r 
+  val remove_even_rec : int -> int list -> int list = <fun> 
+# (fun list -> List.fold_right remove_even_rec list remove_even_base) [1; 4; 3; 7; 2; 8];;
+# - : int list = [1; 3; 7] 
+```
+
+<span style="font-size: 1.5em;"> Forward Recursion , sift </span>
+
+- Write a function sift : ('a -> bool) -> 'a list -> 'a list * 'a list such that sift p l returns a pair of lists, the first containing all the elements of l for which p returns true, and the second containing all those for which p returns false. The lists should be in the same order as in the input list. The function is required to use (only) forward recursion (no other form of recursion). You may not use any library functions.
+
+```ocaml
+let rec sift p l = 
+    match l with 
+    | [] -> ([], [])
+    | (x::xs) -> let (true_list, false_list) = sift p xs in 
+    if (p x) then (x::true_list, false_list) else (true_list, x::false_list)
+```
+
+<span style="font-size: 1.5em;"> Forward Recursion, apply_even_odd </span>
+
+- Write a function apply_even_odd : 'a list -> ('a -> 'b) -> ('a -> 'b) -> 'b list such that apply_even_odd [x0; x1; x2; x3; ...] f g returns a list [f x0; g x1; f x2; g x3; ...]. The function is required to use (only) forward recursion (no other form of recursion). You may not use any library functions.
+
+```ocaml
+let rec apply_even_odd l f g = 
+    mathch l with 
+    | [] -> []
+    | (x::xs) -> match xs with 
+                | [] -> [f x]
+                | (h::t) -> (f x::g h::apply_even_odd t f g) 
+```

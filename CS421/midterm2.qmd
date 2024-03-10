@@ -1,0 +1,237 @@
+<h1 class="post" style="padding-bottom: 9px;">Midterm 2 concepts review</h1>
+<span class='meta'>March 1, 2024</span><br>
+<span class='meta'>All notes are expanded based on </span>
+<hr>
+
+<!--  Debugging only. Scrolls all the way to the bottom  Comment out when done.-->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
+
+<!-- -----------------------------END-------------------------------- -->
+
+<span style="font-size: 1.5em;"> MP4</span>
+<hr>
+<span style="font-size: 1.3em;"> MP4.2: Continuation Passing Style, $\text{quadk}$</span>
+
+
+- Write a function $\text{quadk : int * int * int} \rightarrow (\text{int} \rightarrow \text{'a}) \rightarrow \text{'a}$ that takes three interger arguments a, b, c and returns the result of the expression $(2 * (a^2) + 4 * b) + c$.
+
+```Ocaml
+# let quadk (a, b, c) k = ...;;
+val quadk : int * int * int -> (int -> `a) -> `a = <fun>
+
+# quadk (1, 1, 1) report_int;;
+Result: 7
+- : unit = ()
+```
+Useful things to know before starting is understanding the way the expression is evaluted when writing the CPS version.
+
+Common.ml
+
+```ocaml
+let mulk(a, b) k = k (a * b);;
+let addk(a, b) k = k (a + b);;
+```
+
+### Solution:
+
+```ocaml
+let quadk (a, b, c) k =
+    mulk(4, b) (fun e1 -> 
+        mulk(a, a) (fun e2 -> 
+            mulk(2, e2) (fun e3 -> 
+                addk(e2, e2) (fun e4 -> 
+                    addk(e4, c) k))))
+```
+<hr>
+
+<span style="font-size: 1.3em;"> MP4.3: Continuation Passing Style, $\text{three\_freeze}$</span>
+
+- Write a function $\text{three\_freezek: string * string} \rightarrow (\text{string} \rightarrow \text{`a}) \rightarrow \text{`a}$ that takes two strings arguments s and p and calculates the string formed by concatenating them as sp. The function will then return the string made by repeating this string, and then on its left, repeating it once more. In the end, sp wil be repeated three times in a row, but you should only calcualte sp once.
+
+```ocaml 
+# let three_freezek (s, p) k = ...;;
+val three_freezek : string * string -> (string -> `a) -> `a = <fun>
+
+# three_freezek ("muda", "plop") (fun s -> (s, String.length s));;
+- : stirng * int = ("mudaplopmudaplopmudaplop", 24)
+```
+
+### Solution:
+
+```ocaml
+let three_freezek (s, p) k = 
+    concatk(s, p) (fun first -> concatk(first, first) (fun second -> concatk(first,second) k))
+```
+
+<br> 
+<span style="font-size: 1.5em;"> Sample Questions for Midterm 2</span>
+
+<hr>
+
+<span style="font-size: 1.2em;">
+1. Put the following function in full continuation passing style:
+    Use $\text{addk, subk, mulk, leqk, }$ for the CPS forms of the primitive opeartions (+, -, *, <=).
+</span>
+
+```ocaml 
+let rec sum_odd n = 
+    if n <= 0 then
+        0 
+    else ((2 * n) - 1) + sum_odd (n - 1);;
+```
+### Solution:
+
+```ocaml
+let sum_oddk n k = 
+    leqk (n, 0) (fun is_less -> 
+        if is_less k 0 
+        else subk (n, 1) (fun one_less -> 
+           sum_oddk one_less (fun e1 -> 
+                mulk (2, n) (fun e2 -> 
+                    subk (e2, 1) (fun e3 -> 
+                        addk (e3, e1) k)))))
+```
+<hr>
+
+<span style="font-size: 1.2em;">2. Given the following OCAML datatype: $\text{type int\_seq = Null  | Snoc of (int\_seq * int)}$ write a tail-recursive function in OCAML all_pos : $\text{int\_seq}\rightarrow \text{bool}$ that returns true if every integer in the input $\text{int\_seq}$ to which all_pos is applied is strictly greater than 0 and false otherwise.  Thus $\text{all\_pos (Snoc(Snoc(Snoc(Null, 3), 5), 7))}$ should returns true, but $\text{all\_pos (Snoc(Null, -1))} \text{ and } \text{all\_pos (Snoc(Snoc(Null, 3),0))}$ should both return false.</span>
+
+
+### Solution:
+
+```Ocaml
+let rec all_pos s = 
+    (match s with Null -> true
+    | Snoc(seq, x) -> if x <= 0 then false else all_pos seq)
+```
+<hr>
+
+<span style="font-size: 1.2em;">3. Write the definition of an OCAML variant type $\text{reg\_exp}$ to express abstract syntax trees for regular expressions over a base character set of booleans. Thus, a boolean is a $\text{reg\_exp}$, epsilon is a $\text{reg\_exp}$, a paranthesized $\text{reg\_exp}$ is a $\text{reg\_exp}$, the concatenation of two $\text{reg\_exp}$'s is a $\text{reg\_exp}$, the choice of two $\text{reg\_exp}$'s is a $\text{reg\_exp}$, and the Kleene star of a $\text{reg\_exp}$ is a $\text{reg\_exp}$.  </span>
+
+
+### Solution: 
+
+```ocaml 
+type reg_exp = 
+    Char of bool 
+    | Epsilon 
+    | Paren of reg_exp
+    | Concat of (reg_exp * reg_exp)
+    | Choice of (reg_exp * reg_exp)
+    | Kleene_star of reg_exp
+```
+
+<hr>
+
+<span style="font-size: 1.3em;">4. Given the following rules for CPS transformation: </span>
+
+
+$[[x]]_\kappa = \kappa \: x$
+
+$[[c]]_\kappa = \kappa \: c$
+
+$[[\text{let } x = e_1 \text{ in } e_2]]_\kappa = [[e_1]] (\text{FN } x \rightarrow [[e_2]]_\kappa)$
+
+$[[e_1 \oplus e_2]]_\kappa = [[e_2]](\text{FN } a \rightarrow [[e_1]](\text{FN } b \rightarrow \kappa (b \oplus a)))$
+
+where $e_1$ and $e_2$ are ocaml expressions, $\kappa$ is any continuation, $x$ is a varibale and $c$ is a constant, give the step-by-step transformation of 
+
+$$[[\text{let } x = 2 + 3 \text{ in } x - 4]] \text{ REPORTk } $$
+
+#### Solution:
+
+$[[\text{let } x = 2 + 3 \text{ in } x - 4]] \text{ REPORTk } \Rightarrow$
+
+$[[2 + 3]](\text{FN }x \rightarrow [[x - 4]] \text{ REPORTk } ) \Rightarrow$
+
+$[[2 + 3]](\text{FN } x \rightarrow [[4]](\text{FN } n \rightarrow [[x]](\text{FN } m \rightarrow \text{ REPORTk}(m - n)))) \Rightarrow$
+
+$[[2 + 3]](\text{FN } x \rightarrow [[4]](\text{FN } n \rightarrow (\text{FN } m \rightarrow \text{ REPORTk}(m - n)) x)) \Rightarrow$
+
+$[[2 + 3]](\text{FN } x \rightarrow(\text{FN } n \rightarrow (\text{FN } m \rightarrow \text{ REPORTk}(m - n)) x) 4) \Rightarrow$
+
+$[[3]](\text{FN } u \rightarrow [[2]](\text{FN } v \rightarrow (\text{FN } x \rightarrow(\text{FN } n \rightarrow (\text{FN } m \rightarrow \text{ REPORTk}(m - n)) x) 4)(v + u))) \Rightarrow$
+
+$[[3]](\text{FN } u \rightarrow (\text{FN } v \rightarrow (\text{FN } x \rightarrow(\text{FN } n \rightarrow (\text{FN } m \rightarrow \text{ REPORTk}(m - n)) x) 4)(v + u)) 2) \Rightarrow$
+
+$(\text{FN } u \rightarrow (\text{FN } v \rightarrow (\text{FN } x \rightarrow(\text{FN } n \rightarrow (\text{FN } m \rightarrow \text{ REPORTk}(m - n)) x) 4)(v + u)) 2) 3$
+
+<hr>
+
+
+<span style="font-size: 1.3em;">5. MP5: Continuation Passing Style (CPS) Transformation cps_exp</span>
+
+#### Solution: 
+
+```ocaml
+let rec cps_exp e k = 
+    match e with 
+    (* [[x]]k = k x *)
+    | VarExp x -> VarCPS (k, x)
+    (* [[c]]k = k c *)
+    | ConstExp c -> ConstCPS (k, c)
+    (* [[~e]]k = [[e]]_(FN v -> k (~v)) *)
+    | MonOpAppExp (m, e) -> 
+        let v = freshFor freeVarsInContCPS k 
+        in cps_exp e (FnContCPS(v, MonOpAppCPS(k, m, v)))
+    (* [[e1 + e2]]k = [[e2]]_(FN v2 -> [[e1]]_(FN v1 -> k (v1 + v2))) *)
+    | BinOpAppExp (b, e1, e2) -> 
+        let v2 = freshFor (freeVarsInContCPS k @ freeVarsInExp e1) in
+        let v1 = freshFor (v2::(freeVarsInContCPS k)) in 
+        let cps_e2 = 
+            cps_exp e1 (FnContCPS(v1, BinOpAppCPS(k, b, v1, v2))) 
+        in cps_exp e2 (FnContCPS(v2, cps_e2))
+    (* [[e1 e2]]k = [[e2]]_(FN v2 -> [[e1]]_(FN v1 -> k (v1, v2))) *)
+    | AppExp (e1 ,e2) -> 
+        let v2 = freshFor (freeVarsInContCPS k @ freeVarsInExp e1) in 
+        let v2 = freshFor (v2::freeVarsInContCPS k) in 
+        let cps_e1 = cps_exp e1 (FnContCPS(v1, AppCPS(k, v1, v2))) in 
+        cps_exp e2 (FnContCPS(v2, cps_e1))
+    (* [[fun x -> e]]k = k (FUN x kx -> [[e]]kx) *)
+    | FunExp (x, e) -> 
+        let ecps = cps_exp e (ConVarCPS Kvar) in 
+        FunCPS(k, x, Kvar, ecps) 
+    (* [[let x = e1 in e2]]k = [[e2]]_(FN x -> [[e2]]k) *)
+    | LetInExp (x, e1, e2) -> 
+        let e2cps = cps_exp e2 k in 
+        let fx = FnContCPS(x, e2cps) in 
+        cps_exp e1 fx
+    (* [[let rec f x = e1 in e2]]k = (FN f -> [[e2]]k)(FIX f. FUN x -> FN kx -> [[e1]]kx) *)
+    | LetRecInExp (f, x, e1, e2) -> 
+        let e1cps = cps_exp e1 (ContVarCPS Kvar) in 
+        let e2cps = cps_exp e2 in 
+        FixCPS(FnContCPS(f, kvar), f, x, Kvar, e1cps)
+```
+
+<hr>
+
+<span style="font-size: 1.3em;">6. Given a polynorphic type derivation for $\{\} | - \text{ let id = fun } x \rightarrow x \text{ in id id true : bool}$</span>
+
+<!-- Variables for the type derivations -->
+
+\newcommand\LetSix{\large{{\{\} \:\: \vdash \: \text{let id = fun } x \rightarrow \: x \: : \: \text{ in id id true : bool} }}}
+
+\newcommand\FunSix{\large{{\{\} \:\: \vdash \: \text{ fun } x \rightarrow \: x \:}}}
+
+\newcommand\AppSix{\large{{\{\text{id : } \forall \: 'a.'a \: \rightarrow \: 'a\} \:\: \vdash \: \text{ id id true} }}}
+
+\newcommand\VarSix{\large{{\{x \: : \: 'a \} \:\: \vdash \: x \: : \: 'a }}}
+
+\newcommand\AppSixTwo{\large{{\Gamma  \:\: \vdash \: \text{ id id : bool }  \rightarrow \text{ bool} }}}
+
+\newcommand\ConstSix{\large{{\Gamma  \:\: \vdash \: \text{ true : bool } }}}
+
+\newcommand\VarSixTwo{\large{{\Gamma  \:\: \vdash \: \text{ id : (bool $\rightarrow$ bool) $\rightarrow$ bool $\rightarrow$ bool} }}}
+
+\newcommand\VarSixThree{\large{{\Gamma  \:\: \vdash \: \text{ id : (bool $\rightarrow$ bool)} }}}
+
+
+
+<br>
+
+<!-- End of Variables for the type derivations -->
+
+$\Large\text{Let }\frac{ \text{Fun } \frac{  \text{Var }\frac{}{\VarSix}  }{\FunSix} \quad \text{App }\frac{   \text{App }\frac{   \text{Var}\frac{\text{Instance : 'a } \rightarrow \text{ bool} \rightarrow \text{ bool}}{\VarSixTwo} \:\:  \text{Var }\frac{ \text{Instance : 'a } \rightarrow \text{ bool} }{\VarSixThree} }{\AppSixTwo}  \:\: \text{Const }\frac{}{\ConstSix}  }{\AppSix} } {\LetSix}$

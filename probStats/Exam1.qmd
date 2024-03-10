@@ -1,0 +1,104 @@
+<h1 class=post>Exam 1 Review</h1>
+<span class='meta'>Feb 21, 2024</span>
+<hr/>
+
+<h3>Topics to cover</h3>
+
+- Random Variables (from STAT 400) (1.6, 1.7, 1.8, 1.9)
+
+- Functions of One Random Variable, 1 --> 1 (1.6.1, 1.7.1)
+
+- Joint Probability Distributions (2.1)
+
+- Independent Random Variables (2.5)
+
+- Conditional Distributions and Expected Values (2.3)
+
+- Functions of Two Random Variables, 2 --> 1 (2.2)
+
+- Transformations of Two Random Variables, 2 --> 2 (2.2)
+
+- Order Statistics (4.4)
+
+<span style="font-size: 1.5em;">1. Random Variables & Functions of One Random Variable</span>
+<hr/>
+
+p.d.f. is given as:
+$$f_X(x) = \frac{3}{2000} \cdot \sqrt{x}, \qquad 0 \leq x \leq 100, \qquad \text{zero elsewhere}$$ 
+
+$a)$ What is the average $\mathbb{E}(X)?$ 
+
+$$
+\begin{align*}
+\mathbb{E}(X) &= \int_{0}^{100} x \cdot \frac{3}{2000} \cdot \sqrt{x} \:dx \\
+              &= \frac{3}{2000}  \int_{0}^{100} x \cdot x^{1/ 2} \: dx \\
+              &= \frac{3}{2000}  \int_{0}^{100} x^{3/ 2} \: dx \\
+              &= \frac{3}{2000} \cdot \frac{2}{5} \left(x^{5/ 2}\right) \Bigg |_{0}^{100} \\
+              &=  \frac{3}{2000} \cdot \frac{2}{5} \left(100^{5/ 2}\right) \\
+              &= 60
+\end{align*}
+$$
+
+$b)$  What is the median? That is, find $m$ such that $\text{Pr}(X \leq m) =$ $\text{Pr}(X \geq m) = \frac{1}{2}$ 
+
+$$
+\begin{align*}
+F_X (m) &= \text{Pr}(X \leq m) = \int_{0}^{m} \frac{3}{2000} \cdot \sqrt{x} \:dx = \frac{1}{1000} \cdot m^{3/2} = \frac{1}{2} \\
+&\Rightarrow m = 500^{2/3} \approx 62.996
+\end{align*}
+$$
+
+$c)$ Given a new random variable $Y = g(X)$, where $g(X) = 10 \sqrt{X}$ 
+
+Find the p.d.f. that describe $Y$.
+
+$y= 10 \sqrt{x}, \qquad\qquad x = \frac{y^2}{100}, \qquad\qquad \frac{dx}{dy} = \frac{y}{50}$
+
+$$
+\begin{align*}
+f_Y (y) &= \frac{3}{2000} \sqrt{  \frac{y^2}{100}  } \cdot \Bigg | \frac{y}{50} \Bigg | \\
+        &= \frac{3y^2}{1,000,000} & 0 \leq y \leq 100
+\end{align*}
+$$
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Improve aesthetics with seaborn
+sns.set(style="whitegrid")
+
+# Define f_X(x) function
+def f_X(x):
+    return (3/2000) * np.sqrt(x)
+
+# Define f_Y(y) function
+def f_Y(y):
+    return (3 * y**2) / 1000000
+
+# Generate x and y values within their respective domains
+x_values = np.linspace(0, 100, 400)  # 400 points between 0 and 100
+y_values = np.linspace(0, 100, 400)  # Similarly for y
+
+# Compute PDF values for both functions
+fx_values = f_X(x_values)
+fy_values = f_Y(y_values)
+# Plotting both f_X(x) and f_Y(y) in the same graph for comparison
+
+plt.figure(figsize=(8, 6))
+
+# Plot f_X(x)
+plt.plot(x_values, fx_values, label=r'$f_X(x) = \frac{3}{2000} \sqrt{x}$', color='blue')
+
+# Plot f_Y(y)
+plt.plot(y_values, fy_values, label=r'$f_Y(y) = \frac{3y^2}{1,000,000}$', color='red')
+
+plt.title('PDFs of X and Y')
+plt.xlabel('Value')
+plt.ylabel('Density')
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```

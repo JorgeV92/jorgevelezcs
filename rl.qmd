@@ -28,7 +28,7 @@ Some notes on a RL environment see <a href="/RL/gymnasium.qmd#gymnasium" style="
     - <a href="/RL/intro.qmd#intro" style="text-decoration: none;">Notes</a> 
 
 - <span style="font-size: larger; font-weight: bold;">Markov Decision Process formulation</span> 
-    - <a href="mdp.qmd#mdp" style="text-decoration: none;">MDP Notes</a> 
+    - <a href="/RL/Markov.qmd#" style="text-decoration: none;">MDP Notes</a> 
 - <span style="font-size: larger; font-weight: bold;">Value function</span> 
     - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Value Notes</a> 
 

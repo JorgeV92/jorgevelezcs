@@ -130,7 +130,7 @@ window.Quarto = {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../DavidMarr.html"> 
-<span class="menu-text">David Marr Technology</span></a>
+<span class="menu-text">David Marr Tech</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../cs.html"> 
@@ -246,10 +246,18 @@ Polymoprhic Typing Rule
 </section>
 <section id="rules" class="level1">
 <h1>Rules</h1>
-<p>Constants:</p>
+<p><span style="font-size: 1.2em">Constants:</span></p>
 <p><span class="math inline">\(\large{\frac{}{\Gamma \:\: \vdash \: c \: : \: \tau }}\)</span> <span class="math inline">\(\text{\large{CONST} } \text{where }  c \text{ is a constant listed above, and } \tau \text{ is an instance of sig}(c)\)</span></p>
-<p>Variables:</p>
+<p><span style="font-size: 1.2em">Variables:</span></p>
 <p><span class="math inline">\(\large{\frac{}{\Gamma \:\: \vdash \: x \: : \: \tau }}\)</span> <span class="math inline">\(\text{\large{VAR}}\)</span> <span class="math inline">\(\text{ where } x \text{ is a variable and } \tau \text{ is an instance of } \Gamma(x)\)</span></p>
+<p><span style="font-size: 1.2em">Unary Primitive Operators:</span></p>
+<p><span class="math inline">\(\large\frac{\Gamma \:\: \vdash \: e \: : \: \tau_1}{\Gamma \:\: \vdash \: \oplus e \: : \: \tau_2}\)</span> <span class="math inline">\(\text{\large{MONOP}}\)</span> <span class="math inline">\(\quad\tau_1 \rightarrow \tau_2 \text{ an instance of sig}(\oplus)\)</span></p>
+<p><span style="font-size: 1.2em">Binary Prmitive Operators:</span></p>
+<p><span class="math inline">\(\large{\frac{\Gamma \:\: \vdash \: e_1 \: : \: \tau_1 \quad \Gamma \:\: \vdash e_2 \: : \: \tau_2}{\Gamma \:\: \vdash \: e_1 \: \odot \: e_2 \: : \: \tau_3}}\)</span> <span class="math inline">\(\text{\large{BINOP}}\)</span> <span class="math inline">\(\qquad \tau_1 \rightarrow \tau_2 \rightarrow \tau_3 \text{ an instance of sig}(\odot)\)</span></p>
+<p><span style="font-size: 1.2em">If then else rule:</span></p>
+<p><span class="math inline">\(\large{\frac{\Gamma \:\: \vdash \: e_c \: : \: \text{bool} \quad \Gamma \:\: \vdash \: e_t \: : \: \tau  \quad \Gamma \:\: \vdash e_e \: : \: \tau}{\Gamma \:\: \vdash \: \text{if} \: e_c \: \text{then} \: e_t \: \text{else} \: e_e \: : \: \tau}}\)</span> <span class="math inline">\(\text{\large{IF}}\)</span></p>
+<p><span style="font-size: 1.2em">Application rule:</span></p>
+<p><span class="math inline">\(\large{\frac{\Gamma \:\: \vdash \: e_1 \: : \: \tau_1 \:\rightarrow \: \tau_2 \quad \Gamma \:\: \vdash e_2 \: : \: \tau_1}{\Gamma \:\: \vdash \:  e_1 \: e_2 \: : \: \tau_2}}\)</span> <span class="math inline">\(\text{\large{APP}}\)</span></p>
 
 
 </section>

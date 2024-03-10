@@ -20,3 +20,5 @@
 <a href="discreteVariable.qmd#" class="custom-link">Discrete Random Variables 1</a>
 
 <a href="discreteVariable2.qmd#" class="custom-link">Discrete Random Variables 2</a>
+
+<a href="Exam1.qmd#" class="custom-link">Review Exam 1</a>

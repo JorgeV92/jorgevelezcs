@@ -15,4 +15,6 @@
     }
 </style>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Database Systems</a>
+<a href="RDBMS.qmd#" class="custom-link">The Relational Model & Basic SQL</a>
+
+<a href="dataModels.qmd#" class="custom-link">High-Level Database Models </a>

@@ -1,0 +1,70 @@
+<h1 class=post >High-Level Database Models</h1>
+<span class='meta'>March 5, 2024</span>
+<hr/>
+
+<span style="font-size: 1.5em;">The Entity/Relationship Model
+</span>
+
+1. Entity sets
+
+2. Attributes 
+
+3. Relationships
+
+<span style="font-size: 1.5em;">Entity Sets</span>
+
+An $\text{entity}$ is an abstract object of some sort, and a collection of similar entities forms an entity set.
+
+<span style="font-size: 1.5em;">Attributes</span>
+
+Entity sets have associated $\text{attributes}$, which are properties of the entities in tha set.
+
+<span style="font-size: 1.5em;">Relationships</span>
+
+$\text{Relationships}$ are connections among two or more entity sets. 
+
+<span style="font-size: 1.5em;">Entity-Relationship Diagrams</span>
+
+An E/R diagram is a graph representing entity sets, attributes, and relationships.
+
+- Entity sets are represented by rectangles 
+
+- Attributes are represented by ovals 
+
+- Relationships are represented by diamonds
+
+![](../images/er.png){.lightbox}
+
+The Movies entity set has four of our usual attributes: title, year, length, and genre.
+
+1. Stars-in is a relationship connecting each movie to the stars of that movie. This relationship consequently also connecets starts to the movies in which they appeared.
+
+2. Owns connects each movie to the studio that owns the movie. The arrow pointing to entity set Studios indicates that each movie is owned by at most one studio.
+
+<span style="font-size: 1.5em;">Multiplicity of Binary E/R Relationships</span>
+
+A binary relationship can connect any member of one of its entity sets to any number of members of the other entity set. Suppose $R$ is a relationship connecting entity sets $E$ and $F$. Then: 
+
+- If each member $E$ can be conncected by $R$ to at most one member of $F$, then we say that $R$ is many-one from $E$ to $F$. Note that in many-one relationship from $E$ to $F$, each entity in $F$ can be connected by to many members of $E$. 
+
+- If $R$ is both many-one from $E$ to $F$ and many-one from $F$ to $E$, then we say that $R$ is one-one. In a one-one relationship an entity of either entity set can be connected to at most one entity of the other set.
+
+- If $R$ is neither many-one from $E$ to $F$ or from $F$ to $E$, then we say $R$ is many-many.
+
+<span style="font-size: 1.5em;">Example</span>
+
+- A one-one realtionship between entity set $E$ and $F$ is represented by arrows pointing to both $E$ and $F$. 
+
+![](../images/er1.png){.lightbox}
+
+<span style="font-size: 1.5em;">Multiway Relationships</span>
+
+A multiway realtionship in an E/R diagram is represented by lines from the relationship diamond to each of the involved entity sets.
+
+![](../images/er2.png){.lightbox}
+
+<span style="font-size: 1.5em;">Unified Modeling Language (UML)</span>
+
+UML CLass in UML is similar to an entity set in the E/R model. 
+
+![](../images/UML1.png){.lightbox width=200px height=300px}

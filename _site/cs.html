@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Jorge Velez">
@@ -101,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./DavidMarr.html"> 
-<span class="menu-text">David Marr Technology</span></a>
+<span class="menu-text">David Marr Tech</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./cs.html" aria-current="page"> 
@@ -133,6 +162,7 @@ ul.task-list li input[type="checkbox"] {
 Computer Science
 </h1>
 <hr>
+<p><span class="meta">Feb 18, 2024</span><br> <a href="./index.html#" style="text-decoration: none;">SYCL</a><br></p>
 <p><span class="meta">Jan 16, 2024</span><br> <a href="./probStats/stat410.html#" style="text-decoration: none;">Statistics and Probability 2</a><br> Notes dedicated to Stat 410</p>
 <p><span class="meta">Jan 15, 2024</span><br> <a href="./CS411/cs411.html#" style="text-decoration: none;">Database Systems</a><br> Notes dedicated to CS 411</p>
 <p><span class="meta">Jan 12, 2024</span><br> <a href="./ramsey3.html#ramsey3" style="text-decoration: none;">Ramsey Theory</a><br> Order From Chaos</p>
@@ -144,6 +174,14 @@ Computer Science
 Finance
 </h1>
 <hr>
+<p><span class="meta">Feb 12, 2024</span><br> <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Game Theory</a><br> John Von Neumann</p>
+<h1 class="post">
+The Art of Computer Programming
+</h1>
+<hr>
+<p><span class="meta"><span class="math inline">\(\infty\)</span></span><br> <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Donald Knuth</a><br> My study and notes on Donald Knuths work on algorithms.</p>
+<p>Coming soon!</p>
+<!-- ![](/images/dk.webp){.lightbox width=60%} -->
 
 
 

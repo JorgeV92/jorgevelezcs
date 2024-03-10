@@ -29,4 +29,6 @@ Sorry for any delays, broken links, and ugly layouts; still working on finishing
 
 ## Experience
 
-<img src="images/argonne.png" alt="Argonne Internship" width="50" height="50" style="margin-right: 20px;" />  Argonne National Lab| Research  | May 2022 - August 2022
+<img src="images/argonne.png" alt="Argonne Internship" width="50" height="50" style="margin-right: 20px;" />  Argonne National Lab | GPU AI Research  | May 2024 - August 2024
+
+<img src="images/argonne.png" alt="Argonne Internship" width="50" height="50" style="margin-right: 20px;" />  Argonne National Lab | Deep Graph NN Chemistry Research  | May 2022 - August 2022

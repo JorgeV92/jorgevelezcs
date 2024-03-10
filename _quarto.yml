@@ -13,7 +13,7 @@ website:
       - href: rl.qmd
         text: Reinforcement Learning 
       - href: DavidMarr.qmd
-        text: David Marr Technology
+        text: David Marr Tech
       - href: cs.qmd
         text: Computer Science
       - href: about.qmd

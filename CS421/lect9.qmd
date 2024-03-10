@@ -1,0 +1,624 @@
+<h1 class=post >Terminology: Review</h1>
+<span class='meta'>Feb 18, 2024</span><br>
+<span class='meta'>All notes are expanded based on </span>
+<hr/>
+
+<!--  Debugging only. Scrolls all the way to the bottom  Comment out when done.-->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
+
+<!-- -----------------------------END-------------------------------- -->
+
+<ul class="blue-square">
+    <li>A function is in Direct Style when it returns its result back to the caller.</li>
+    <!-- More list items here -->
+    <br>
+    <li>A function is in Continuation Passing Style when it, and every function call in it, passes 
+    its result to another function.</li>
+    <br>
+    <li>A Tail Call occurs when a funciton returns the result of another fucntion call without any more computations (e.g. tail recursion)</li>
+    <br>
+    <li>Instead of returning the result to the caller, we pass it forward to another function giving the computation after the call.</li>
+    <br>
+    <li>Instead of returning the result to the caller, we pass it forward to another function giving the computation after the call.</li> 
+</ul>
+
+<h1 class=post >CPS Transformation</h1>
+<hr /> 
+
+<ul class="blue-square">
+    <li>Step 1: Add continuation argument to any function definition:</li>
+    <ul class="red-square">
+        <li>Let f arg = e $\Rightarrow$ let f arg k = e</li>
+        <li>Idea: Every function takes an extra parameter saying where the result goes </li>
+    </ul>
+    <li>Step 2: A simple expression in tail position should be passed to a continuation instead of returned:</li>
+    <ul class="red-square">
+        <li>return a $\Rightarrow$ k a</li>
+        <li>Assuming a is a constant or variable.</li>
+        <li>"Simple" = "No available function calls."</li>
+    </ul>
+    <li>Step 3: Pass the current continuation to every function call in tail position.</li>
+    <ul class="red-square">
+        <li>return f arg $\Rightarrow$ f arg k</li>
+        <li>The function "isn't going to return, " so we need to tell it where to put the result.</li>
+    </ul>
+    <li>Step 4: Each function call not in tail position needs to be converted to take a new continuation (containing the old continuation as appropriate)</li>
+    <ul class="red-square">
+        <li>return op (f arg) $\Rightarrow$ f arg (fun r -> k(op r)) </li>
+        <li>op represents a primitive operation </li>
+        <li>return g(f arg) $\Rightarrow$ f arg (fun r -> g r k)</li>
+    </ul>
+</ul>
+
+<h1 class=post >Example</h1>
+<hr /> 
+
+<table>
+    <tr>
+        <th style="padding-right: 300px;"><h3>Before:</h3></th>
+        <th><h3>After:</h3></th>
+    </tr>
+    <tr>
+        <td style="padding-right: 20px;">
+            <pre><code>let rec add_list lst = 
+    match lst with [] -> 0
+    | (0::xs) -> add_list xs 
+    | (x::xs) -> (+) x (add_list xs)</code></pre>
+        </td>
+        <td>
+            <pre><code>let rec add_listk k = 
+    match lst with      (* rule 1 *)
+    | [] -> k 0         (* rule 2 *) 
+    | (0::xs) -> add_list xs k  (* rule 3 *)
+    | (x::xs) -> add_list xs 
+                (fun r -> k ((+) x r))
+                    (* rule 4 *)
+    </code></pre>
+        </td>
+    </tr>
+</table>
+
+<h1 class=post >Example 2</h1>
+<hr /> 
+
+<table>
+    <tr>
+        <th style="padding-right: 300px;"><h3>Before:</h3></th>
+        <th><h3>After:</h3></th>
+    </tr>
+    <tr>
+        <td style="padding-right: 20px;">
+            <pre><code>let rec mem (y, lst) = 
+    match lst with [] -> false 
+    | (x::xs) -> 
+        if x = y then 
+            true 
+        else 
+            mem(y, xs)</code></pre>
+        </td>
+        <td>
+            <pre><code>let rec memk (y, lst) k =
+    match lst with      (* rule 1 *)
+    | [] -> k false  
+    | (x::xs) ->        (* rule 2 *)
+        eqk (x, y)
+        (fun b -> 
+            if b then  (* rule 4 *)
+                k true (* rule 2 *)
+            else memk (y, xs) k 
+            (* rule 3 *))
+    </code></pre>
+        </td>
+    </tr>
+</table>
+
+<h1 class=post >Data type in Ocaml: lists </h1>
+<hr /> 
+
+
+<ul class="blue-square">
+    <li>Frequently used lists in recursive program </li>
+    <br>
+    <li>Matched over two structural cases</li>
+    <ul class="red-square">
+        <li>$\textcolor{red}{[ ]}$ - the empry list</li>
+        <li>$\textcolor{blue}{(\text{x} \textcolor{red}{::} \text{xs})}$ a non-empty list</li>
+    </ul>
+    <li>Covers all possibel lists</li>
+    <li>$\textcolor{gold}{\text{type}} \textcolor{blue}{ \text{{`a list}}} = \textcolor{red}{[]}  \textcolor{gold}{|} \textcolor{blue}{(\textcolor{red}{::} )} \text{ of } \textcolor{blue}{\text{ `a * `a list}}$ </li>
+    <ul class="red-square">
+        <li>Not quite legitimate declaration because of special syntax</li>
+    </ul>
+</ul>
+
+<h1 class=post >Variants - Syntax (slightly simplified)</h1>
+<hr /> 
+
+<ul class="blue-square">
+    <li>$\textcolor{gold}{\text{type}} \textcolor{blue}{\text{ name }}  = \textcolor{red}{C_1} [\textcolor{gold}{\text{of }} \: \textcolor{blue}{ ty_1}] \: | \dots \: |  \: \textcolor{red}{C_n} [\textcolor{gold}{\text{of }} \: \textcolor{blue}{ ty_n}]$</li>
+    <br>
+    <li>Introduce a type called name</li>
+    <li>$(\text{fun } -> C_i \text{ x}) : ty_1 -> \text{name}$</li>
+    <li>$C_i$ is called a constructor; if the optional type argument is omitted, it is called a constant</li>
+    <li>Constructors are the basis of almost all pattern mathcing</li>
+</ul>
+
+<h1 class=post >Enumeartion Types as Variants</h1>
+<hr /> 
+
+An enumeration type is a collection of distinct values 
+
+![](../images/enum.png){.lightbox}
+
+In C and Ocaml they have an order structure; order by order of input
+
+```ocaml
+type weekday = Monday | Tuesday | Wednesday | Thursday | Friday 
+    | Saturday | Sunday 
+```
+
+<h1 class=post >Functions over Enumerations </h1>
+<hr /> 
+
+```ocaml
+let day_after day = match day with 
+    Monday -> Tuesday 
+    | Tuesday -> Wednesday
+    | Wednesday -> Thursday
+    | Thursday -> Friday 
+    | Friday -> Saturday
+    | Saturday -> Sunday
+    | Sunday -> Monday
+
+
+let rec days_later n day =
+    match n with 0 -> day
+    | _ -> if n > 0 
+            then day_after (days_later (n -1) day)
+            else days_later (n + 7) day
+```
+
+```ocaml
+# days_later 2 Tuesday;;
+- : weekday = Thursday
+# days_later (-1) Wednesday;;
+- : weekday = Tuesday
+# days_later (-4) Monday;;
+- : weekday = Thursday
+```
+
+<h1 class=post >Problem: </h1>
+<hr /> 
+
+Write a function $\textcolor{blue}{\text{is\_weekend : weekday bool}}$
+
+```Ocaml
+let is_weekend day =
+    match day with 
+    Saturday -> true
+    | Sunday -> true
+    | _ -> false
+```
+
+<h1 class=post >Example Enumeration Types</h1>
+<hr /> 
+
+```ocaml 
+type bin_op = IntPlusOp | IntMinusOp
+        | EqOp | CommaOp | ConsOp
+
+type mon_op = HdOp | TlOp | FstOp
+        | SndOp
+```
+
+Explanantion of $\textcolor{blue}{\text{bin\_op type}}$
+
+We create a type name bin_op (short for binary operator), which can take one of the following five values: 
+
+<ul class="blue-square">
+    <li> $\textcolor{blue}{\text{IntPlusOp}}$ represents an operation for integer addition.</li>
+    <br>
+    <li>$\textcolor{blue}{\text{IntMinusOp}}$ represents an operation for integer subtraction.</li>
+    <br >
+    <li>$\textcolor{blue}{\text{EqOp}}$ represents an equality operation.</li>
+    <br >
+    <li>$\textcolor{blue}{\text{CommaOp}}$ represents a comma operator.</li>
+    <br >
+    <li>$\textcolor{blue}{\text{ConsOp}}$ represents the cons operation, to construct lists or combine an element with a list.</li>
+</ul>
+
+Explanantion of $\textcolor{blue}{\text{mon\_op type}}$
+
+We create a type name mon_op (short for monadic or unary operator), which can take one of the following five values:
+
+<ul class="blue-square">
+    <li> $\textcolor{blue}{\text{HdOp}}$ represents head of list (the first element)</li>
+    <br>
+    <li>$\textcolor{blue}{\text{TlOp}}$ represents the tail of the list (the last element)</li>
+    <br >
+    <li>$\textcolor{blue}{\text{FstOp}}$ represents an operation to get the first element of a tuple</li>
+    <br >
+    <li>$\textcolor{blue}{\text{SndOp}}$ represents an operation to get the second element of a tuple.</li>
+    <br >
+    <li>$\textcolor{blue}{\text{ConsOp}}$ represents the cons operation, to construct lists or combine an element with a list.</li>
+</ul>
+
+<h1 class=post >Disjoint Union Types</h1>
+<hr /> 
+
+Disjoint union types, with some possibly occurring more than once 
+
+![](../images/Disjoint.png){.lightbox}
+
+We can also add in some new singleton elements 
+
+```ocaml
+type id = DriversLicense of int 
+    | SocialSecurity of int | Name of string
+
+let check_id id = match id with 
+    DriversLicense num -> 
+        not (List.mem num[13570; 99999])
+        | SocialSecurity num -> num < 900000000
+        | Name str -> not (str = "John Doe")
+```
+
+<h1 class=post >Problem: </h1>
+<hr /> 
+
+Create a type to represent the currencies for US, UK, Europe and Japan
+
+```ocaml
+type currency = 
+    Dollar of int 
+    | Pound of int 
+    | Euro of int
+    | Yen of int
+```
+
+<h1 class=post >Example Disjoint Union Type</h1>
+<hr /> 
+
+```ocaml
+type const = 
+    BoolConst of bool
+    | IntConst of int 
+    | FloatConst of float 
+    | StringConst of float
+    | NilConst 
+    | UnitConst
+
+type const = BoolConst of bool
+    | IntConst of int | FloatConst of float 
+    | StringConst of string | NilConst
+    | UnitConst
+```
+
+<ul class="blue-square">
+    <li> How do we represnet 7 as a const?</li>
+    <br>
+    <li>Answer: $\textcolor{blue}{\text{IntConst 7}}$</li>
+</ul>
+
+<h1 class=post >Polymorphism in Variants</h1>
+<hr /> 
+
+<ul class="blue-square">
+    <li> The type $\textcolor{red}{\text{`a option}}$ gives us something to represent non-existence or failure</li>
+</ul>
+```Ocaml
+type `a option = Some of `a | None
+```
+
+<ul class="blue-square">
+    <li> Used to encode partial functions</li>
+    <br>
+    <li>Often can replace the raising of an exception</li>
+</ul>
+
+<h1 class=post >Functions producing option</h1>
+<hr /> 
+
+```ocaml 
+# let rec first p list = 
+    match list with [] -> None 
+    | (x::xs) -> if p x then Some x else first p xs
+val first : (`a -> bool) -> `a lost -> a` option = <fun>
+
+# first (fun x -> x > 3) [1;3;4;2;5];;
+- : int option = Some 4
+# first (fun x -> x > 5) [1;3;4;2;5];;
+- : int option = None
+```
+<h1 class=post >Functions over option</h1>
+<hr /> 
+
+```ocaml 
+# let result_ok r = 
+    match r with None -> false
+    | Some _ -> true;;
+val result_ok : `a option -> bool = <fun>
+# result_ok (first (fun x -> x > 3) [1;3;4;2;5]);;
+- : bool = true
+# result_ok (first (fun x -> x > 5) [1;3;4;2;5]);;
+- : bool = false
+```
+<h1 class=post >Problem:</h1>
+<hr /> 
+
+<ul class="blue-square">
+    <li> Write a hd and tl on lists that doesn't raise an exception and works at all types of lists.</li>
+</ul>
+
+```ocaml
+let hd list = 
+    match list with [] -> None
+    | (x::xs) -> Some x
+
+let tl list = 
+    match list with [] -> none
+    | (x::xs) -> Some xs
+```
+
+<h1 class=post >Mapping over Variants</h1>
+<hr /> 
+
+```Ocaml
+# let optionMap f opt = 
+    match opt with None -> None
+    | Some x -> Some (f x)
+val optionMap : (`a -> `b) -> `a option -> `b
+    option = <fun>
+# optionMap (fun x -> x - 2)
+    (first (fun x -> x > 3) [1;3;4;2;5]);;
+- : int option = Some 2
+```
+<h1 class=post >Folding over Variants</h1>
+<hr /> 
+
+```ocaml
+# let optionFold someFun noneVal opt = 
+    match opt with None -> noneVal
+    | Some x -> someFun x;;
+val optionFold : (`a -> `b) -> `b -> `a option -> 
+    `b = <fun>
+# let optionMap f opt = 
+    optionFold (fun x -> Some(f x)) None opt;;
+val optionMap : (`b -> `b) -> `a option -> `b 
+    option = <fun>
+```
+
+<h1 class=post >Recursive Types</h1>
+<hr /> 
+
+<ul class="blue-square">
+    <li> The type being defined may be a component of itself</li>
+</ul>
+
+![](../images/recur.png){.lightbox}
+
+<h1 class=post >Recursive Data Types</h1>
+<hr /> 
+
+```Ocaml
+type int_Bin_Tree = 
+    Leaf of int | Node of (int_Bin_Tree * int_Bin_Tree)
+```
+
+<h1 class=post >Recursive Data Types Values</h1>
+<hr /> 
+
+```Ocaml
+let bin_tree = 
+    Node(Node(Leaf 3, Leaf 6), Leaf(-7))
+```
+![](../images/tree.png){.lightbox}
+
+<h1 class=post >Recursive Functions</h1>
+<hr /> 
+
+```Ocaml
+let rec first_leaf_value tree = 
+    match tree with (Leaf n) -> n
+    | Node (left_tree, right_tree) -> 
+    first_leaf_value left_tree
+
+# let left = first_leaf_value bin_tree
+val left : int = 3
+```
+<h1 class=post >Recursive Data Types</h1>
+<hr />
+
+```Ocaml
+type exp = 
+    VarExp of string
+    | ConstExp of const
+    | MonOpAppExp of mon_op * exp
+    | BinOpAppExp of bin_op * exo * exp 
+    | IfExp of exp * exp * exp 
+    | AppExp of exp * exp 
+    | FunExp of string * exp
+```
+
+```ocaml
+# type bin_op = IntPlusOp | IntMinusOp | EqOp | CommaOp 
+    | ConsOp | ...
+
+# type const = BoolConst of bool | IntConst of int |
+...
+
+# type exp = VarExp of string | ConstExp of const | 
+    BinOpAppExp of bin_op * exp * exp | ...
+```
+
+<ul class="blue-square">
+    <li>How to represent 6 as an exp?</li>
+    <ul class="red-square">
+        <li>Answer: ConstExp (IntConst 6)</li>
+    </ul>
+    <li>How to represent (6, 3) as an exp?</li>
+    <ul class="red-square">
+        <li>BinOpAppExp (CommaOp, ConstExp (IntConst 6), 
+                ConstExp(IntConst 3))</li>
+    </ul>
+    <li>How to represent [(6, 3)] as an exp?</li>
+    <ul class="red-square">
+        <li>BinOpAppExp(ConstOp, BinOpAppExp(CommaOp, ConstExp(IntConst 6), ConstExp(IntConst 3)), ConstExp NilConst)</li>
+    </ul>
+</ul>
+
+<h1 class=post >Problem</h1>
+<hr />
+
+```Ocaml
+type int_Bin_Tree = Leaf of int 
+    | Node of (int_Bin_Tree * int_Bin_Tree)
+```
+<ul class="blue-square">
+    <li>Write sum_tree : int_Bin_Tree -> int</li>
+    <li>Adds all ints in tree   
+        let rec sum_tree t = </li>
+</ul>
+
+```ocaml 
+let rec sum_tree t = 
+    match t with Leaf n -> n
+    | Node(t1, t2) -> sum_tree t1 + sum_tree t2
+```
+<ul class="blue-square">
+    <li>How to count the number of variables in an exp?</li>
+</ul>
+
+```ocaml
+let rec varCnt exp = 
+    match exp with VarExp x -> 1
+    | ConstExp c -> 0 
+    | BinOpAppExp (b, e1, e2) ->  varCnt e1 + varCnt e2
+    | FunExp (x, e) -> 1 + varCnt e
+    | AppExp (e1, e2) ->  varCnt e1 + varCnt e2
+```
+<h1 class=post >Mapping over Recursive Types</h1>
+<hr />
+
+```ocaml
+let rec ibtreeMap f tree = 
+    match tree with (Leaf n) -> Leaf (f n)
+    | Node (left_tree, right_tree) -> 
+    Node (ibtreeMap f left_tree, ibtreeMap f right_tree)
+
+# ibtreeMap ((+) 2) bin_tree;;
+- : int_Bin_Tree = Node (Node (Leaf 5, Leaf 8), Leaf(-5))
+```
+
+<h1 class=post >Folding over Recursive Types</h1>
+<hr />
+
+```ocaml 
+# let rec ibtreeFoldRight leafFun nodeFun tree = 
+    match tree with Leaf n -> leafFun n
+    | Node (left_tree, right_tree) -> 
+    nodeFun 
+    (ibtreeFoldRight leafFun nodeFun left_tree)
+    (ibtreeFoldRight leafFun nodeFun right_tree);;
+val ibtreeFoldRight : (int -> `a) -> (`a -> `a -> `a) -> 
+    int_Bin_Tree -> `a = <fun>
+
+# let tree_sum = 
+    ibtreeFoldRight (fun x -> x) (+);;
+val tree_sum : int_Bin_Tree -> int = <fun>
+# tree_sum bin_tree;;
+- : int = 2
+```
+
+<h1 class=post >Mutually Recursive Types</h1>
+<hr />
+
+```Ocaml
+type `a tree = TreeLeaf of `a 
+    | TreeNode of `a treeList 
+and a` treeList = Last of `a tree
+    | More of (`a tree * `a treeList);;
+type `a tree = TreeLeaf of `a | TreeNode of `a
+    treeList
+and `a treeList = Last of `a tree | More of (`a 
+    tree * `a treeList)
+```
+
+<h1 class=post >Mutually Recursive Types - Values</h1>
+<hr />
+
+```ocaml
+let tree = 
+    TreeNode
+    (More (TreeLeaf 5, 
+        More(TreeNode 
+            More(TreeLeaf 3, 
+                Last(TreeLeaf 2))),
+            Last (TreeLeaf 7)))
+```
+
+![](../images/values.png){.lightbox}
+
+A more conventional picture 
+
+![](../images/treeNew.png){.lightbox}
+
+<h1 class=post >Mutually Recursive Functions</h1>
+<hr />
+
+```ocaml
+# let rec fringe tree = 
+    match tree with (TreeLeaf x) -> [x]
+    |(TreeNode list) -> list_fringe list
+and list_fringe tree_list = 
+    match tree_list with (Last tree) -> fringe tree 
+    | (More (tree, list)) -> 
+        (fringe tree) @ (list_fringe list);;
+
+val fringe : `a tree -> `a list = <fun> 
+val list_fringe : `a treeList -> `a list = <fun> 
+
+# fringe tree;;
+- : int list = [5; 3; 2; 7]
+```
+<h1 class=post >Problem</h1>
+<hr />
+
+```ocaml
+# type `a tree = TreeLeaf of `a | TreeNode of `a a treeList 
+and `a treeList = Last of `a tree | More of (`a tree * `a treeList);;
+```
+
+$\textcolor{blue}{\text{Define tree\_size}}$
+
+```Ocaml
+let rec tree_size t = 
+    match t with TreeLeaf _ -> 1
+    | TreeNode ts -> treeList_size ts
+and treeList_size ts = 
+    match ts with Last t -> 
+    | More t ts` -> tree_size t + treeList_size ts`
+```
+
+<h1 class=post >Nested Recursive Types</h1>
+<hr />
+
+```Ocaml
+type `a labeled_tree =    
+    TreeNode of (`a * `a labeled_tree list)
+
+let ltree = 
+    TreeNode(5, 
+    [TreeNode (3, []);
+    TreeNode (2, [TreeNode (1, []);
+            TreeNode (7, [])]);
+    TreeNode (5, [])])
+```
+
+
+
+<!-- ---------------CONTINUE ------------------------------- -->

@@ -106,7 +106,7 @@ Some notes on data structures <a href="/CS374/dataStructures.qmd#Data" style="te
 
 <b style="font-weight: bold">Young man, in mathematics you don't understand things. You just get used to them.</b>
 <br />
-— John von Neumannxw
+— John von Neumann
 
 <b style="font-weight: bold">Dealing with failure is easy: Work hard to improve. Success is also easy to handle: You've solved the wrong problem. Work hard to improve.</b>
 <br />

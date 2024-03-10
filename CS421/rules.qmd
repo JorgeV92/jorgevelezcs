@@ -33,10 +33,33 @@ In simpler terms, think of a polymorphic type like a template and a monomorphic 
 
 # Rules
 
-Constants:
+\newcommand\Const{\large{\frac{}{\Gamma \:\: \vdash \: c \: : \: \tau }}}
+\newcommand\Var{\large{\frac{}{\Gamma \:\: \vdash \: x \: : \: \tau }}}
+\newcommand\Monop{\large\frac{\Gamma \:\: \vdash \: e \: : \: \tau_1}{\Gamma \:\: \vdash \: \oplus e \: : \: \tau_2}}
+\newcommand\Binop{\large{\frac{\Gamma \:\: \vdash \: e_1 \: : \: \tau_1 \quad \Gamma \:\: \vdash e_2 \: : \: \tau_2}{\Gamma \:\: \vdash \: e_1 \: \odot \: e_2 \: : \: \tau_3}}}
+\newcommand\IfThen{\large{\frac{\Gamma \:\: \vdash \: e_c \: : \: \text{bool} \quad \Gamma \:\: \vdash \: e_t \: : \: \tau  \quad \Gamma \:\: \vdash e_e \: : \: \tau}{\Gamma \:\: \vdash \: \text{if} \: e_c \: \text{then} \: e_t \: \text{else} \: e_e \: : \: \tau}}}
+\newcommand\App{\large{\frac{\Gamma \:\: \vdash \: e_1 \: : \: \tau_1 \:\rightarrow \: \tau_2 \quad \Gamma \:\: \vdash e_2 \: : \: \tau_1}{\Gamma \:\: \vdash \:  e_1 \: e_2 \: : \: \tau_2}}}
 
-$\large{\frac{}{\Gamma \:\: \vdash \: c \: : \: \tau }}$ $\text{\large{CONST} } \text{where }  c \text{ is a constant listed above, and } \tau \text{ is an instance of sig}(c)$
+<span style="font-size: 1.2em">Constants:</span>
 
-Variables:
+$\Const$ $\text{\large{CONST} } \text{where }  c \text{ is a constant listed above, and } \tau \text{ is an instance of sig}(c)$
 
-$\large{\frac{}{\Gamma \:\: \vdash \: x \: : \: \tau }}$ $\text{\large{VAR}}$ $\text{ where } x \text{ is a variable and } \tau \text{ is an instance of } \Gamma(x)$ 
+<span style="font-size: 1.2em">Variables:</span>
+
+$\Var$ $\text{\large{VAR}}$ $\text{ where } x \text{ is a variable and } \tau \text{ is an instance of } \Gamma(x)$ 
+
+<span style="font-size: 1.2em">Unary Primitive Operators:</span>
+
+$\Monop$ $\text{\large{MONOP}}$ $\quad\tau_1 \rightarrow \tau_2 \text{ an instance of sig}(\oplus)$
+
+<span style="font-size: 1.2em">Binary Prmitive Operators:</span>
+
+$\Binop$ $\text{\large{BINOP}}$ $\qquad \tau_1 \rightarrow \tau_2 \rightarrow \tau_3 \text{ an instance of sig}(\odot)$
+
+<span style="font-size: 1.2em">If then else rule:</span>
+
+$\IfThen$ $\text{\large{IF}}$
+
+<span style="font-size: 1.2em">Application rule:</span>
+
+$\App$ $\text{\large{APP}}$

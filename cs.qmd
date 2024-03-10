@@ -1,6 +1,10 @@
 <h1 class=post>Computer Science</h1>
 <hr/>
 
+<span class='meta'>Feb 18, 2024</span><br/>
+<a href="index.qmd#" style="text-decoration: none;">SYCL</a><br/>
+
+
 <span class='meta'>Jan 16, 2024</span><br/>
 <a href="/probStats/stat410.qmd#" style="text-decoration: none;">Statistics and Probability 2</a><br/>
 Notes dedicated to Stat 410 
@@ -32,4 +36,19 @@ The P vs NP problem, often regarded as the most significant unresolved issue in 
 
 <h1 class=post>Finance</h1>
 <hr/>
+
+<span class="meta">Feb 12, 2024</span><br/>
+<a href="lab1a.qmd#lab1a" style="text-decoration: none;">Game Theory</a><br/>
+John Von Neumann
+
+<h1 class=post>The Art of Computer Programming</h1>
+<hr/>
+<span class="meta">$\infty$</span><br/>
+<a href="lab1a.qmd#lab1a" style="text-decoration: none;">Donald Knuth</a><br/>
+My study and notes on Donald Knuths work on algorithms.
+
+Coming soon!
+
+<!-- ![](/images/dk.webp){.lightbox width=60%} -->
+
 

@@ -39,3 +39,37 @@ body {
 .hover-link:hover {
   color: blue; /* Color changes to blue on hover */
 }
+
+.blue-square li {
+  list-style-type: none; /* Removes the default bullet */
+  position: relative;
+}
+
+.blue-square li:before {
+  content: ''; /* Necessary to create a pseudo-element */
+  position: absolute;
+  left: -20px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px; /* Size of the square */
+  height: 7px; /* Size of the square */
+  background-color: blue; /* Color of the square */
+  display: block;
+}
+
+.red-square li {
+  list-style-type: none; /* Removes the default bullet */
+  position: relative;
+}
+
+.red-square li:before {
+  content: ''; /* Necessary to create a pseudo-element */
+  position: absolute;
+  left: -20px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px; /* Size of the square */
+  height: 7px; /* Size of the square */
+  background-color: red; /* Color of the square */
+  display: block;
+}

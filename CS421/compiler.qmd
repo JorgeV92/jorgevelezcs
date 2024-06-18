@@ -1,0 +1,203 @@
+![](../images/comp.png){.lightbox}
+<hr>
+
+<!--  Debugging only. Scrolls all the way to the bottom  Comment out when done.-->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  window.scrollTo(0, document.body.scrollHeight);
+});
+</script>
+
+<!-- -----------------------------END-------------------------------- -->
+
+<ul class="blue-square">
+    <li>We want to trun strings (code) into computer instructions</li>
+    <li>Done in phases</li>
+    <li>Turn strings into abstract syntax trees (parse)</li>
+    <li>Translate abstract syntax trees into executable instructions (interpret or compile)</li>
+</ul>
+
+Meta-discourse
+<hr>
+
+<ul class="blue-square">
+    <li>Language Syntax and Semantics</li>
+    <li>Syntax</li>
+    <ul class="blue-square">
+        <li>Regular Expressions, DFSAs and NDFSAs</li>
+        <li>Grammars</li>
+    </ul>
+    <li>Semantics</li>
+    <ul class="blue-square">
+        <li>Natural Semantics<li>
+        <li>Transition Semantics</li>
+    </ul>
+</ul>
+
+Language Syntax
+<hr>
+
+<ul class="blue-square">
+    <li>Syntax is the description of which strings of symbols are meaningful expressions in a language</li>
+    <li>It takes more than syntax to understand a language; need meaning (semantics) too</li>
+    <li>Syntax is the enrtry point</li>
+</ul>
+
+Elements of Syntax 
+<hr> 
+
+<ul class="blue-square">
+    <li>Character set - previously always ASCII, now often 64 character sets</li>
+    <li>Keywords - usually reserved</li>
+    <li>Special constants - cannot be assigned to </li>
+    <li>Identifiers - can be assigend to</li>
+    <li>Operator symbols</li>
+    <li>Delimiters (parenthesis, braces, brackets)</li>
+    <li>Blanks (aka white space)</li>
+  
+</ul>
+
+<ul class="blue-square">
+    <li>Expressions </li>
+</ul>
+
+$$\text{if ... then begin ... ; ... end else begin ... ; ... end}$$
+
+<ul class="blue-square">
+    <li>Type expressions</li>
+</ul>
+
+$$\text{typexpr}_1 \rightarrow  \text{typexpr}_2$$
+
+<ul class="blue-square">
+    <li>Declarations (in functional languages)</li>
+</ul>
+
+$$\text{let pattern = expr} $$
+
+<ul class="blue-square">
+    <li>Statements (in imperative languages)</li>
+</ul>
+
+$$a = b + c $$
+
+<ul class="blue-square">
+    <li>Subprograms</li>
+</ul>
+
+$$\text{let } \text{pattern}_1 = \text{expr}_1 \text{ in expr}$$
+
+<ul class="blue-square">
+    <li>Modules</li>
+    <li>Interfaces</li>
+    <li>Classes (for object-oriented languages)</li>
+</ul>
+
+Lexing and Parsing 
+<hr>
+
+<ul class="blue-square">
+    <li>Converting strings to abstract syntax trees done in two phases</li>
+    <ul class="red-square">
+        <li>$\textbf{Lexing}:$ Converting string (or streams of characters) into lists (or streams) of tokens (the "words" of the language)</li>
+    </ul>
+    <li>Specification Technique: Regular Expressions</li>
+    <ul class="red-square">
+        <li>$\textbf{Parsing}:$ Convert a list of tokens into a abstract syntax tree</li>
+    </ul>
+    <li>Specification Technique: BNF Grammars</li>
+</ul>
+
+Formal Language Descriptions
+<hr>
+
+<ul class="blue-square">
+    <li>Regular expressions, regular grammars, finite state automata</li>
+    <li>Context-free grammars, BNF grammars, syntax diagrams</li>
+    <li>Whole family more of grammars and automata - covered in automata theory</li>
+</ul>
+
+Grammars
+<hr>
+
+<ul class="blue-square">
+    <li>Grammars are formal descriptions of which strings over a given character set are in a particular language</li>
+    <li>Language designers write grammar</li>
+    <li>Language implementers use grammar to know what programs to accept</li>
+    <li>Language users use grammar to know how to wrtie legitimate programs</li>
+</ul>
+
+Regular Expressions - Review 
+<hr>
+
+<ul class="blue-square">
+    <li>Start with a given character set - $\textbf{a, b, c, ...}$</li>
+    <li>$\textcolor{red}{L(\epsilon) = \{'' ''\}}$</li>
+    <li>Each character is a regular expression</li>
+    <ul class="red-square">
+        <li>It represents the set of one string containing just that character</li>
+        <li>$\textcolor{red}{L(a) = \{a\}}$</li>
+    </ul>
+</ul>
+
+<ul class="blue-square">
+    <li>If $\textcolor{red}{\textbf{x}}$ and $\textcolor{red}{\textbf{y}}$ are regular expressions, then $\textcolor{red}{\textbf{xy}}$ is a regular expression</li>
+    <ul class="red-square">
+        <li>It represents the set of all strings made from first a string described by $\textcolor{red}{\textbf{x}}$ then a string decribed by $\textcolor{red}{\textbf{y}}$</li>
+    </ul>
+</ul>
+
+$$\text{If } \textcolor{red}{L(\textbf{x}) = \{a, ab\}} \text{ and } \textcolor{red}{L(\textbf{y}) = \{c, d\}}$$
+$$\text{then } \textcolor{red}{L(\textbf{xy}) = \{ac, ad, abc, abd\}}$$
+
+
+<ul class="blue-square">
+    <li>If $\textcolor{red}{\textbf{x}}$ and $\textcolor{red}{\textbf{y}}$ are regular expressions, then $\textcolor{red}{\textbf{x} \lor \textbf{y }}$ is a regular expression</li>
+    <ul class="red-square">
+        <li>It represents the set of strings described by either $\textcolor{red}{\textbf{x}}$ or $\textcolor{red}{\textbf{y}}$</li>
+    </ul>
+</ul>
+
+$$\text{If } \textcolor{red}{L(\textbf{x}) = \{a, ab\}} \text{ and } \textcolor{red}{L(\textbf{y}) = \{c, d\}}$$
+$$\text{then } \textcolor{red}{L(\textbf{x} \lor \textbf{y }) = \{a, ab, c, d\}}$$
+
+<ul class="blue-square">
+    <li>If $\textcolor{red}{\textbf{x}}$ is a regular expression, then so is $\textcolor{red}{\textbf{(x)}}$</li>
+    <ul class="red-square">
+        <li>It represents the same thing as $\textcolor{red}{\textbf{x}}$</li>
+    </ul>
+    <li>If $\textcolor{red}{\textbf{x}}$ is a regular expression, then so is $\textcolor{red}{\textbf{x}^* }$</li>
+    <ul class="red-square">
+        <li>It represents strings made from concatenating zero or more strings from $\textcolor{red}{\textbf{x}}$</li>
+        <li>If $\textcolor{red}{L(\textbf{x})}$ = $\{a, ab\}$ then $\textcolor{red}{L(\textbf{x}^*)} =$ $\{'', a, ab, aa, aab, abab, ...\}$</li>
+    </ul>
+    <li>$\epsilon$</li>
+    <ul class="red-square">
+        <li>It represents $\{" "\}$, set containing the empty string</li>
+    </ul>
+    <li>$\color{red}\phi$</li>
+    <ul class="red-square">
+        <li>It represents $\{\}$, the empty set</li>
+    </ul>
+</ul>
+
+Example Regular Expressions 
+<hr>
+
+<ul class="blue-square">
+    <li>$(0 \lor 1)^* 1$</li>
+    <ul class="red-square">
+        <li>The set of all strings of $0$'s and $1$'s ending in $1$, $\{1, 01, 11, ...\}$</li>
+    </ul>
+    <li>$\text{a}^*\text{b}(\text{a}^*)$</li>
+    <ul class="red-square">
+        <li>The set of all strings of $\text{a}$'s and $\text{b}$'s with exactly one $\text{b}$</li>
+    </ul>
+    <li>$((01) \lor (10))^*$</li>
+    <li>Regular expressions (equivalently, regular grammars) important for lexing, breaking strings into recognized words</li>
+</ul>
+
+Right Regular Grammars 
+<hr> 
+
+

@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Jorge Velez">
@@ -96,16 +125,16 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../rl.html"> 
-<span class="menu-text">Reinforcement Learning</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../DavidMarr.html"> 
-<span class="menu-text">David Marr Technology</span></a>
+    <a class="nav-link" href="../cs421.html"> 
+<span class="menu-text">Progrmg Languages &amp; Compilers</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../finance.html"> 
+<span class="menu-text">Finance</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -134,27 +163,18 @@ Data Strcutures
 </h1>
 <span class="meta">Dec 31, 2023</span>
 <hr>
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
-
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Linked List: notes</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Hash Table: notes</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Binary Tress</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Random Binary Search Trees</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Red-Black Trees</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Heaps</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Sorting algorithms: notes</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">Graph: notes</a></p>
-<p><a href="../CS374/lab1a.html#lab1a" class="custom-link">External Memory Searching</a></p>
+<p><a href="../DataStructures/bigO.html" style="text-decoration: none;"><span class="math inline">\(O(\cdot)\)</span> and <span class="math inline">\(\Omega (\cdot)\)</span> notation; amortized analysis; Array-lists notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Stacks, Queues, Steques, and Quacks: notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Array-lists concatenation, tombstones notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Scapegoat trees notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Scapegoat tree insertion analysis; augmented binary search trees</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Splay trees, Ropes notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Mergeable priority queues; Leftist heaps, binomial heaps notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Faster priority queues: Fibonacci heaps and pairing heaps notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Range-minimum and lowest-common-ancestor queries notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Range trees and segment trees notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Sweep-line algorithms notes</a></p>
+<p><a href="../CS374/lab1a.html#lab1a" style="text-decoration: none;">Hashlife notes</a></p>
 
 
 

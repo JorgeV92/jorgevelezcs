@@ -14,3 +14,43 @@ val t : int = 11
   fun x -> (fun y -> (fun z -> x + y + z));;
 val add_three : int -> int -> int -> int = <fun> 
 ```
+
+<ul class="blue-square">
+    <li>What is the value of add_three?</li>
+    <li>$\textcolor{blue}{\text{Let $\rho_{add\_three}$ be the environment before the declaration}}$</li>
+    <li>Remeber: </li>
+      $\begin{align*}
+      &\textcolor{blue}{\text{let add three = }} \\
+       &\qquad\textcolor{blue}{\text{fun x $\rightarrow$ (fun y $\rightarrow$ (fun z $\rightarrow$ x + y + z))}} \\
+       &\text{Value:} \textcolor{blue}{< x \rightarrow \text{ fun y $\rightarrow$ (fun z $\rightarrow$ x + y + z)}, \rho_{add\_three >}}
+      \end{align*}$
+</ul>
+
+<span style="font-size: 1.5em;"> Partial application of functions </span>
+<hr>
+
+```Ocaml
+let h = add_three 5 4;;
+val h : int -> int = <fun>
+h 3;; 
+- : int = 12
+h 7;; 
+- : int = 16
+```
+Partial application also called sectioning
+
+<span style="font-size: 1.5em;">Functions as arguments</span>
+<hr>
+
+```Ocaml
+# let thrice f x = f(f(f x));;
+val thrice : ('a -> 'a) -> ('a -> 'a) = <fun>
+# let g = thrice plus_two;;
+val g : int -> int = <fun>
+# g 4;;
+- : int = 10
+# thrice (fun s -> "Hi!" ^ s) "Good-bye!";; 
+- : string = "Hi! Hi! Hi! Good-bye!"
+```
+
+

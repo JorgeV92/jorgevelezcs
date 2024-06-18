@@ -1,0 +1,88 @@
+<h1 class=post>Binary search</h1> 
+<span class='meta'>Nov 22, 2023</span>
+<hr>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML-full"
+        integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+        }
+    });
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js">
+</script>
+
+Lab6a is dedicated to different problems that could be solve by plain $\textbf{Brute Force}$ which in most cases is in $O(n)$ time (linear time). We try to review and understand these problems and design better methods to solve these problems that are much faster than linear time. We are going to see how $\textbf{Binary Search}$ algorithm could help us come up with a solution that performances in logarithmic time. I present the basic algorithm of binary search for refernce here:
+
+
+<pre id="Binary Search" class="pseudocode">
+    \begin{algorithm}
+    \caption{Binary Search}
+    \begin{algorithmic}
+    \PROCEDURE{BinarySearch}{$A[1...n], T$}
+        \STATE{$L \gets 0$}
+        \STATE{$R \gets 0$}
+        \WHILE{$L < R$}
+            \STATE{$m \gets$ floor$((L + R) /2)$}
+            \IF{ $A[m] < T$}
+                \STATE{$L \gets m + 1$}
+            \ELSE
+                \STATE{$R \gets m$}
+            \ENDIF
+        \ENDWHILE
+        \STATE{return $L$}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+
+1. The first question in the subsection part (a) asks when given an array $A[1...n]$ of $n$ distinct integers that could be positive, negative, or zero that is sorted in increasing order such that $A[1] < A[2] < \cdots < A[n]$. Provide a algorithm that finds an index $i$ such that $A[i] =i$ or reports that no such index exists. 
+
+The solution by Jeff introduces a new computed array $\Delta$, which I describe here for my own knowledge and understaning. At first glance I didnt undertand the computation and the reason for this new array, Jeff states to initalize every element in the array as such $\Delta[i] = A[i] - i$ for all index $i$ 
+
+$$\Delta[i] = A[i] - i \leq (A[i + 1] - 1) - i = A[i + 1] - (i + 1) = \Delta[i + 1]$$
+
+<pre id="Find Match" class="pseudocode">
+    \begin{algorithm}
+    \caption{Find Match}
+    \begin{algorithmic}
+    \PROCEDURE{FindMatch}{$\ell, r$}
+        \IF{ $\ell > r$}
+            \STATE{ return \textsc{None}}
+        \ENDIF
+        \STATE{$mid \gets (\ell + r) / 2$}
+        \IF{ $A[mid] = mid$}
+            \STATE{ return $mid$ }
+        \ELSEIF{ $A[mid] < mid$}
+            \STATE{return} \CALL{FindMatch}{$mid + 1, r$}
+        \ELSE 
+            \STATE{return } \CALL{FindMatch}{$\ell, mid - 1$}
+        \ENDIF
+
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+Since the algorithm is binary search the running time is $O(log \: n)$
+
+
+
+
+
+<script>
+    pseudocode.renderElement(document.getElementById("quicksort"));
+</script>
+
+<script>
+    pseudocode.renderClass("pseudocode");
+</script>

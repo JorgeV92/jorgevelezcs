@@ -159,16 +159,16 @@ window.Quarto = {
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../rl.html"> 
-<span class="menu-text">Reinforcement Learning</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../DavidMarr.html"> 
-<span class="menu-text">David Marr Tech</span></a>
+    <a class="nav-link" href="../cs421.html"> 
+<span class="menu-text">Progrmg Languages &amp; Compilers</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../finance.html"> 
+<span class="menu-text">Finance</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -211,14 +211,38 @@ Introduction to Objective OCaml
 </section>
 <section id="higher-order-functions" class="level3">
 <h3 class="anchored" data-anchor-id="higher-order-functions">Higher order functions</h3>
+<p><span style="font-size: 1.5em;">Fold right</span></p>
+<p>The map function allows us to modify each item in a list individually, while the filter function enables us to selectively retain or discard each item based on a criterion. However, both functions operate on elements independently. What if our goal it to aggregate all the elements if a list together?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> sum = <span class="kw">function</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  | [] -&gt; <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  | (h::t) -&gt; h + sum t</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> concat = <span class="kw">function</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  | [] -&gt; <span class="st">""</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  | (h::t) -&gt; h ^ concat t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>For an empty list, a distinct base value is returned: 0 for summing and an empty string (““) for concatenation.</p></li>
+<li><p>In the case of a non-empty list, a different operation is employed to merge the head of the list with the outcome of the recursive call: addition (+) for summing and concatenation (^) for joining strings.</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> sum' init = <span class="kw">function</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  | [] -&gt; init</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  | (h::t) -&gt; h + sum' init t</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> sum = sum' <span class="dv">0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> concat' init = <span class="kw">function</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  | [] -&gt; init</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  | (h::t) -&gt; h ^ concat' init t</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> concat = concat' <span class="st">""</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-3.3" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-3.3">Exercise 3.3:</h4>
 <p>We write a function <span class="math inline">\(\text{sum}\)</span> that, given two integers bounds n and m and a function f, computes a summation. <span class="math display">\[   \text{sum n m f } = \sum_{i=1}^{m} f(i) \]</span></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> sum n m f = </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> n &gt; m <span class="kw">then</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        f n + sum (n + <span class="dv">1</span>) m f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> sum n m f = </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> n &gt; m <span class="kw">then</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">else</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        f n + sum (n + <span class="dv">1</span>) m f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exercise-3.4" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-3.4">Exercise 3.4:</h4>
@@ -232,19 +256,44 @@ Introduction to Objective OCaml
     &amp; \qquad \quad m \gets m - n \\
     &amp;\quad \text{return } n
 \end{align*}\]</span></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">(* Method 1 *)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> gcd n m =</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> m = <span class="dv">0</span> <span class="kw">then</span> n</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> <span class="kw">if</span> n &gt; m <span class="kw">then</span> gcd (n - m) m</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> gcd n (m - n);;</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">(* Method 2 *)</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> gcd n m =</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> m = <span class="dv">0</span> <span class="kw">then</span> n</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> gcd m (n <span class="kw">mod</span> m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
+<div class="sourceCode" id="cb4"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">(* Method 1 *)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> gcd n m =</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> m = <span class="dv">0</span> <span class="kw">then</span> n</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> <span class="kw">if</span> n &gt; m <span class="kw">then</span> gcd (n - m) m</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> gcd n (m - n);;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">(* Method 2 *)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">rec</span> gcd n m =</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> m = <span class="dv">0</span> <span class="kw">then</span> n</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">else</span> gcd m (n <span class="kw">mod</span> m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="exercise-3.6" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-3.6">Exercise 3.6:</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">(* A dictionary is represented as a function from a string to an int *)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> dictionary = <span class="dt">string</span> -&gt; <span class="dt">int</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">(* The empty dictionary function that returns 0 for any key *)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> empty : dictonary = <span class="kw">fun</span> _ -&gt; <span class="dv">0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">(* Function to add key-value pair to a dictiioanry *)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> add d k v = <span class="kw">fun</span> k' -&gt; <span class="kw">if</span> k' = k <span class="kw">then</span> v <span class="kw">else</span> d k'</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">(* Function to find the value associated with a key in a dictionary *)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> find d k : <span class="dt">int</span> = d k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="basic-pattern-matches" class="level3">
+<h3 class="anchored" data-anchor-id="basic-pattern-matches">Basic pattern matches</h3>
+<p>One of the most potent capabilities of ML is its utilization of pattern matching for defining computations via case analysis. The syntax for pattern matching is expressed through a match expression, which is outlined as follows.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode ocaml code-with-copy"><code class="sourceCode ocaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>natch expression <span class="kw">with</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  | pattern1 -&gt; expression1</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  | pattern2 -&gt; expression2</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  | pattern_n -&gt; expression_n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 </main> <!-- /main -->

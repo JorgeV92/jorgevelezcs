@@ -1,0 +1,6 @@
+<h1 class=post>Finance</h1>
+<hr/>
+
+<span class="meta">Feb 12, 2024</span><br/>
+<a href="lab1a.qmd#lab1a" style="text-decoration: none;">Game Theory</a><br/>
+John Von Neumann

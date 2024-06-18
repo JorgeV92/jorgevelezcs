@@ -15,10 +15,23 @@
     }
 </style>
 
-<a href="statRev.qmd#" class="custom-link">Stats and Probability review</a>
+<a href="statRev.qmd##" style="text-decoration: none;">Review</a><br/>
+Stats and Probability review
 
-<a href="discreteVariable.qmd#" class="custom-link">Discrete Random Variables 1</a>
+<a href="discreteVariable.qmd" style="text-decoration: none;">Discete RV</a><br/>
+Discrete Random Variables 1
 
-<a href="discreteVariable2.qmd#" class="custom-link">Discrete Random Variables 2</a>
+<a href="discreteVariable2.qmd#" style="text-decoration: none;">Discrete RV 2</a><br/>
+Discrete Random Variables 2
 
-<a href="Exam1.qmd#" class="custom-link">Review Exam 1</a>
+<!-- <a href="Exam1.qmd##" style="text-decoration: none;">Exam 1</a><br/>
+Review Exam 1 -->
+
+<a href="likely.qmd##" style="text-decoration: none;">Likelihood</a><br/>
+Notes
+
+<a href="../probStats/aroundWeb.qmd" style="text-decoration: none;">Around the web</a><br/>
+Problems around the web dealing with Probability and Statistics
+
+<a href="../probStats/aroundWeb.qmd" style="text-decoration: none;">Convergence on probability</a><br/>
+Notes

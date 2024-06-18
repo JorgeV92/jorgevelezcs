@@ -1,0 +1,11 @@
+<h1 class=post>Big $O$ notation</h1> 
+<span class='meta'>May 18, 2023</span>
+
+1. The amortized cost of each Insert and Delete is $O(1)$ Therefore the total time required to execute any sequence of $N_i$ Inserts and $N_d$ Deletes is at most $O(N_i + N_d)$
+Let $n_0$ denote the value of $AL.num$ at the start of a phase; to avoid trivial boundry casesl assune $n_0 \geq 4$.
+
+(a) Suppose the phase ends by doubling the data array. What is the extact minimum number of Insert and Delete operations that phase can contain? <br /> 
+At the start of each phase, we have $n_0 = AL.num = AL.cap / 2$. The capacity $AL.cap$ does not change until Resize doubles the array and ends the phase. Thus, just before Resize doubles the array, we have $AL.num = AL.cap = 2n_0$. The number of items in the array-list has increased by $n_0$, so we must have performed at least $n_0$ Inserts. (There are also trivially at least 0 Deletes, and therefore at least $n_0$ operations overall.)
+
+(b) Suppose the phase ends by halving the data array. What is the exact minimum number of Insert and Delete operations that phase can contain? <br/>
+At the start of each phase, we have $n_0 = AL.num = AL.cap / 2$. Just before Resize halves the array, we have $AL.num = AL.cap / 4 = n_0 / 2$. The number of items in the array-list has decreased by $n_0 / 2$, so we must have performed at least $n_0 / 2$ Deletes. (There are also trivially at least 0 Inserts, and therefore at least $n_0$ operations overall.)

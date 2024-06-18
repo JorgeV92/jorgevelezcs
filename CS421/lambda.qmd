@@ -1,0 +1,77 @@
+<h1 class=post >Lambda Calculus - Motivation</h1>
+<br>
+Aims to capture the essence of functions, function applications, and evaluation. λ- calculus is a theory of computation. All sequential programs may be viewed as functions from input (initial state and input values) to output (resulting state and output values). λ-calculus is a mathematical formalism of functions and functional computations. Two flavors: typed and untyped. 
+
+$\color{blue} \text{Untyped }\lambda \text{-Calculus}$
+
+Only three kinds of expressions: Variables: x, y, z, w, ...
+
+Abstraction: λ $x.e$ (Function creation, think fun x -> e)
+
+Application: $e_1 \: e_2$
+
+Parenthesized expression: $(e)$
+
+Formal BNF Grammar: 
+
+```ocaml
+<expression> ::= <variable> 
+                | <abstraction>
+                | <application>
+                | (<expression>)
+
+<abstraction> 
+            ::= λ <variable>. <expression>
+<application>
+            ::= <expression> <expression>
+```
+
+Occurence: a location of a subterm in a term. Variable binding: λ x. e is a binding of x in e. Bound occurrence: all occurrences of x in λ x. e. Free occurrence: one that is not bound. Scope of binding: in λ x.e, all occurences in e not in a subterm of the form λ x. e' (same x). Free variables: all variables having free occurrences in a term.
+
+$\color{blue} \text{Example}$
+
+Label occurrences and scope:
+
+$$(λ \: x. \: y \: λ \: y. \: y \: (λx. \: x \: y) \: x) \: x$$
+
+
+## Parsing 
+
+```ocaml
+M = M * M | M++ | (M) | 6
+
+(* ++ broad scope, low precedence *)
+(* '*' highest precedence *)
+
+                                    6 * 6 ++ * 6 ++ * 6
+(* right associated *)
+
+NotStarMaybePlusPlus := (M) | 6 | M++
+
+MaybeStarNotPlusPlus := NotStarMaybePlusPlus * MaybeStarNotPlusPlus
+                | (M)
+                | 6
+
+(* Not the correct M *)
+M := NotStarMaybePlusPlus * M 
+    | NotStarMaybePlusPlus
+    | MaybeStar++
+
+    6 * 6 ++
+
+                                               + +  
+                                                |
+                                                *           ✓
+                                               / \
+                                              6   *
+                                                /   \ 
+                                               6     6
+       (* WRONG *)                                                              + +
+            *                                                                    |
+          /   \                                                                  *    ✓
+         6    + +                                                               / \
+               |                                                               6   6
+               6
+
+M = MaybeStarNotPlusPlus | M++
+```

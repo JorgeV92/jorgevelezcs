@@ -1,0 +1,131 @@
+<h1 class=post>Hello World SYCL</h1>
+<hr/>
+
+```cpp
+#include <iostream>
+#include <sycl/sycl.hpp>
+using namespace sycl;
+
+const std::string secret{
+    "Ifmmp-!xpsme\"\012J(n!tpssz-!Ebwf/!"
+    "J(n!bgsbje!J!dbo(u!ep!uibu/!.!IBM\01"
+};
+
+const auto sz = secret.size();
+
+int main() {
+    queue q;  // (1)
+
+    char* result = malloc_shared<char>(sz, q); // (2)
+    std::memcpy(result, secret.data(), sz);     // (3)
+
+    q.parallel_for(sz, [=](auto& i) {           // (4)
+        result[i] -= 1;     // (5)
+    }).wait();
+
+    std::cout << result << "\n";
+    free(result, q);
+    return 0;
+}
+```
+
+- (1): instantiates a queue for work requests directed to a particular device.
+
+- (2): creates an allocation for data shared with the device
+
+- (3): copies the secret string into device memory, where it will be processed by the kernel.
+
+- (4): enqueues work to the device
+
+-  (5): is the only line of code that will run on the device. All other code runs on the host (CPU)
+
+<hr>
+Host code invokes code on devices. The capabilities of the host are very often available as a devuce also, to provide both a back-up device and to offer any acceleration capabilities the host has for processing kernels as well. Our host is most often a CPU, and as such it may be available as a CPU device.
+<hr>
+
+Important terms: 
+
+- High-performance computing (HPC)
+
+- General-purpose GPUs (GPGPUs)
+
+- Field-programmable gate arrays (FPGAs)
+
+- Digita signal processors (DSPs)
+
+- Application-specific integrated circuits (ASICs)
+
+<span style="font-size: 1.5em;"> Kernel: Vector Addition (DAXPY)</span>
+
+Double-precision A times X Plus Y (DAXPY)
+
+```cpp
+// C/C++
+for (int i = 0; i < n; i++) {
+    z[i] = alpha * x[i] + y[i];
+}
+
+// SYCL kernel 
+q.parallel_for(range{n}, [=](id<1> i) {
+    z[i] = alpha * x[i] + y[i];
+}).wait();
+```
+
+Keep in mind for race conditions in your program. A race condition exists when two parts of a program access the same data without coordination.
+
+<span style="font-size: 1.5em;"> Example of a Race Condition</span>
+
+```cpp
+char* result = malloc_shared<char>(sz, q);
+
+// introduce potential data race! 
+q.memcpy(result, secret.data(), sz);
+
+q.parallel_for(sz, [=] (auto& i) {
+    result[i] -= 1;
+}).wait();
+```
+
+<span style="font-size: 1.5em;"> DeadLock</span>
+
+<hr>
+TO TEACH THE CONCEPT OF DEADLOCK, THE DINING PHILOSOPHERS PROBLEM IS A CLASSIC ILLIUSTRATION OF A SYNCHRONIZATION PROBLEM IN COMPUTER SCIENCE
+<hr>
+
+Deadlocks occurs when two or more actions (processes, threads, kernels, etc.) are blocked, each waiting for the other to release a resource or complete a task, resulting in a standstill.
+
+<span style="font-size: 1.5em;">C++ Lambda expressions</span>
+
+```cpp
+int i = 1, j = 10, k = 100, l = 1000;
+
+auto lambda = [i, &j](int k0, int& l0) -> int {
+    j = 2 * j;
+    k0 = 2 * k0;
+    l0 = 2 * l0;
+    return i + j + k0 + l0;
+};
+
+print_values(i, j, k, l);
+std::cout << "First call returned " << lambda(k, l) << "\n";
+print_values(i, j, k, l);
+std::cout << "Second call returned " << lambda(k, l) << "\n";
+print_values(i, j, k, l);
+
+
+// Output 
+i == 1
+j == 10
+k = 100
+l = 1000
+First call returned 2221
+i == 1
+j == 20
+k = 200
+l = 2000
+Second call returned 4241
+i == 1
+j == 40
+k = 400
+l = 4000
+```

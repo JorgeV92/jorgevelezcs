@@ -1,0 +1,4 @@
+<h1 class=post>Shortest Path</h1> 
+<span class='meta'>May 18, 2023</span>
+
+The $\textbf{shortest-path distance } \delta(s, v)$ from a source vertex $s$ to $v$ as the minimum number of edges in any path from vertex $s$ to a vertex $v$. In case of no path the distance between the two vertices is set as $\delta(s, v) = \infty$. 

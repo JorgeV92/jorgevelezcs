@@ -39,6 +39,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,6 +107,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">David Marr Tech</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="//CS421/cs421.html"> 
+<span class="menu-text">Progrmg Languages &amp; Compilers</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
   </li>  
@@ -132,6 +139,7 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="post">
 CS 421
 </h1>
+<p><a href="../images/PLC.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../images/PLC.png" class="img-fluid"></a></p>
 <hr>
 <style>
     .custom-link {
@@ -145,14 +153,13 @@ CS 421
         text-decoration: underline solid black; /* Changes to solid underline on hover */
     }
 </style>
-<p><a href="../CS421/ocaml.html#" class="custom-link">Introduction to Objective OCaml</a></p>
-<p><a href="../CS421/rules.html#" class="custom-link">Polymoprhic Typing Rules</a></p>
-<p><a href="../index.html" class="custom-link">Basic OCaml Programming</a></p>
-<p><a href="../CS421/lect3.html" class="custom-link">Closures and Evaluation of Function Application, Order of Evaluation in OCaml</a></p>
-<p><a href="../CS421/lect4.html" class="custom-link">Higher-Order Functions, Pattern Matching and Recursion over Lists</a></p>
-<p><a href="../CS421/lect9.html" class="custom-link">User Defined Types in Ocaml, Data Constructors and Pattern Matching</a></p>
-<p><a href="../CS421/lect11.html" class="custom-link">Types and Type Systems</a></p>
-<p><a href="../CS421/midterm2.html" class="custom-link">Midterm 2 concepts review </a></p>
+<p><a href="../CS421/ocaml.html#" style="text-decoration: none;">OCAML</a><br> Introduction to Objective OCaml</p>
+<p><a href="../CS421/rules.html#" style="text-decoration: none;">Type Rules</a><br> Polymoprhic Typing Rules</p>
+<p><a href="../CS421/lect3.html" style="text-decoration: none;">Order of Evaluation</a><br> Closures and Evaluation of Function Application, Order of Evaluation in OCaml</p>
+<p><a href="../CS421/lect4.html" style="text-decoration: none;">Higher Order Functions</a><br> Higher-Order Functions, Pattern Matching and Recursion over Lists</p>
+<p><a href="../CS421/lect9.html" style="text-decoration: none;">User defined types and pattern matching</a><br> User Defined Types in Ocaml, Data Constructors and Pattern Matching</p>
+<p><a href="../CS421/lect11.html" style="text-decoration: none;">Type Systems</a><br> Types and Type Systems</p>
+<p><a href="../CS421/midterm2.html" style="text-decoration: none;">Midterm 2</a><br> Midterm 2 concepts review</p>
 
 
 
@@ -540,6 +547,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

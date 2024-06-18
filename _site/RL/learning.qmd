@@ -1,0 +1,2 @@
+![](../images/SYCL.png){.lightbox}
+<hr>

@@ -1,0 +1,71 @@
+<h1 class=post>Background for Unification</h1>
+<hr/>
+
+
+<ul class="blue-square">
+    <li>Terms made from constructors and variables (for the simple first order case) </li>
+    <li>Constructors may be applied to arguments (other terms) to make new terms</li>
+    <li>Variables and constructors with no arguments are base cases</li>
+    <li>Constructors applied to different number of arguments ($\textcolor{red}{\text{arity}}$) considered different</li>
+    <li>Substitution of terms for variables</li>
+</ul>
+
+Simple Implementation Background
+<hr>
+
+```ocaml 
+type term = Variable of string 
+                | Const of (string * term list)
+let x = Variable "a";; 
+let tm = Const ("2", []);;
+
+let rec subst var_name residue term = 
+    match term with Variable name -> 
+        if var_name = name then residue else term 
+    | Const (c, tys) -> 
+        Const (c, List.map (subst var_name residue) tys);;
+```
+
+Unification Problem 
+<hr>
+Given a set of pairs of terms ("equations")
+
+$$ \textcolor{blue}{\{(s_1, t_1), (s_2, t_2), ..., (s_n, t_n)\}} $$
+
+$\text{(the \color{red}{unification problem}) \color{black} does there exist}$
+
+$\text{a substitution } \color{blue}{\sigma} \text{(the \color{red} unification solution)}$
+
+$\text{of terms for variables such that}$
+
+$$ \color{blue} \sigma(s_i) = \sigma(t_i) $$
+
+$\text{for all } i = 1, ..., n?$
+
+Uses for Unification 
+<hr>
+
+<ul class="blue-square">
+    <li>Type Inference and type checking</li>
+    <li>Pattern matching as in OCaml</li>
+    <li>Can use a simplified version of algorithm</li>
+    <li>Logic Programming - Prolog</li>
+    <li>Simple parsing</li>
+</ul>
+
+Unification Algorithm
+<hr>
+
+<ul class="blue-square">
+    <li>$\text{Let } \color{blue} S = \{(s_1 = t_1), (s_2 = t_2), ..., (s_n = t_n)\}$ $\text{ be a unication problem.}$</li>
+    <li>$\text{Case } \color{blue} S = {}: \text{Unif}(S)$ $\text{ = Identity function (i.e., no substitution)}$</li>
+    <li>$\text{Case } \color{blue} S = \{(s, t)\} \cup S^\prime$ $\text{ : Four main steps}$</li>
+</ul>
+
+<ul class="blue-square">
+    <li>$\text{\color{red} Delete}$: If $\color{blue} s = t$ (they are the same term) then $\text{\color{blue} Unif(S) =  Unif(S')}$</li> 
+    <li>$\text{\color{red} Decompose}$: $\text{ if } \color{blue} s = f(q_1, ..., q_m)$ and $\color{blue} t = f(r_1, ..., r_m)$ $\text{ (same f, same m!), then }$ 
+    $\color{blue} \text{Unif(S)} = \text{Unify}(\{(q_1, r_1), ..., (q_m, r_m)\} \cup S^\prime)$</li>
+    <li>$\text{\color{red} Orient}$: $\text{it \color{blue} t = x} \text{ is a variable, and s is not a variable, }$
+    $\color{blue} \text{Unify(S) = Unify}(\{(x = s)\} \cup S^\prime)$</li>
+</ul>

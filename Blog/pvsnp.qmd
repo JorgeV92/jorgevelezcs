@@ -1,0 +1,21 @@
+<h1 class=post>P vs NP</h1>
+<hr/>
+
+
+Is everything that can be easily verified also easily found?
+
+<hr/>
+
+<small>
+<b style="font-weight: bold">You don't understand anything until you learn it more than one way.</i></b>
+<br />
+— Marvin Minsky
+
+
+<b style="font-weight: bold">Mathematicians start from dizzyingly general theorems, then generalize them even further. Theoretical computer scientists start from incredibly concrete problems that no one can solve, then find special cases that still no one can solve.</i></b>
+<br />
+— Avi Wigderson
+
+<b style="font-weight: bold">The argument goes something like this: "I refuse to prove that I exist," says God, "for proof denies faith, and without faith I am nothing.</i></b>
+<br />
+— Douglas Adams

@@ -218,4 +218,124 @@ When considering the input graph $G$ we should consider wether it is directed or
 
 ## Preorder and Postorder
 
-Recollecting $\textbf{Preorder}$ and $\textbf{Postorder}$ of rooted trees. If we have a tree noted as $T$ and subtress as $T_1, ..., T_k$ and whose r
+Recollecting $\textbf{Preorder}$ and $\textbf{Postorder}$ of rooted trees. If we have a tree noted as $T$ and subtress as $T_1, ..., T_k$ and whose root is label $r$ the two methods are described as follows 
+
+$\textbf{Preorder}$: We visit the root $r$, and then recursively do a preorder traversal of $T_1, ... T_k$ <br/>
+$\textbf{Postorder}$ We first recursively perform a postorder traversal of the $T_1, ..., T_k$ subtrees and then visit the root $r$.
+
+<pre id="Preorder" class="pseudocode">
+    \begin{algorithm}
+    \caption{Preorder}
+    \begin{algorithmic}
+    \PROCEDURE{PreOrder}{$v$}
+        \IF{ $v \not\in V$ }
+            \STATE return 
+        \ENDIF
+        \STATE \textsc{Visit}$(v)$
+        \STATE \CALL{PreOder}{$v.left$}
+        \STATE \CALL{PreOder}{$v.right$}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+
+<pre id="Postorder" class="pseudocode">
+    \begin{algorithm}
+    \caption{Postorder}
+    \begin{algorithmic}
+    \PROCEDURE{PostOrder}{$v$}
+        \IF{ $v \not\in V$ }
+            \STATE return 
+        \ENDIF
+        \STATE \CALL{Postorder}{$v.left$}
+        \STATE \CALL{Postorder}{$v.right$}
+        \STATE \textsc{Visit}$(v)$
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+
+## Breadth-first search 
+
+The representation of the algorithm is provided by Introduction to Algortihms Fourth Edition textbook. 
+
+<pre id="Breadth-first search" class="pseudocode">
+    \begin{algorithm}
+    \caption{Breadth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{BreadthFirstSearch}{$G, s$}
+        \FOR{ each vertex $u \in G.V - \{s\}$}
+            \STATE{ $u$.color = \textsc{White}}
+            \STATE{$u.d = \infty$ }
+            \STATE{$u.\pi = $ NIL}
+        \ENDFOR
+        \STATE{$s$.color = \textsc{Gray}}
+        \STATE{$s.d$ = 0}
+        \STATE{$s.\pi = $ NIL}
+        \STATE{$Q = \varnothing$}
+        \STATE{\textsc{Enqueue}$(Q, s)$}
+        \WHILE{$Q \neq \varnothing$}
+            \STATE{$u = $ \textsc{Dequeue}$(Q)$}
+            \FOR{each vertex $v$ in $G.Adj[u]$}
+                \IF{$v.$color == \textsc{White}}
+                    \STATE{$v.$color = \textsc{Gray}}
+                    \STATE{$v.d = u.d + 1$}
+                    \STATE{$v.\pi = u$}
+                    \STATE{\textsc{Enqueue}$(Q, v)$}
+                \ENDIF
+            \ENDFOR
+            \STATE{$u.$color = \textsc{Black}}
+        \ENDWHILE
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+One thing we might wanna do is view the path created by BFS on a given source vertex $s$. Since the path forms a breadth-first tree and a shortest path for all such paths in $G_\pi$ for $\pi$.
+
+<pre id="Print-Path" class="pseudocode">
+    \begin{algorithm}
+    \caption{Print-Path}
+    \begin{algorithmic}
+    \PROCEDURE{Print-Path}{$G, s, v$}
+        \IF{$v == s$}
+            \STATE{print $s$}
+        \ELSEIF{$v.\pi == $ NIL}
+            \STATE{print no path from $s$ to $v$ exists}
+        \ELSE
+            \STATE \CALL{Print-Path}{$G, s, v.\pi$}
+            \STATE{print $v$}
+        \ENDIF
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+
+## Topological sort 
+
+#### Topological sort (Intro to Algorithms 4th ed.)
+
+<pre id="Topological sort" class="pseudocode">
+    \begin{algorithm}
+    \caption{Topological sort}
+    \begin{algorithmic}
+    \PROCEDURE{Topological-Sort}{$G$}
+        \STATE{call \textsc{DFS}$(G)$ to compute finish times $v.f$ for each vertex $v$}
+        \STATE{as each vertex is finished, insert it onto the front of a linked list} 
+        \STATE{\textbf{return} the linked list of vertices}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+
+<script>
+    pseudocode.renderElement(document.getElementById("quicksort"));
+</script>
+
+<script>
+    pseudocode.renderClass("pseudocode");
+</script>

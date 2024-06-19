@@ -1,0 +1,5 @@
+![](../images/SYCL.png){.lightbox}
+<hr>
+
+<a href="/SYCL/helloWorldSycl.qmd#" style="text-decoration: none;">Hello World</a><br/>
+SYCL hello world program

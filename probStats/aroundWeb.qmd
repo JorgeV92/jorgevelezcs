@@ -1,0 +1,232 @@
+<h1 class=post>Around the web</h1>
+<span class='meta'>Jan 16, 2024</span>
+<hr/>
+
+
+### 1. Even Before Odd
+Suppose you roll a fair 6-sided die until you've seen all 6 faces. What is the probability you won't see an odd numbered face until you have seen all even numbered faces?
+
+
+Think about the sequence instead of the rolls. Each sequence gives you a possible outcome. For example $\textcolor{red}{2, 5, 3, 1, 4, 6}$, but this sequence is invalid; we have seen an odd number before seeing all even numbers. 
+
+There are a total of $6!$ possible permutations of rolling a six sided die and if we look at what we want we get 
+
+$$\Large\textcolor{blue}{\overset{E}{\underline{\hspace{.25in}}}}  \quad \textcolor{blue}{\overset{E}{\underline{\hspace{.25in}}}}  \quad \textcolor{blue}{\overset{E}{\underline{\hspace{.25in}}}} \quad \textcolor{red}{\overset{O}{\underline{\hspace{.25in}}}}  \quad \textcolor{red}{\overset{O}{\underline{\hspace{.25in}}}} \quad \textcolor{red}{\overset{O}{\underline{\hspace{.25in}}}} $$
+
+Where $\textcolor{blue}{E}$ stands for even and $\textcolor{red}{O}$ stands for odd. 
+
+We can permutate the $\textcolor{blue}{E}$  numbers in $3!$ ways. <br/>
+We can permutate the $\textcolor{red}{O}$ numbers in $3!$ ways.
+
+Therefore 
+
+$$P(\text{No odds before evens}) = \frac{3!\:3!}{6!}$$
+
+```cpp
+#include <iostream>
+#include <random>
+#include <set>
+
+// Regular function 
+int roll_die() {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 6);
+    return dist(mt);
+}
+
+int main() {
+    // Or we could use a lambda function 
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 6);
+
+    auto roll_die_lambda = [&mt, &dist]() {
+        return dist(mt);
+    };
+
+
+    int valid_cases = 0;
+    int num_iters = 100000;
+    // The law of large numbers and convergence in probability 
+    for (int i = 0; i < num_iters; i++) {
+        std::set<int> seen_faces;
+        while (true) {
+            int roll = roll_die_lambda();
+            seen_faces.insert(roll);
+            if (roll % 2 == 1 && seen_faces.size() < 4) {
+                break;
+            }
+            if (seen_faces.size() == 6) {
+                valid_cases++;
+                break;
+            }
+        }
+    }
+
+    double probability = static_cast<double>(valid_cases) / num_iters;
+    std::cout << "Probability: " << probability << std::endl;
+
+    return 0;
+}
+Probability: 0.05099
+```
+
+
+### 2. Race to Ace
+This is my summary and description of the original solution posted on https://openquant.co/questions/race-to-ace <br/>
+
+What is the expected number of cards you need to draw from a 52-card deck before you see the first ace?
+
+Given the following formulation 
+
+$$\underline{\hspace{.25in}} \: A_1 \: \underline{\hspace{.25in}} \: A_2 \: \underline{\hspace{.25in}} \: A_3 \: \underline{\hspace{.25in}} \: A_4 \: \underline{\hspace{.25in}}$$
+
+If we remove the $4$ possible aces $\clubsuit \spadesuit \heartsuit \diamondsuit$ we are left with 48 cards left that can go in between each gap. There are $5$ gaps that we could fill in with the 
+$$\frac{48}{5} \: \text{cards}$$
+
+From drawing all cards form the first gap we are garenteed to draw an ace, 
+Therefore the expected numbers of cards to draw before we see an ace is
+
+$$\frac{48}{5} + 1 = \frac{53}{5} = 10.6$$
+
+Here is a implementation in C++ if interested. Original post solution is in python if you perfer python.
+```cpp 
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <vector>
+#include <random>
+#include <algorithm>
+#include <numeric>
+
+// Let X be the random variable representing the number of cards drawn until the first 
+// ace appears. We want to find the expected value E(X)
+
+const std::vector<char> suits = {'S', 'C', 'D', 'H'};
+const std::vector<std::string> ranks{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+class Deck {
+    public:
+        Deck() {
+            for(const auto& suit : suits) {
+                for (const auto& rank : ranks) {
+                    cards.emplace_back(rank, suit);
+                }
+            }   
+        }
+        void shuffle() {
+            auto rng = std::default_random_engine(std::random_device{}());
+            std::shuffle(cards.begin(), cards.end(), rng);
+        }
+        std::pair<std::string, char> draw() {
+            if (cards.empty()) {
+                throw std::out_of_range("No cards left in the deck");
+            }
+            auto card = cards.back();
+            cards.pop_back();
+            return card;
+        }
+        bool isEmpty() {
+            return cards.empty();
+        }
+    private:
+        std::vector<std::pair<std::string, char>> cards;
+};
+int simulation() {
+    Deck deck;
+    deck.shuffle();
+
+    int cards_drawn = 0;
+
+    while (!deck.isEmpty()) {
+        auto card = deck.draw();
+        cards_drawn++;
+
+        if (card.first == "A") {
+            return cards_drawn;
+        }
+    }
+    return cards_drawn;
+}
+int main () {
+    std::cout << "Compiled\n";
+
+    std::array<int, 10000> cards_needed;
+    for (int i = 0; i < 10000; i++) {
+        cards_needed[i] = simulation();
+    }
+
+    int total = std::accumulate(std::begin(cards_needed), std::end(cards_needed), 0);
+
+    double average = static_cast<double>(total) / cards_needed.size();
+    std::cout << "Average number of cards needed to draw the first ace: " << average << std::endl;
+
+    return 0;
+}
+
+Average number of cards needed to draw the first ace: 10.7725
+```
+
+### 3. Highest Roll EV
+
+Jim will roll a fair, six-sided die until he gets a 4. What is the expected value of the highest number he rolls through this process?
+
+Useful property to remember 
+
+$$E(X) = \sum_{i=0}^{\infty} p(x_i) \: x_i$$
+
+Since we know that we will eventually see a $4$ then the possible highest numbers that we can see are $4, 5, 6$. Suppose that $k$ is the highest number we see. 
+Then
+
+$$\begin{align*} 
+    P(k = 4) &= \frac{1}{2} &\text{since you see a 4 from the seque. 4, 5, 6 with equal prob.}\\\\
+    P(k = 6) &= \frac{1}{2} &\text{since you see a 6 before a 4}\\ \\
+    P(k = 5) &= \frac{1}{6} &\text{since 1 outcome out of 3! permutations is favorable (see 5 before 4, and 4 before 6)}
+\end{align*}$$
+
+Therefore we have 
+
+$$E(k) = \frac{1}{3} \: (4) + \frac{1}{2}\:(6) + \frac{1}{6}\:(5) = \frac{31}{6}$$
+
+```cpp
+#include <iostream>
+#include <random>
+#include <vector>
+#include <numeric>
+
+
+
+int main() {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 6);
+    
+    auto roll_die = [&mt, &dist]() {
+        return dist(mt);
+    };
+
+
+    std::vector<int> res;   
+    int num_iters = 10000;
+    for (int i = 0; i < num_iters; i++) {
+        int highest = 0;
+        while (true) {
+            int roll = roll_die();
+            highest = std::max(highest, roll);
+
+            if (roll == 4) break;
+        }
+        res.push_back(highest);
+    }
+
+    int total = std::accumulate(res.begin(), res.end(), 0);
+    int average = static_cast<double>(total) / num_iters;
+    std::cout << "After " << num_iters << " simulations, the expected value of the highest number rolled " 
+              << "before getting a 4 is approximately: " << average << std::endl;
+    std::cout << "This means that on average, the highest number rolled in this process is around " << average << "." << std::endl;
+
+    return 0;
+}
+After 10000 simulations, the expected value of the highest number rolled before getting a 4 is approximately: 5
+This means that on average, the highest number rolled in this process is around 5.
+```

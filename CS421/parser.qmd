@@ -1,0 +1,41 @@
+<h1 class=post>Parser</h1>
+<hr>
+
+How could one possibly convert code into an abstract syntax tree using a parser? This post will deal with using the ocamlyacc tool to help us generate a parser from the description of the grammar. Using a implementation of a lexer and type inferencer to help make this interpreter. Where one can type code (expressions) and see a proof tree of the expression's type:
+
+```Ocaml
+(* Welcome to the Minimalist Program *)
+
+> let x = 5;;
+val x : int
+
+(* final envrironment: *)
+
+proof: 
+    {} |= let x = 5 : {x: int}
+    |--{} |= 5 : int
+```
+
+Describing languages with BNF grammars:
+
+Right regular grammars subclass of BNF:
+Only rules of the form
+
+```ocaml
+<nonterminal>::= <terminal><nonterminal> 
+<nonterminal>::= <terminal> 
+<nonterminal>::= E
+```
+Defines same class of languagaes as regular expressions. Important for writing lexers (programs that convert strings of characters into strings of tokens). Close connection to nondeterministic finite state automata - nonterminals $\cong$ states; rule $\cong$ edge. 
+
+```ocaml
+(* Right regular grammar: *)
+
+<Balanced>::= ε
+<Balanced>::= 0 <OneAndMore>
+<Balances>::= 1 <ZeroAndMore>
+<OneAndMore>::= 1 <Balanced>
+<ZeroAndMore>::= 0 <Balanced>
+```
+
+Generates even length strings where every initial substring of even length has the same number of 0's as 1's.

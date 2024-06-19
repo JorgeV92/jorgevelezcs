@@ -1,0 +1,221 @@
+<h1 class=post>Whatever-First Search, Depth-first search, Breadth-first search topological sort</h1> 
+<span class='meta'>May 18, 2023</span>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML-full"
+        integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+        }
+    });
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js">
+</script>
+
+
+When studying certain properties of graphs, one general concept is to consider the $\textbf{reachability}$ problem. Given a graph $G = (V, E)$ and an additional vertex $s \in V$, we want to know which vertices are reachable from $s$. We want to find the vertices where there is a path from $s$ to $v$ $( s \rightarrow v)$. One natural tool in any computer science student's toolbox is the $\textbf{depth-first search}$ algorithm. Two forms of methods can be constructed: recursively or iteratively. Either method works; under the hood, it doesn't really matter. Just go with whatever you're more comfortable with.
+
+## Depth-first search
+
+Here is the recursive pseudocode for DFS 
+<pre id="DFS" class="pseudocode">
+    \begin{algorithm}
+    \caption{Recursice depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{RecursiveDFS}{$v$}
+        \IF{$v \text{ is unmarked}$}
+            \STATE mark $v$
+            \FOR{$\text{ each edge } v \rightarrow w$}
+                \STATE \CALL{RecursiveDFS}{$w$}
+            \ENDFOR
+        \ENDIF
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+Here is the iterative pseudocode for DFS
+<pre id="DFS" class="pseudocode">
+    \begin{algorithm}
+    \caption{Iterative depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{IterativeDFS}{$s$}
+        \STATE \textsc{Push}($s$)
+        \WHILE{ the stack is not empty}
+            \STATE $v \leftarrow $ \textsc{Pop} 
+             \IF{$v$ is unmarked}
+                \STATE mark $v$
+                \FOR{ each edge $v \rightarrow w$}
+                    \STATE \textsc{Push}($w$)
+                \ENDFOR
+             \ENDIF
+        \ENDWHILE 
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+
+
+Given the description and algortihm for depth-first search we can turn to what we used through out the class for most graph problems is $\textbf{whatever-first search}$. Where instead of stacks and queues it uses a more general data structure called a $\textbf{bag}$.
+
+The algorithm provided by Jeff in his algorithm textbook is as follows:
+<pre id="Whatever-first search" class="pseudocode">
+    \begin{algorithm}
+    \caption{Whatever-first search}
+    \begin{algorithmic}
+    \PROCEDURE{WhateverFirstSearch}{$s$}
+        \STATE put $s$ into the bag 
+        \WHILE{ the bag is not empty}
+            \STATE take $v$ from the bag
+             \IF{$v$ is unmarked}
+                \STATE mark $v$
+                \FOR{ each edge $v \rightarrow w$}
+                    \STATE put $w$ into the bag
+                \ENDFOR
+             \ENDIF
+        \ENDWHILE 
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+Looking back to $\textbf{depth-first search}$ on graphs that are directed the implenatation can be done by modifying $\textbf{whatever-first search}$ to use a stack 
+
+<pre id="depth-first search" class="pseudocode">
+    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFS}{$v$}
+        \IF{ $v$ is unmarked}
+            \STATE mark $v$
+            \FOR{ each edge $v \rightarrow w$}
+                \STATE \CALL{DFS}{$w$}
+            \ENDFOR 
+        \ENDIF 
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+One natural question is to consider how every vertex is being marked and ask ourselves could we do better and not mark vertices that have been marked already. But we also would like to consider other useful information that we could possibly obtain when traversing the vertices and edges in a black-box subroutine that for now is left without clarificaiton. 
+
+<pre id="depth-first search" class="pseudocode">
+    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFS}{$v$}
+        \STATE mark $v$
+        \STATE \textsc{PreVisit}$(v)$
+        \FOR{ each edge $v \rightarrow w$}
+            \IF{ $w$ is unmarked} 
+                \STATE $parent(w) \leftarrow v$
+                \STATE \CALL{DFS}{$w$}
+            \ENDIF
+        \ENDFOR 
+        \STATE \textsc{PostVisit}{$(v)$}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+We know that any node $v$ is able to reach $w$ if and only if there is a path from $v$ to $w$ in a directed graph. We can create a subroutine $\textbf{reach(v)}$ that returns a set of all vertices reachable from $v$ and $v$ itself included. Given a graph $G = (V, E)$ with all unmarked vertices and calling DFS$(v)$ then the set of all marked vertices would be exactly the reach$(v)$
+
+
+We can also extend the reachability algorithm to be able to trevaserse the entire graph even if the entire graph is not fully connected. 
+<pre id="depth-first search all" class="pseudocode">
+    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFSAll}{$G$}
+        \STATE \textsc{Preprocess}$(G)$
+        \FOR{ all vertices $v$}
+            \STATE unmark $v$
+        \ENDFOR
+        \FOR{ all vertices $v$}
+            \IF{ $v$ is unmarked}
+                \STATE \CALL{DFS}{$v$}
+            \ENDIF
+        \ENDFOR
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+Alternatively we could also define it as follows if we are allowed to modify the graph. 
+<pre id="depth-first search all2" class="pseudocode">
+    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFSAll}{$G$}
+        \STATE \textsc{Preprocess}$(G)$
+        \STATE add vertex $s$
+        \FOR{ all vertices $v$}
+            \STATE add edge $s \rightarrow v$
+            \STATE unmark $v$
+        \ENDFOR
+        \STATE \CALL{DFS}{$s$}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+When considering the input graph $G$ we should consider wether it is directed or unidrected because in each case the algorithm would give us different results.
+
+#### DFS (Intro to Algorithms 4th ed.)
+<!-- <hr/> -->
+<pre id="DFS" class="pseudocode">
+    \begin{algorithm}
+    \caption{DFS}
+    \begin{algorithmic}
+    \PROCEDURE{DFS}{$G$}
+        \FOR{each vertex $u \in G.V$}
+            \STATE{$u$.color = \textsc{white}}
+            \STATE{$u.\pi$ = NIL}
+        \ENDFOR
+        \STATE{time = $0$}
+        \FOR{each vertex $u \in G.V$}
+            \IF{$u$.color == \textsc{white}}
+                \STATE \CALL{DFS-Visit}{$(G, u)$}
+            \ENDIF
+        \ENDFOR
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+
+<pre id="DFS-Visit" class="pseudocode">
+    \begin{algorithm}
+    \caption{DFS-Visit}
+    \begin{algorithmic}
+    \PROCEDURE{DFS-Visit}{$G, u$}
+        \STATE{time = time + 1}
+        \STATE{$u.d = $ time}
+        \STATE{$u$.color = \textsc{gray}}
+        \FOR{each vertex $v$ in $G.Adj[u]$}
+            \IF{$v$.color == \textsc{white}}
+                \STATE{$u.\pi = u$}
+                \STATE \CALL{DFS-Visit}{$(G, v)$}
+            \ENDIF
+        \ENDFOR
+        \STATE{time = time + 1}
+        \STATE{$u.f = $ time}
+        \STATE{$u.$color = \textsc{black}}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+
+## Preorder and Postorder
+
+Recollecting $\textbf{Preorder}$ and $\textbf{Postorder}$ of rooted trees. If we have a tree noted as $T$ and subtress as $T_1, ..., T_k$ and whose r

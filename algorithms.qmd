@@ -49,7 +49,8 @@ Some notes on data structures <a href="/CS374/dataStructures.qmd#Data" style="te
 ### Section 2
 
 - <span style="font-size: larger; font-weight: bold;">Recursion: Hanoi, mergersort, quicksort</span> 
-    - <a href="lab1a.qmd#lab1a" style="text-decoration: none;">Lab6a:</a>  Binary search
+     - <a href="/CS374/sorting.qmd" style="text-decoration: none;">Sorting: Review and notes on Merge Sort, Quick Sort, and Heap Sort.</a>  
+    - <a href="/CS374/lab6a.qmd" style="text-decoration: none;">Lab6a:</a>  Binary search
 - <span style="font-size: larger; font-weight: bold;">Devide and conquer: selection, multiplication</span> 
     - <a href="#lab1b" style="text-decoration: none;">Lab6b:</a>  Fun with Karatsuba
 - <span style="font-size: larger; font-weight: bold;">Bactracking: n queens, game trees, text segmentation</span> 
@@ -61,12 +62,15 @@ Some notes on data structures <a href="/CS374/dataStructures.qmd#Data" style="te
 - <span style="font-size: larger; font-weight: bold;">Tree-shaped dynamic programming: Carpentry</span> 
     - <a href="#lab3b" style="text-decoration: none;">Lab8b:</a>  Return of the son of revenge of dynamic programming
 - <span style="font-size: larger; font-weight: bold;">Graphs: definitions, representations, data structures, traversal</span> 
+    - <a href="/CS374/graphAlgo.qmd" style="text-decoration: none;">Whatever-First Search, Depth-first search, topological sort</a> 
     - <a href="#lab4a" style="text-decoration: none;">Lab9a:</a> Graph modeling
 - <span style="font-size: larger; font-weight: bold;">Depth-first search, topological sort </span> 
     - <a href="#lab4b" style="text-decoration: none;">Lab9b:</a> Topological sort
 - <span style="font-size: larger; font-weight: bold;">DAG DP, strong components; generic shortest paths, BFS, DFS, and Dijkstra </span> 
+    - <a href="/CS374/shortestPath.qmd" style="text-decoration: none;">We all wanna get to where we are going using the shortest path.</a>
     - <a href="#lab5a" style="text-decoration: none;">Lab10a:</a> Shortest paths
 - <span style="font-size: larger; font-weight: bold;">Shortest paths via Dijkstra and Bellman-Ford </span> 
+    - <a href="/CS374/dijkstra.qmd" style="text-decoration: none;">Notes on Dijkstra's algorithm</a> 
     - <a href="#lab4b" style="text-decoration: none;">Lab10b:</a> All-pairs shortest paths
 - <span style="font-size: larger; font-weight: bold;">Bellman-Ford again and Floyd-Warshall </span> 
     - <a href="#lab4b" style="text-decoration: none;">Lab11a:</a> Solve it both ways

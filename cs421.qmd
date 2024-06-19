@@ -1,0 +1,65 @@
+<h1 class=post>CS 421</h1>
+<hr>
+
+
+Programming languages & compilers
+
+<!-- ![](../images/PLC.png){.lightbox} -->
+
+<style>
+    .custom-link {
+        text-decoration: none;
+        color: black; /* Sets the default color to black */
+        border-bottom: 1px dotted black; /* Creates a dotted underline */
+        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
+    }
+
+    .custom-link:hover {
+        text-decoration: underline solid black; /* Changes to solid underline on hover */
+    }
+</style>
+
+<a href="/CS421/ocaml.qmd#"  style="text-decoration: none;">OCAML</a><br/>
+Introduction to Objective OCaml
+
+<a href="/CS421/rules.qmd#"  style="text-decoration: none;">Type Rules</a><br/>
+Polymoprhic Typing Rules
+
+<a href="/CS421/lect3.qmd"  style="text-decoration: none;">Order of Evaluation</a><br/>
+Closures and Evaluation of Function Application, Order of Evaluation in OCaml
+
+
+<a href="/CS421/lect4.qmd"   style="text-decoration: none;">Higher Order Functions</a><br/>
+Higher-Order Functions, Pattern Matching and Recursion over Lists
+
+
+<a href="/CS421/lect9.qmd"    style="text-decoration: none;">User defined types and pattern matching</a><br/>
+User Defined Types in Ocaml, Data Constructors and Pattern Matching
+
+
+<a href="/CS421/lect11.qmd"  style="text-decoration: none;">Type Systems</a><br/>
+Types and Type Systems
+
+
+<a href="/CS421/midterm2.qmd"  style="text-decoration: none;">Midterm 2</a><br/>
+Midterm 2 concepts review
+
+
+<a href="/CS421/unification.qmd"  style="text-decoration: none;">Unification Algorithm</a><br/>
+Background for Unification
+
+<a href="/CS421/compiler.qmd"  style="text-decoration: none;">Compilers</a><br/>
+Regular Expressions, DFSAs and NDFSAs- Grammars
+
+
+<a href="/CS421/lambda.qmd"  style="text-decoration: none;">Intro to Lambda Calculus</a><br/>
+Lambda Calculus - Motivation
+
+<a href="/CS421/yacc.qmd"  style="text-decoration: none;">Yacc</a><br/>
+Yet Another Compiler-Compiler
+
+<a href="/CS421/parser.qmd"  style="text-decoration: none;">Parser</a><br/>
+To fully understand the semantics
+
+
+

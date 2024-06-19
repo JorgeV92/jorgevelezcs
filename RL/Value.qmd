@@ -1,0 +1,55 @@
+<h1 class=post >Value Function</h1>
+<span class='meta'>Match 10, 2024</span>
+<hr/>
+
+The $\textcolor{blue}{\text{value function}}$ $V^\pi$ for a policy $\pi$ measures the exptected return if you start in state $s$ and follow policy $\pi$.
+
+$$ V^\pi (s) \triangleq \mathbb{E}_\pi \left[G_t \mid S_t = s\right] = \mathbb{E}_\pi \left[\sum_{k=0}^{\infty} \gamma^t R_{t + k} \mid S_t = s\right] $$
+
+A (deterministic and stationary) policy $\pi : \mathcal{S} \rightarrow \mathcal{A}$ specifies a decision-making strategy in which the agent chooses actions adaptively based on the current state, i.e., $a_t = \pi(s_t)$. More generally, the agent may also choose actions acording to a stochastic policy $\pi : \mathcal{S} \rightarrow \Delta(\mathcal{A})$, and with a slight abuse of notation we write $a_t \sim \pi(s_t)$. A deterministic policy is its special case when $\pi(s)$ is a point mass for all $s \in S$. The goal of the agent is to choose a policy $\pi$ to maximize the expected discounted sum of rewards, or value: 
+
+$$ \mathbb{E} \left[\sum_{t=1}^{\infty} \gamma^{t-1} r_t \mid \pi, s_1\right]  $$
+
+The expectation is with respect to the randomness of the trajectory, that is, the randomness is state transitions and the stochasticity of $\pi$. Notice that, since $r_t$ is nonnegative and upper bounded by $R_{\text{max}}$, we have 
+
+$$  0 \leq \sum_{t=1}^{\infty} \gamma^{t-1} r_t \leq \sum_{t=1}^{\infty} \gamma^{t - 1} R_{\max} = \frac{R_\max}{1 - \gamma}  $$
+
+Hence, the discounted of rewards (or the discounted return) along any actual trajectory is always bounded in range $\left[0, \frac{R_\max}{1 -\gamma}\right]$, and so is its expectation of any form. Note that for a fixed policy, its value may differ for different choice fo $s_1$, and we define the value function $V^{\pi}_{M} : \mathcal{S} \rightarrow \mathbb{R}$ as
+
+$$ V^{\pi}_M (s) = \mathbb{E} \left[\sum_{t=1}^{\infty} \gamma^{t - 1} r_t \mid \pi, s_1 = s\right]$$
+
+which is the value obtained by following policy $\pi$ starting at state $s$. Similarly we define the action-value (or Q-value) function $Q^{\pi}_M : \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}$ as
+
+$$ Q^{\pi}_M (s, a) = \mathbb{E} \left[\sum_{t=1}^{\infty} \gamma^{t - 1} r_t \mid \pi, s_1 = s, a_1 = a\right]$$
+
+It's often useful to know the $\text{value}$ of a state, or state-action pair. By Value, we mean the expected return if you start in that state or state-action pair, and then act according to a particular policy forever after. $\text{Value functions}$ are used, one way or another, in almost every RL algorithm.
+
+There are four main functions of note here:
+
+1. The $\text{On-Policy Value Function}$, $V^\pi(s)$, which gives the expected return if you start in state $s$ and always act according to policy $\pi$:
+
+$$ V^\pi (s) = \underset{\tau \sim \pi}{\mathbb{E}} \left[R(\tau) \mid s_0 = s\right] $$
+
+2. The $\text{On-Policy Action-Value Function}$, $Q^\pi(s, a)$, which gives the expected return if you start in state $s$, take an arbitrary action $a$ (which may not have come from the policy), and then forever after act according to policy $\pi$:
+
+$$ Q^\pi(s, a) = \underset{\tau \sim \pi}{\mathbb{E}} \left[R(\tau) \mid s_0 = s, a_0 = a\right] $$
+
+3. The $\text{Optimal Value Function}$, $V^* (s)$, which gives the expected return if you start in state $s$ and always act according to the oprtimal policy in the environment:
+
+$$V^* (s) = \underset{\pi}{\max}  \underset{\tau \sim \pi}{\mathbb{E}} \left[R(\tau) \mid s_0 = s\right]$$
+
+4. The $\text{Optimal Action-Value Function}$, $Q^* (s, a)$, which gives the expected return if you start in state $s$, take an arbitrary action $a$, and then forever after according to the optimal policy in the environment: 
+
+$$ Q^* (s, a) = \underset{\pi}{\max}  \underset{\tau \sim \pi}{\mathbb{E}} \left[R(\tau) \mid s_0 = s\right]$$
+
+When we talk about value functions, if we do not make references to time-dependence, we only mean expected $\text{infinite-horizon discounted return.}$ Value functions for finite-horizon undiscounted return would need to accept time as an argument. Can you think about why? Hint: what happens when time's up? 
+
+There are two keys connections between the value function and the action-value function that come up pretty often:
+
+$$ V^\pi (s) = \underset{a \sim \pi}{\mathbb{E}} \left[Q^\pi (s, a)\right], $$
+
+and 
+
+$$ V^* (s) = \underset{a}{\max} Q^* (s, a)$$
+
+These relations follow pretty directly from the definitions just given: can you prove them?

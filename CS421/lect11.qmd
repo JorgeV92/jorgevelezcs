@@ -135,5 +135,146 @@ document.addEventListener("DOMContentLoaded", function() {
     <ul class="red-square">
         <li>Garbage collection</li>
         <li>References instead of pointers </li>
+        <li>All variables initialized when created</li>
+        <li>Variable only used at one type</li>
+    </ul>
+    <li>Union types allow for work-arounds, but effectively introduce dynamic type checks</li>
+</ul>
+
+<h1 class=post >Type Declarations</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>$\textcolor{red}{\text{Type declarations}}:$ explicit assigment of types to variables (signatures to functios) in the code of a program</li>
+    <ul class="red-square">
+        <li>Must be checked in a strongly typed language</li>
+        <li>Often not necessary for strong typing or even static typing (depends on the type system)</li>
     </ul>
 </ul>
+
+<h1 class=post >Type Inference</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>$\textcolor{red}{\text{Type inference}}:$ A program analysis to assign a type to an expression from the program cobtext of the expression</li>
+    <ul class="red-square">
+        <li>Fully static type inference first introduced by Robin Miller in ML</li>
+        <li>Haskle, OCAML, SML all use type inference</li>
+    </ul>
+    <li>Records are a problem for type inference</li>
+</ul>
+
+<h1 class=post >Format of Type Judgments</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>A $\textcolor{red}{\text{type judgement}}:$ has the form</li>
+    $$ \textcolor{blue}{\Gamma \vdash \text{ exp } : \tau}$$   
+    <li>$\textcolor{blue}{\Gamma }$ is typing environment</li>
+    <ul class="red-square">
+        <li>Supplies the types of variables (and function names when function names are not variables)</li>
+        <li>$\textcolor{blue}{\Gamma }$ is a set of the form $\textcolor{blue}{\{x: \sigma, ...\} }$</li>
+        <li>For any $\textcolor{blue}{x}$ at most on $\textcolor{blue}{\sigma}$ such that $\textcolor{blue}{(x : \sigma \in \Gamma)}$ </li>
+    </ul>
+    <li>$\textcolor{blue}{\text{exp}}$ is a program expression</li>
+    <li>$\textcolor{blue}{\tau}$ is a type to be assigned to $\textcolor{blue}{\text{exp}}$</li>
+    <li>$\textcolor{blue}{\vdash}$ pronounced "turnstyle", or "entails" (or satisfies or, informally, shows)</li>
+</ul>
+
+<h1 class=post >Axioms - Constants (Monomorphic)</h1>
+<hr />
+
+\newcommand\typeN{\frac{}{\Gamma \: \vdash \: n \: : \: int}}
+\newcommand\typeT{\frac{}{\Gamma \: \vdash \: \text{ true } \: : \: \text{ bool }}}
+\newcommand\typeF{\frac{}{\Gamma \: \vdash \: \text{ false } \: : \: \text{ bool }}}
+\newcommand\typeV{\frac{}{\Gamma \: \vdash \: x \: : \: \sigma}}
+\newcommand\typeB{\frac{  \Gamma \: \vdash \: e_1 \: : \: \tau_1 \quad \Gamma \: \vdash \: e_2 \: : \: \tau_2 \quad (\oplus): \: \tau_1 \: \rightarrow \: \tau_2 \: \rightarrow \: \tau_3  }{\Gamma \: \vdash \: e_1 \: \oplus \: e_2 \: : \: \tau_3}}
+\newcommand\typeS{\frac{  \Gamma \: \vdash \: e_1 \: : \: \tau \quad \Gamma \: \vdash e_2 \: : \: \tau \quad (\sim) \: : \: \tau \: \rightarrow \: \tau \: \rightarrow \: \text{ bool }   }{\Gamma \:\: \vdash \: e_1 \sim e_2 : \text{ bool }}}
+
+$\textcolor{blue}{\Large\typeN}$ (assuming $\textcolor{blue}{n}$ is an integer constant)
+
+$$   \textcolor{blue}{\typeT \qquad\qquad \typeF}    $$
+
+<ul class="blue-square">
+    <li>These rules are true with any typing environmnet </li>
+    <li>$\textcolor{blue}{\Gamma, \: n}$ are meta-variables</li>
+</ul>
+
+<h1 class=post >Axioms - Variables (Monomorphic Rule)</h1>
+<hr />
+
+Notation: Let $\textcolor{blue}{\Gamma(x) = \sigma}$ if $\textcolor{blue}{x : \sigma \in \Gamma}$
+Note: if such $\textcolor{blue}{\sigma}$ exits, its unique 
+
+Variable axiom: 
+
+$$ \textcolor{blue}{\typeV} \qquad \qquad \text{ if } \textcolor{blue}{\Gamma(x) = \sigma}$$
+
+<h1 class=post >Simple Rules - Arithmetic (Mono)</h1>
+<hr />
+
+Primitive Binary operators $(\textcolor{blue}{\oplus \in \{+, -, *, ...\}}):$
+
+$$\textcolor{blue}{\large\typeB}$$
+
+Special case: Relations $(\textcolor{blue}{\sim \in \{<, >, =, <=, >=\}})$:
+
+$$\textcolor{blue}{\large\typeS}$$
+
+$$ \text{For the moment, think } \textcolor{blue}{\tau} \text{ is int}$$
+
+<h1 class=post >Example: $\scriptsize{\{x : \text{int}\} \vdash x + 2 = 3 : \text{ bool}}$</h1>
+<hr />
+
+\newcommand\BinOne{\{x : \text{int}  \} \vdash x + 2 = 3 : \text{int}}
+\newcommand\BinTwo{\{x \: : \: \text{int}  \} \: \vdash \: x + 2 \: : \: \text{int}}
+\newcommand\ConstOne{\{x : \text{int}  \} \vdash 3 : \text{int}}
+\newcommand\Var{\{x \: : \: \text{int} \} \: \vdash \: x \: : \: \text{int}}
+\newcommand\ConstTwo{\{x \: : \: \text{int} \} \: \vdash \: 2 \: : \: \text{int}}
+
+What do we need to show first? 
+
+What we need fot the left and right side? 
+
+How to finish?
+
+And
+
+Complete Proof (type derivation)
+
+$$ \large{\text{Bin}\frac{  \text{Bin}\frac{  \text{Var}\frac{}{\Var} \quad \text{Const}\frac{}{\ConstTwo}  }{\BinTwo}  \quad \text{Const}\frac{}{\ConstOne}  }{\BinOne}} $$
+
+<h1 class=post >Simple Rules - Booleans</h1>
+<hr />
+
+Connectives
+
+\newcommand\AndO{\Gamma \: \vdash \: e_1 \: \&\& \: e_2 \: : \: \text{ bool}}
+\newcommand\OrO{\Gamma \: \vdash \: e_1 \: || \: e_2 \: : \: \text{ bool}}
+
+$$\textcolor{blue}{\large{\frac{\Gamma \: \vdash \: e_1 \: : \: \text{bool} \quad \Gamma \: \vdash \: e_2 \: : \: \text{bool}}{\AndO}}}$$
+
+
+$$\textcolor{blue}{\large{\frac{\Gamma \: \vdash \: e_1 \: : \: \text{bool} \quad \Gamma \: \vdash \: e_2 \: : \: \text{bool}}{\OrO}}}$$
+
+<h1 class=post >Type Variables in Rules</h1>
+<hr />
+
+<ul class="blue-square">
+    <li>If-then-else rule:</li>
+</ul>
+
+$$\textcolor{blue}{\frac{\Gamma \: \vdash \: e_1 \: :\text{ bool } \quad \Gamma \: \vdash \: e_2 \: : \: \tau \quad \Gamma \: \vdash \: e_3 \: : \: \tau}{\Gamma \: \vdash \: (\text{if } e_1 \text{ then } e_2 \text{ else } e_3) \: \tau}}$$
+
+<ul class="blue-square">
+    <li>$\tau$ is a type variable (meta-variable)</li>
+    <li>Can take any type at all</li>
+    <li>All instances in a rule application must get same type</li>
+    <li>Then branch, else branch and if-then-else must all have same type</li>
+</ul>
+
+
+<h1 class=post >Example derivation: if-then-else: </h1>
+<hr />
+
+$\large{\textcolor{blue}{\Gamma = \{x : \text{int, int\_of\_float : float } \rightarrow \text{ int, y : float }\}}}$

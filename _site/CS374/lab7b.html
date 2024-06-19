@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -159,16 +125,16 @@ window.Quarto = {
 <span class="menu-text">Algorithms</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../rl.html"> 
-<span class="menu-text">Reinforcement Learning</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../DavidMarr.html"> 
-<span class="menu-text">David Marr Tech</span></a>
+    <a class="nav-link" href="../cs421.html"> 
+<span class="menu-text">Progrmg Languages &amp; Compilers</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../cs.html"> 
 <span class="menu-text">Computer Science</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../finance.html"> 
+<span class="menu-text">Finance</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -192,131 +158,98 @@ window.Quarto = {
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+        }
+    });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js">
+</script>
 <h1 class="post">
-Dymamic programming
+Dynamic programming
 </h1>
 <p><span class="meta">Nov 22, 2023</span></p>
-<p>How long is the longest increasing subsequence?</p>
-<p style="font-size: 2.5em; color:darkblue; text-align: center">
-4 1 2 7 6 5 8 9 3 <br> <span style="color: red"> 1 2 6 8 9</span>
-</p>
-<p>Lets define a couple defintions to fromulate this:</p>
-<ul>
-<li><p><span class="math inline">\(\sigma_n \leftarrow\)</span> A uniform random distribution of permuation <span class="math inline">\(\{1...n\}\)</span></p></li>
-<li><p><span class="math inline">\(L(\sigma_n) \leftarrow\)</span> The length of longest increading subsequence of <span class="math inline">\(\sigma_n\)</span></p></li>
-</ul>
-<section id="visulization-of-sequence" class="level2">
-<h2 class="anchored" data-anchor-id="visulization-of-sequence">Visulization of sequence</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Your original sequence</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sequence <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">3</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># The known LIS</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>lis <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame for the original sequence</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sequence), <span class="at">y =</span> sequence)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the indices of the LIS in the original sequence</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>lis_indices <span class="ot">&lt;-</span> <span class="fu">match</span>(lis, sequence)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame for the LIS</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>lis_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> lis_indices, <span class="at">y =</span> lis)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the sequence and the LIS</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"gray"</span>) <span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> lis_data, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> lis_data, <span class="fu">aes</span>(x, y), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sequence)) <span class="sc">+</span>  </span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">max</span>(sequence)) <span class="sc">+</span>  </span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Index"</span>, <span class="at">y =</span> <span class="st">"Value"</span>, <span class="at">title =</span> <span class="st">"Sequence with Highlighted LIS 1 2 7 8 9"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div id="fig-lis-plot" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-lis-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lab7b_files/figure-html/fig-lis-plot-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lis-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Plot of the sequence with the highlighted LIS 1 2 7 8 9
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>There could be multiple subsequences but we only care about the maximum increasing subsequence.</p>
-<!-- ```{r}
-library(ggplot2)
-library(gganimate)
-
-set.seed(123)  # Setting a seed for reproducibility
-n = 50  # This can be any integer
-initial_points = 10  # Initial number of points
-points_to_add = 10    # Points to add in each frame
-
-
-
-initial_data <- data.frame(x = sample(n, initial_points, replace = TRUE), 
-                           y = sample(n, initial_points, replace = TRUE))
-
-add_points <- function(df, n = points_to_add, max_val = 50) {
-  new_points <- data.frame(x = sample(max_val, n, replace = TRUE), 
-                           y = sample(max_val, n, replace = TRUE))
-  rbind(df, new_points)
-}
-
-
-frames <- list(initial_data)
-for(i in 2:20) {  # Assuming we want 20 frames
-  frames[[i]] <- add_points(frames[[i-1]])
-}
-
-animation_data <- do.call(rbind, lapply(1:length(frames), function(i) {
-  cbind(frames[[i]], frame = i)
-}))
-
-p <- ggplot(animation_data, aes(x = x, y = y)) +
-  geom_point() +
-  scale_x_continuous(breaks = 1:n) +
-  scale_y_continuous(breaks = 1:n) +
-  transition_time(frame) +
-  labs(title = 'Frame: {frame}') +
-  theme(
-    axis.title.x = element_blank(),   # Remove x-axis label
-    axis.title.y = element_blank(),   # Remove y-axis label
-    axis.text.x = element_blank(),    # Remove x-axis text
-    axis.text.y = element_blank(),    # Remove y-axis text
-    axis.ticks = element_blank(),     # Remove axis ticks
-    panel.background = element_rect(fill = "white"),  # Set background to white
-    panel.border = element_rect(colour = "blue", fill = NA, linewidth = 1)  # Add border
-  )
-
-animated_plot <- animate(p, nframes = 20, fps = 2, width = 450, height = 600)
-
-anim_save("animated_plot.gif", animation = animated_plot)
-``` -->
-<p>Here is my animated plot:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="animated_plot.gif" class="img-fluid figure-img"></p>
-<figcaption>Animated Plot</figcaption>
-</figure>
-</div>
-<h1 class="post">
-Dymamic programming
-</h1>
-<p><br></p>
-<p>Describe and analyze dynamic programming algorithms for the following longest-subsequence problems.</p>
+<p>When going over the lab7b I wanted to understan more clearly how to identity patterns and similarties to other problems and when to use dynamic programming.</p>
+<p>A subsequence of a sequence like a and array, a linked list, or a string, is obtained by removing zero or more elements and keeping the rest in the same sequence order. It is also called a substring if the elements are contiguous in the original sequence.</p>
+<section id="working-on-the-examples" class="level3">
+<h3 class="anchored" data-anchor-id="working-on-the-examples">Working on the examples:</h3>
 <ol type="1">
-<li>Given an array <span class="math inline">\(A[1...n]\)</span> of integers, compute the length of a longest increasing subsequence of <span class="math inline">\(A\)</span>.</li>
+<li>Given an array <span class="math inline">\(A[1...n]\)</span> of integers, compute the length of a longest increasing subsequence of <span class="math inline">\(A\)</span>. A sequence <span class="math inline">\(B[1...\ell]\)</span> is increasing if <span class="math inline">\(B[i] &gt; B[i - 1]\)</span> for every index <span class="math inline">\(i \geq 2\)</span>.</li>
 </ol>
-<p><img src="../images/lis.png" alt="longest increasing subsequence" height="350" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p><span class="math display">\[
+LIS(i, j) = \begin{cases}  0 &amp; \text{if } j &gt; n \\
+          LIS(i, j + 1) &amp; \text{if } j \leq n \text{ and } A[i] \geq A[j] \\
+          \max \{LIS(i, j + 1), 1 + LIS(j, j+1)\} &amp; \text{ otherwise}
+  \end{cases}
+\]</span></p>
+<pre id="lis" class="pseudocode">    % This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
+    \begin{algorithm}
+    \caption{Longest Increasing Subsequence}
+    \begin{algorithmic}
+    \PROCEDURE{LIS}{$A[1 \cdots n]$}
+        \STATE $A[0] \gets - \infty$
+         \FOR{$i \gets 0$ \TO $n$}
+            \STATE LIS$[i, n + 1] \gets 0$
+        \ENDFOR
+        \FOR{$j \gets n$ down \TO $1$}
+            \FOR{$i \gets j - 1$ down \TO $0$}
+              \IF{$A[i] \geq A[j]$}
+                \STATE LIS$[i, j] \gets$ LIS$[i, j + 1]$
+              \ELSE
+                \STATE LIS$[i, j] \gets \max \{LIS[i, j+1], 1 + LIS[j, j+1]\}$
+              \ENDIF
+            \ENDFOR
+        \ENDFOR
+        \STATE return LIS$[0, 1]$
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<!-- Here is the code in C++ -->
+<!-- ```cpp
+int FastLIS(const vector<int>& A) {
+    int n = A.size();
+    vector<vector<int>> LISbigger(n + 1, vector<int>(n + 2, 0));
+
+    // Base cases
+    for (int i = 0; i <= n; ++i) {
+        LISbigger[i][n + 1] = 0;
+    }
+
+    // Add a sentinel
+    vector<int> B = A;
+    B.insert(B.begin(), INT_MIN);
+
+    for (int j = n; j >= 1; --j) {
+        for (int i = 0; i <= j - 1; ++i) {
+            int keep = 1 + LISbigger[j][j + 1];
+            int skip = LISbigger[i][j + 1];
+
+            if (B[i] >= B[j]) {
+                LISbigger[i][j] = skip;
+            } else {
+                LISbigger[i][j] = max(keep, skip);
+            }
+        }
+    }
+
+    return LISbigger[0][1];
+}
+``` -->
+<script>
+    pseudocode.renderElement(document.getElementById("quicksort"));
+</script>
+<script>
+    pseudocode.renderClass("pseudocode");
+</script>
 
 
 </section>

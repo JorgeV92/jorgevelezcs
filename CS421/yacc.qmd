@@ -1,0 +1,19 @@
+<h1 class=post>Yacc</h1>
+<hr>
+
+Compilers <br>
+Principles, Techniques, & Tools <br>
+Second Edition <br>
+
+A simple desk calculator that reads an arithmetic expression, evaluates it, and then prints its numeric value. 
+
+Starting with the grammer 
+
+```ocaml
+digit = ['0' - '9']
+
+E -> E + T | T
+T -> T * F | F 
+F -> (E) | digit
+```
+

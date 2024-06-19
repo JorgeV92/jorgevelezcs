@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.537">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Jorge Velez</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Jorge Velez">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Jorge Velez">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Jorge Velez</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../algorithms.html"> 
+<span class="menu-text">Algorithms</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cs421.html"> 
+<span class="menu-text">Progrmg Languages &amp; Compilers</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cs.html"> 
+<span class="menu-text">Computer Science</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../finance.html"> 
+<span class="menu-text">Finance</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<h1 class="post">
+Whatever-First Search, Depth-first search, Breadth-first search topological sort
+</h1>
+<p><span class="meta">May 18, 2023</span></p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+        }
+    });
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js">
+</script>
+<p>When studying certain properties of graphs, one general concept is to consider the <span class="math inline">\(\textbf{reachability}\)</span> problem. Given a graph <span class="math inline">\(G = (V, E)\)</span> and an additional vertex <span class="math inline">\(s \in V\)</span>, we want to know which vertices are reachable from <span class="math inline">\(s\)</span>. We want to find the vertices where there is a path from <span class="math inline">\(s\)</span> to <span class="math inline">\(v\)</span> <span class="math inline">\(( s \rightarrow v)\)</span>. One natural tool in any computer science student’s toolbox is the <span class="math inline">\(\textbf{depth-first search}\)</span> algorithm. Two forms of methods can be constructed: recursively or iteratively. Either method works; under the hood, it doesn’t really matter. Just go with whatever you’re more comfortable with.</p>
+<section id="depth-first-search" class="level2">
+<h2 class="anchored" data-anchor-id="depth-first-search">Depth-first search</h2>
+Here is the recursive pseudocode for DFS
+<pre id="DFS" class="pseudocode">    \begin{algorithm}
+    \caption{Recursice depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{RecursiveDFS}{$v$}
+        \IF{$v \text{ is unmarked}$}
+            \STATE mark $v$
+            \FOR{$\text{ each edge } v \rightarrow w$}
+                \STATE \CALL{RecursiveDFS}{$w$}
+            \ENDFOR
+        \ENDIF
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+Here is the iterative pseudocode for DFS
+<pre id="DFS" class="pseudocode">    \begin{algorithm}
+    \caption{Iterative depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{IterativeDFS}{$s$}
+        \STATE \textsc{Push}($s$)
+        \WHILE{ the stack is not empty}
+            \STATE $v \leftarrow $ \textsc{Pop} 
+             \IF{$v$ is unmarked}
+                \STATE mark $v$
+                \FOR{ each edge $v \rightarrow w$}
+                    \STATE \textsc{Push}($w$)
+                \ENDFOR
+             \ENDIF
+        \ENDWHILE 
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<p>Given the description and algortihm for depth-first search we can turn to what we used through out the class for most graph problems is <span class="math inline">\(\textbf{whatever-first search}\)</span>. Where instead of stacks and queues it uses a more general data structure called a <span class="math inline">\(\textbf{bag}\)</span>.</p>
+The algorithm provided by Jeff in his algorithm textbook is as follows:
+<pre id="Whatever-first search" class="pseudocode">    \begin{algorithm}
+    \caption{Whatever-first search}
+    \begin{algorithmic}
+    \PROCEDURE{WhateverFirstSearch}{$s$}
+        \STATE put $s$ into the bag 
+        \WHILE{ the bag is not empty}
+            \STATE take $v$ from the bag
+             \IF{$v$ is unmarked}
+                \STATE mark $v$
+                \FOR{ each edge $v \rightarrow w$}
+                    \STATE put $w$ into the bag
+                \ENDFOR
+             \ENDIF
+        \ENDWHILE 
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<p>Looking back to <span class="math inline">\(\textbf{depth-first search}\)</span> on graphs that are directed the implenatation can be done by modifying <span class="math inline">\(\textbf{whatever-first search}\)</span> to use a stack</p>
+<pre id="depth-first search" class="pseudocode">    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFS}{$v$}
+        \IF{ $v$ is unmarked}
+            \STATE mark $v$
+            \FOR{ each edge $v \rightarrow w$}
+                \STATE \CALL{DFS}{$w$}
+            \ENDFOR 
+        \ENDIF 
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<p>One natural question is to consider how every vertex is being marked and ask ourselves could we do better and not mark vertices that have been marked already. But we also would like to consider other useful information that we could possibly obtain when traversing the vertices and edges in a black-box subroutine that for now is left without clarificaiton.</p>
+<pre id="depth-first search" class="pseudocode">    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFS}{$v$}
+        \STATE mark $v$
+        \STATE \textsc{PreVisit}$(v)$
+        \FOR{ each edge $v \rightarrow w$}
+            \IF{ $w$ is unmarked} 
+                \STATE $parent(w) \leftarrow v$
+                \STATE \CALL{DFS}{$w$}
+            \ENDIF
+        \ENDFOR 
+        \STATE \textsc{PostVisit}{$(v)$}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<p>We know that any node <span class="math inline">\(v\)</span> is able to reach <span class="math inline">\(w\)</span> if and only if there is a path from <span class="math inline">\(v\)</span> to <span class="math inline">\(w\)</span> in a directed graph. We can create a subroutine <span class="math inline">\(\textbf{reach(v)}\)</span> that returns a set of all vertices reachable from <span class="math inline">\(v\)</span> and <span class="math inline">\(v\)</span> itself included. Given a graph <span class="math inline">\(G = (V, E)\)</span> with all unmarked vertices and calling DFS<span class="math inline">\((v)\)</span> then the set of all marked vertices would be exactly the reach<span class="math inline">\((v)\)</span></p>
+We can also extend the reachability algorithm to be able to trevaserse the entire graph even if the entire graph is not fully connected.
+<pre id="depth-first search all" class="pseudocode">    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFSAll}{$G$}
+        \STATE \textsc{Preprocess}$(G)$
+        \FOR{ all vertices $v$}
+            \STATE unmark $v$
+        \ENDFOR
+        \FOR{ all vertices $v$}
+            \IF{ $v$ is unmarked}
+                \STATE \CALL{DFS}{$v$}
+            \ENDIF
+        \ENDFOR
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+Alternatively we could also define it as follows if we are allowed to modify the graph.
+<pre id="depth-first search all2" class="pseudocode">    \begin{algorithm}
+    \caption{Depth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{DFSAll}{$G$}
+        \STATE \textsc{Preprocess}$(G)$
+        \STATE add vertex $s$
+        \FOR{ all vertices $v$}
+            \STATE add edge $s \rightarrow v$
+            \STATE unmark $v$
+        \ENDFOR
+        \STATE \CALL{DFS}{$s$}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<p>When considering the input graph <span class="math inline">\(G\)</span> we should consider wether it is directed or unidrected because in each case the algorithm would give us different results.</p>
+<section id="dfs-intro-to-algorithms-4th-ed." class="level4">
+<h4 class="anchored" data-anchor-id="dfs-intro-to-algorithms-4th-ed.">DFS (Intro to Algorithms 4th ed.)</h4>
+<!-- <hr/> -->
+<pre id="DFS" class="pseudocode">    \begin{algorithm}
+    \caption{DFS}
+    \begin{algorithmic}
+    \PROCEDURE{DFS}{$G$}
+        \FOR{each vertex $u \in G.V$}
+            \STATE{$u$.color = \textsc{white}}
+            \STATE{$u.\pi$ = NIL}
+        \ENDFOR
+        \STATE{time = $0$}
+        \FOR{each vertex $u \in G.V$}
+            \IF{$u$.color == \textsc{white}}
+                \STATE \CALL{DFS-Visit}{$(G, u)$}
+            \ENDIF
+        \ENDFOR
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<pre id="DFS-Visit" class="pseudocode">    \begin{algorithm}
+    \caption{DFS-Visit}
+    \begin{algorithmic}
+    \PROCEDURE{DFS-Visit}{$G, u$}
+        \STATE{time = time + 1}
+        \STATE{$u.d = $ time}
+        \STATE{$u$.color = \textsc{gray}}
+        \FOR{each vertex $v$ in $G.Adj[u]$}
+            \IF{$v$.color == \textsc{white}}
+                \STATE{$u.\pi = u$}
+                \STATE \CALL{DFS-Visit}{$(G, v)$}
+            \ENDIF
+        \ENDFOR
+        \STATE{time = time + 1}
+        \STATE{$u.f = $ time}
+        \STATE{$u.$color = \textsc{black}}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+</section>
+</section>
+<section id="preorder-and-postorder" class="level2">
+<h2 class="anchored" data-anchor-id="preorder-and-postorder">Preorder and Postorder</h2>
+<p>Recollecting <span class="math inline">\(\textbf{Preorder}\)</span> and <span class="math inline">\(\textbf{Postorder}\)</span> of rooted trees. If we have a tree noted as <span class="math inline">\(T\)</span> and subtress as <span class="math inline">\(T_1, ..., T_k\)</span> and whose root is label <span class="math inline">\(r\)</span> the two methods are described as follows</p>
+<p><span class="math inline">\(\textbf{Preorder}\)</span>: We visit the root <span class="math inline">\(r\)</span>, and then recursively do a preorder traversal of <span class="math inline">\(T_1, ... T_k\)</span> <br> <span class="math inline">\(\textbf{Postorder}\)</span> We first recursively perform a postorder traversal of the <span class="math inline">\(T_1, ..., T_k\)</span> subtrees and then visit the root <span class="math inline">\(r\)</span>.</p>
+<pre id="Preorder" class="pseudocode">    \begin{algorithm}
+    \caption{Preorder}
+    \begin{algorithmic}
+    \PROCEDURE{PreOrder}{$v$}
+        \IF{ $v \not\in V$ }
+            \STATE return 
+        \ENDIF
+        \STATE \textsc{Visit}$(v)$
+        \STATE \CALL{PreOder}{$v.left$}
+        \STATE \CALL{PreOder}{$v.right$}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<pre id="Postorder" class="pseudocode">    \begin{algorithm}
+    \caption{Postorder}
+    \begin{algorithmic}
+    \PROCEDURE{PostOrder}{$v$}
+        \IF{ $v \not\in V$ }
+            \STATE return 
+        \ENDIF
+        \STATE \CALL{Postorder}{$v.left$}
+        \STATE \CALL{Postorder}{$v.right$}
+        \STATE \textsc{Visit}$(v)$
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+</section>
+<section id="breadth-first-search" class="level2">
+<h2 class="anchored" data-anchor-id="breadth-first-search">Breadth-first search</h2>
+<p>The representation of the algorithm is provided by Introduction to Algortihms Fourth Edition textbook.</p>
+<pre id="Breadth-first search" class="pseudocode">    \begin{algorithm}
+    \caption{Breadth-first search}
+    \begin{algorithmic}
+    \PROCEDURE{BreadthFirstSearch}{$G, s$}
+        \FOR{ each vertex $u \in G.V - \{s\}$}
+            \STATE{ $u$.color = \textsc{White}}
+            \STATE{$u.d = \infty$ }
+            \STATE{$u.\pi = $ NIL}
+        \ENDFOR
+        \STATE{$s$.color = \textsc{Gray}}
+        \STATE{$s.d$ = 0}
+        \STATE{$s.\pi = $ NIL}
+        \STATE{$Q = \varnothing$}
+        \STATE{\textsc{Enqueue}$(Q, s)$}
+        \WHILE{$Q \neq \varnothing$}
+            \STATE{$u = $ \textsc{Dequeue}$(Q)$}
+            \FOR{each vertex $v$ in $G.Adj[u]$}
+                \IF{$v.$color == \textsc{White}}
+                    \STATE{$v.$color = \textsc{Gray}}
+                    \STATE{$v.d = u.d + 1$}
+                    \STATE{$v.\pi = u$}
+                    \STATE{\textsc{Enqueue}$(Q, v)$}
+                \ENDIF
+            \ENDFOR
+            \STATE{$u.$color = \textsc{Black}}
+        \ENDWHILE
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<p>One thing we might wanna do is view the path created by BFS on a given source vertex <span class="math inline">\(s\)</span>. Since the path forms a breadth-first tree and a shortest path for all such paths in <span class="math inline">\(G_\pi\)</span> for <span class="math inline">\(\pi\)</span>.</p>
+<pre id="Print-Path" class="pseudocode">    \begin{algorithm}
+    \caption{Print-Path}
+    \begin{algorithmic}
+    \PROCEDURE{Print-Path}{$G, s, v$}
+        \IF{$v == s$}
+            \STATE{print $s$}
+        \ELSEIF{$v.\pi == $ NIL}
+            \STATE{print no path from $s$ to $v$ exists}
+        \ELSE
+            \STATE \CALL{Print-Path}{$G, s, v.\pi$}
+            \STATE{print $v$}
+        \ENDIF
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+</section>
+<section id="topological-sort" class="level2">
+<h2 class="anchored" data-anchor-id="topological-sort">Topological sort</h2>
+<section id="topological-sort-intro-to-algorithms-4th-ed." class="level4">
+<h4 class="anchored" data-anchor-id="topological-sort-intro-to-algorithms-4th-ed.">Topological sort (Intro to Algorithms 4th ed.)</h4>
+<pre id="Topological sort" class="pseudocode">    \begin{algorithm}
+    \caption{Topological sort}
+    \begin{algorithmic}
+    \PROCEDURE{Topological-Sort}{$G$}
+        \STATE{call \textsc{DFS}$(G)$ to compute finish times $v.f$ for each vertex $v$}
+        \STATE{as each vertex is finished, insert it onto the front of a linked list} 
+        \STATE{\textbf{return} the linked list of vertices}
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
+<script>
+    pseudocode.renderElement(document.getElementById("quicksort"));
+</script>
+<script>
+    pseudocode.renderClass("pseudocode");
+</script>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

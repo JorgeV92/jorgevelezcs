@@ -1,119 +1,105 @@
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_CHTML-full"
+        integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+        }
+    });
+</script>
 
-<h1 class=post>Dymamic programming</h1> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.css">
+<script src="https://cdn.jsdelivr.net/npm/pseudocode@2.4.1/build/pseudocode.min.js">
+</script>
+
+<h1 class=post>Dynamic programming</h1> 
 <span class='meta'>Nov 22, 2023</span>
 
-How long is the longest increasing subsequence?
+When going over the lab7b I wanted to understan more clearly how to identity patterns and similarties to other problems and when to use dynamic programming.
 
-<p style= "font-size: 2.5em; color:darkblue; text-align: center" >4 1 2 7 6 5 8 9 3 <br />
-<span style="color: red"> 1 2 6 8 9</span>
-</p>
+A subsequence of a sequence like a and array, a linked list, or a string, is obtained by removing zero or more elements and keeping the rest in the same sequence order. 
+It is also called a substring if the elements are contiguous in the original sequence. 
 
-Lets define a couple defintions to fromulate this:
+### Working on the examples:
 
-- $\sigma_n \leftarrow$ A uniform random distribution of permuation $\{1...n\}$  
+1. Given an array $A[1...n]$ of integers, compute the length of a longest increasing subsequence of $A$. A sequence $B[1...\ell]$ is increasing if $B[i] > B[i - 1]$ for every index $i \geq 2$.
 
-- $L(\sigma_n) \leftarrow$ The length of longest increading subsequence of $\sigma_n$
-
-## Visulization of sequence
-
-```{r}
-#| label: fig-lis-plot
-#| fig-cap: "Plot of the sequence with the highlighted LIS 1 2 7 8 9"
-#| warning: false
-
-library(ggplot2)
-
-# Your original sequence
-sequence <- c(4, 1, 2, 7, 6, 5, 8, 9, 3)
-
-# The known LIS
-lis <- c(1, 2, 7, 8, 9)
-
-# Create a data frame for the original sequence
-data <- data.frame(x = 1:length(sequence), y = sequence)
-
-# Identify the indices of the LIS in the original sequence
-lis_indices <- match(lis, sequence)
-
-# Create a data frame for the LIS
-lis_data <- data.frame(x = lis_indices, y = lis)
-
-# Plotting the sequence and the LIS
-ggplot(data, aes(x, y)) + 
-  geom_point() + 
-  geom_line(color = "gray") +
-  geom_point(data = lis_data, aes(x, y), color = "red") +
-  geom_line(data = lis_data, aes(x, y), color = "red") +
-  scale_x_continuous(breaks = 1:length(sequence)) +  
-  scale_y_continuous(breaks = 1:max(sequence)) +  
-  labs(x = "Index", y = "Value", title = "Sequence with Highlighted LIS 1 2 7 8 9")
+$$
+LIS(i, j) = \begin{cases}  0 & \text{if } j > n \\
+          LIS(i, j + 1) & \text{if } j \leq n \text{ and } A[i] \geq A[j] \\
+          \max \{LIS(i, j + 1), 1 + LIS(j, j+1)\} & \text{ otherwise}
+  \end{cases}
+$$
 
 
-```
+<pre id="lis" class="pseudocode">
+    % This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
+    \begin{algorithm}
+    \caption{Longest Increasing Subsequence}
+    \begin{algorithmic}
+    \PROCEDURE{LIS}{$A[1 \cdots n]$}
+        \STATE $A[0] \gets - \infty$
+         \FOR{$i \gets 0$ \TO $n$}
+            \STATE LIS$[i, n + 1] \gets 0$
+        \ENDFOR
+        \FOR{$j \gets n$ down \TO $1$}
+            \FOR{$i \gets j - 1$ down \TO $0$}
+              \IF{$A[i] \geq A[j]$}
+                \STATE LIS$[i, j] \gets$ LIS$[i, j + 1]$
+              \ELSE
+                \STATE LIS$[i, j] \gets \max \{LIS[i, j+1], 1 + LIS[j, j+1]\}$
+              \ENDIF
+            \ENDFOR
+        \ENDFOR
+        \STATE return LIS$[0, 1]$
+    \ENDPROCEDURE
+    \end{algorithmic}
+    \end{algorithm}
+</pre>
 
-There could be multiple subsequences but we only care about the maximum increasing subsequence.
+<!-- Here is the code in C++ -->
 
-<!-- ```{r}
-library(ggplot2)
-library(gganimate)
+<!-- ```cpp
+int FastLIS(const vector<int>& A) {
+    int n = A.size();
+    vector<vector<int>> LISbigger(n + 1, vector<int>(n + 2, 0));
 
-set.seed(123)  # Setting a seed for reproducibility
-n = 50  # This can be any integer
-initial_points = 10  # Initial number of points
-points_to_add = 10    # Points to add in each frame
+    // Base cases
+    for (int i = 0; i <= n; ++i) {
+        LISbigger[i][n + 1] = 0;
+    }
 
+    // Add a sentinel
+    vector<int> B = A;
+    B.insert(B.begin(), INT_MIN);
 
+    for (int j = n; j >= 1; --j) {
+        for (int i = 0; i <= j - 1; ++i) {
+            int keep = 1 + LISbigger[j][j + 1];
+            int skip = LISbigger[i][j + 1];
 
-initial_data <- data.frame(x = sample(n, initial_points, replace = TRUE), 
-                           y = sample(n, initial_points, replace = TRUE))
+            if (B[i] >= B[j]) {
+                LISbigger[i][j] = skip;
+            } else {
+                LISbigger[i][j] = max(keep, skip);
+            }
+        }
+    }
 
-add_points <- function(df, n = points_to_add, max_val = 50) {
-  new_points <- data.frame(x = sample(max_val, n, replace = TRUE), 
-                           y = sample(max_val, n, replace = TRUE))
-  rbind(df, new_points)
+    return LISbigger[0][1];
 }
-
-
-frames <- list(initial_data)
-for(i in 2:20) {  # Assuming we want 20 frames
-  frames[[i]] <- add_points(frames[[i-1]])
-}
-
-animation_data <- do.call(rbind, lapply(1:length(frames), function(i) {
-  cbind(frames[[i]], frame = i)
-}))
-
-p <- ggplot(animation_data, aes(x = x, y = y)) +
-  geom_point() +
-  scale_x_continuous(breaks = 1:n) +
-  scale_y_continuous(breaks = 1:n) +
-  transition_time(frame) +
-  labs(title = 'Frame: {frame}') +
-  theme(
-    axis.title.x = element_blank(),   # Remove x-axis label
-    axis.title.y = element_blank(),   # Remove y-axis label
-    axis.text.x = element_blank(),    # Remove x-axis text
-    axis.text.y = element_blank(),    # Remove y-axis text
-    axis.ticks = element_blank(),     # Remove axis ticks
-    panel.background = element_rect(fill = "white"),  # Set background to white
-    panel.border = element_rect(colour = "blue", fill = NA, linewidth = 1)  # Add border
-  )
-
-animated_plot <- animate(p, nframes = 20, fps = 2, width = 450, height = 600)
-
-anim_save("animated_plot.gif", animation = animated_plot)
 ``` -->
 
-Here is my animated plot:
+<script>
+    pseudocode.renderElement(document.getElementById("quicksort"));
+</script>
 
-![Animated Plot](animated_plot.gif)
-
-<h1 class=post>Dymamic programming</h1> <br />
-
-Describe and analyze dynamic programming algorithms for the following longest-subsequence problems.
-
-1. Given an array $A[1...n]$ of integers, compute the length of a longest increasing subsequence of $A$.
-
-<img src="/images/lis.png" alt="longest increasing subsequence" height="350" style="display: block; margin-left: auto; margin-right: auto;"  />
-
+<script>
+    pseudocode.renderClass("pseudocode");
+</script>
 

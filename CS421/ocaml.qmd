@@ -25,6 +25,41 @@ $$ \text{fun } v_1 \quad v_2 \quad \cdots\quad v_n \rightarrow expression$$
 
 ### Higher order functions
 
+<span style="font-size: 1.5em;">Fold right</span>
+
+The map function allows us to modify each item in a list individually, while the filter function enables us to selectively retain or discard each item based on a criterion. However, both functions operate on elements independently. What if our goal it to aggregate all the elements if a list together? 
+
+```ocaml
+let rec sum = function 
+  | [] -> 0
+  | (h::t) -> h + sum t
+
+let concat = function 
+  | [] -> ""
+  | (h::t) -> h ^ concat t
+```
+
+
+- For an empty list, a distinct base value is returned: 0 for summing and an empty string ("") for concatenation.
+
+- In the case of a non-empty list, a different operation is employed to merge the head of the list with the outcome of the recursive call: addition (+) for summing and concatenation (^) for joining strings.
+
+```ocaml
+let rec sum' init = function 
+  | [] -> init
+  | (h::t) -> h + sum' init t
+
+let sum = sum' 0
+
+let rec concat' init = function 
+  | [] -> init
+  | (h::t) -> h ^ concat' init t
+
+let concat = concat' "" 
+```
+
+
+
 #### Exercise 3.3:
 We write a function $\text{sum}$ that, given two integers bounds n and m and a function f, computes a summation.
 $$   \text{sum n m f } = \sum_{i=1}^{m} f(i) $$
@@ -64,4 +99,33 @@ let rec gcd n m =
   if m = 0 then n
   else gcd m (n mod m)
 ```
+#### Exercise 3.6:
 
+```ocaml
+(* A dictionary is represented as a function from a string to an int *)
+type dictionary = string -> int
+
+(* The empty dictionary function that returns 0 for any key *)
+let empty : dictonary = fun _ -> 0
+
+(* Function to add key-value pair to a dictiioanry *)
+let add d k v = fun k' -> if k' = k then v else d k'
+
+(* Function to find the value associated with a key in a dictionary *)
+let find d k : int = d k
+```
+
+### Basic pattern matches
+
+
+One of the most potent capabilities of ML is its utilization of pattern matching for defining computations via case analysis. The syntax for pattern matching is expressed through a match expression, which is outlined as follows.
+
+```ocaml
+natch expression with 
+  | pattern1 -> expression1
+  | pattern2 -> expression2
+  .
+  .
+  .
+  | pattern_n -> expression_n
+```

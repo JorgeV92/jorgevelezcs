@@ -1,7 +1,4 @@
-<h1 class=post>DMT</h1>
-
-<h1 class=post>How do we build intelligent machines?</h1>
-<hr/>
-
+![](/images/machines.png){.lightbox}
+<hr>
 Coming Soon!
 

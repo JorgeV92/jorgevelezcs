@@ -2,34 +2,28 @@
 <span class='meta'>Dec 31, 2023</span>
 <hr/>
 
-<style>
-    .custom-link {
-        text-decoration: none;
-        color: black; /* Sets the default color to black */
-        border-bottom: 1px dotted black; /* Creates a dotted underline */
-        padding-bottom: 0px; /* Optional: Adjusts space between text and underline */
-    }
+<a href="../DataStructures/bigO.qmd" style="text-decoration: none;">$O(\cdot)$ and $\Omega (\cdot)$ notation; 
+amortized analysis; Array-lists notes</a>
 
-    .custom-link:hover {
-        text-decoration: underline solid black; /* Changes to solid underline on hover */
-    }
-</style>
+<a href="lab1a.qmd#lab1a" style="text-decoration: none;">Stacks, Queues, Steques, and Quacks: notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Linked List: notes</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Array-lists concatenation, tombstones notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Hash Table: notes</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Scapegoat trees notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Binary Tress</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Scapegoat tree insertion analysis; augmented binary search trees</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Random Binary Search Trees</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Splay trees, Ropes notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Red-Black Trees</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Mergeable priority queues; Leftist heaps, binomial heaps notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Heaps</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Faster priority queues: Fibonacci heaps and pairing heaps notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Sorting algorithms: notes</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Range-minimum and lowest-common-ancestor queries notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">Graph: notes</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Range trees and segment trees notes</a>
 
-<a href="lab1a.qmd#lab1a" class="custom-link">External Memory Searching</a>
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Sweep-line algorithms notes</a>
+
+<a href="lab1a.qmd#lab1a"  style="text-decoration: none;">Hashlife notes</a>
 

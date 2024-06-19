@@ -10,12 +10,14 @@ website:
       #   text: Home
       - href: algorithms.qmd
         text: Algorithms
-      - href: rl.qmd
-        text: Reinforcement Learning 
-      - href: DavidMarr.qmd
-        text: David Marr Tech
+      - href: cs421.qmd
+        text: Progrmg Languages & Compilers
+      # - href: rl.qmd
+      #   text: Reinforcement Learning 
       - href: cs.qmd
         text: Computer Science
+      - href: finance.qmd
+        text: Finance 
       - href: about.qmd
         text: About
 
@@ -26,7 +28,7 @@ format:
     css: styles.css
     # toc: true
     code-fold: true
-
-
-jupyter: python3
+    highlight-style: github
+    jupyter: python3
+    
 

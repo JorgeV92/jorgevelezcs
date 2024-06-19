@@ -9,7 +9,7 @@ Wrapping Up at UIUC Computer Science -->
 <a href="myStory.qmd#" style="text-decoration: none;">Why computer science?</a><br/> To my family. -->
 
 <span class='meta'>August 12, 2024</span><br/>
-<a href="myStory.qmd#" style="text-decoration: none;">Argonne National Lab</a><br/> A post about my time as a SULI inter at Argonne.
+<a href="" style="text-decoration: none;">Argonne National Lab</a><br/> A post about my time as a SULI inter at Argonne.
 
 
 <!-- <span class='meta'>Feb 18, 2024</span><br/>
@@ -52,7 +52,7 @@ The P vs NP problem, often regarded as the most significant unresolved issue in 
 <h1 class=post>The Art of Computer Programming</h1>
 <hr/>
 <span class="meta">$\infty$</span><br/>
-<a href="lab1a.qmd#lab1a" style="text-decoration: none;">Donald Knuth</a><br/>
+<a href="" style="text-decoration: none;">Donald Knuth</a><br/>
 My study and notes on Donald Knuths work on algorithms.
 
 Coming soon!

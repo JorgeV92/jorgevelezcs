@@ -1,0 +1,62 @@
+<html>
+<head>
+<title> OpenCV DNN</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700&subset=latin-ext" rel="stylesheet">
+  <link href="/assets/gsoc.css" rel="stylesheet">
+
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+
+<body>
+	
+<h1>OpenCV DNN</h1>
+<h2 class=subtitle> 
+	<a href="https://github.com/opencv/opencv/tree/master/modules/dnn">OpenCV DNN</a>, open source
+</h2>
+<hr width=75%>
+
+<h3>Integrating a BPE Tokenizer</h3>
+
+<p>OpenCV <b>DNN module</b> lives in the main repository under <b class=dammit>opencv/modules/dnn</b>. This public API is declared in headers like <b class=dammit>modules/dnn/include/opencv2/dnn/dnn.hpp</b>, and for the implementation details <b class=dammit>modules/dnn/src/</b>. This is where I need to spend a significant time looking over the code to familiarzie with opencv conventions.</p>
+
+<p>
+    The <b class=dammit>cv::dnn::Net</b> is the central call representing a neural network graph. It allows loadinf models, setting inputs, and running forward passes. The <b>Net</b> class is the backbone of DNN inference and something that needs to understand to interact with the tokenizer with a text generation model. 
+</p>
+
+<p>
+    The <b class=dammit>cv::dnn::Layer</b> is the base class for neural network layers. This is more relevant if adding new layer types.
+</p>
+
+<p>
+    The <b>Blobs</b> <b class=dammit>cv::Mat</b> doesn't use a custom blob type; it uses <b class=dammit>cv::Mat</b> a n-dimensional array to hold data. Utility functions like <b class=dammit>cv::dnn::blobFromImage</b> help create 4D blobs for network input. In our case tokenized text could be fed into a network as a 1D vecor of token ID's in a Mat.
+</p>
+
+<p>
+    Opencv core <b class=dammit>modules/core</b> provides some utilities that we might need for the tokenizer. For example, file I/O <b class=dammit>cv::FileStorage</b> to load vababulary files, or basic data structures like <b class=dammit>cv::String</b>, opencv owns implementation equivalent to <b class=dammit>std::string</b> for handling text. We also need to keep in mind that opencv has custome types built in such as <b class=dammit>cv::String</b>, <b class=dammit>cv::Ptr</b>
+</p>
+
+
+<hr width=75%>
+<p>&nbsp;</p>
+<div align=right>
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img align=top alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+  <a href="http://www.mathjax.org/">&nbsp;
+  <img align=top title="Powered by MathJax"
+    src="https://www.mathjax.org/badge/mj_logo.png"
+    border="0" alt="Powered by MathJax" />
+</a></div>
+</body>
+</html>

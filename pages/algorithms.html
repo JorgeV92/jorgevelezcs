@@ -1,0 +1,193 @@
+
+<html lang="en-US">
+<head>
+<title>Algorithms CS 374</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700&subset=latin-ext" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet">
+
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+
+<body>
+
+
+
+<h1>Algorithms CS 374</h1>
+<h2 class=subtitle> 
+	<a href="algorithms.html">CS 374</a>, Revistied Fall 2023
+</h2>
+
+<!-- <div class="floaterthree">
+	<img src="Fig/VoroDel.gif" height=250><br>
+	<a href="https://dailydrawbot.tumblr.com/post/138213786233/voronoi-delaunay">Just van Rossum</a>,
+	via <a href="https://www.drawbot.com/">DrawBot</a>
+</div> -->
+
+<div id="stuff" style="float:left;">
+<dl>
+<dt> Student 
+<dd> <a href="http://jeffe.cs.illinois.edu/">Jorge Velez</a>
+	 (<a href="jorgevmg31@gmail.com">jorgevmg31@gmail.com</a>)
+</dd>
+<!-- <dt> Lectures 
+<dd> Wed Fri 11:00–12:15
+<br> 1131 Siebel Center and 
+		<a href="https://illinois.zoom.us/j/88278939392?pwd=NGc4UTFpMmx6czFZNE1PNnZKQUVHZz09">
+		Zoom</a> -->
+
+<!-- <dt> Office Hours
+<dd> Tue 10–11 and Fri <b class=dammit>4–5</b>
+<br> Via <a href="https://gather.town/app/ERBhZyxvpG2cMTR0/jeffe">gather.town</a> -->
+	
+<dt> Links
+<dd> <ul class=tight>
+<li> <a href="schedule.html">Schedule</a>
+<p>
+<li> <a href="#about">About this class</a>
+<li> <a href="syllabus.html">Syllabus</a> (textbook, grades, etc.)
+<p>
+<li> <a href="resources.html">Other helpful resources</a>
+</ul>
+</dl>
+
+</div>
+<br style="clear:both;">
+
+<hr width=75%>
+
+<h3 id="announce"> Coursework </h3>
+
+<h4>Section 1</h4>
+<dl>
+<dt> May 17
+<dd> String induction: <a href="hw/s22-finalexam-sol.pdf">Lab1a</a> review and notes.
+
+<dt> May 8
+<!-- <dd> The final exam will be available on Gradescope Monday, May 9, at 4:30pm.  Submissions are due <b>Wednesday, May 11, at 4:30pm</b>, 48 hours after the exam is released.  After you open the exam, Gradescope will give you <b class=dammit>three hours</b> to write and upload your solutions.  Just like the midterm, you are welcome to use any official course materials linked directly from this web site, or anything you write yourself before you start the exam, but no other resources, either human, paper, or electronic. 
+
+<p>
+Pleaes let me know ASAP if this scheduling creates a conflict with your other exams.
+
+<p>
+I will be holding <a href="https://illinois.zoom.us/j/88278939392?pwd=NGc4UTFpMmx6czFZNE1PNnZKQUVHZz09">extra office hours <b class=dammit>on Zoom</b></a> on Monday, May 9, from 10:30–12:00 and 2:30–4:00.  We are meeting on Zoom instead of gather.town so that I can record them; I will release video from office hours <a href="https://mediaspace.illinois.edu/channel/foo/255705243">in the same private channel as the paper presentations</a> as soon as possible.
+
+
+<dt> May 6
+<dd> Videos of the student paper presentations are available to registered students on <a href="https://mediaspace.illinois.edu/channel/foo/255705243">an access-restricted MediaSpace channel</a>.
+
+<dt> May 4
+<dd> <a href="hw/s22-hw4-sol.pdf">Homework 4 solutions</a> are available.
+
+<dt> Apr 18
+<dd> <a href="hw/s22-hw3-sol.pdf">Homework 3 solutions</a> are available.
+<br> <a href="hw/s22-hw4.pdf">Homework 4</a> is due Friday, April 28.  This is the last homework.
+
+<dt> Apr 4
+<dd> If you are taking the class for four units, please register your paper presentation via the "assignment" on <a href="https://www.gradescope.com/courses/351310">Gradescope</a> by <b>Friday, April 15</b>.  The assignment asks which paper you plan to present, which topics from that paper you plan to present, and (just to make sure you think about it) why.  The assignment form also provides links to several computational geometry publication venues.  The form will remain open through the end of the semester, so you can revise your plans at any time, but it's important to get started early; reading papers and preparing a good talk takes time!  I am happy to discuss potential papers after class or in office hours.
+
+<dt> Mar 29
+<dd> <a href="hw/s22-hw3.pdf">Homework 3</a> is due Tuesday, April 11.
+
+<dt> Mar 9
+<dd> Graded midterms are available on Gradescope.  Updated <a href="hw/s22-midterm-sol.pdf">midterm solutions</a> are also available.
+<p>
+There will be no lecture this Friday, March 11.  Instead, I will hold office hours from 11 to 12:30 (on <a href="https://gather.town/app/ERBhZyxvpG2cMTR0/jeffe">Gather</a>), in addition to my usual Friday 4-5 office hours.  Enjoy your spring break!
+
+
+<dt> Mar 2
+<dd> <a href="hw/s22-midterm-sol.pdf">Solutions</a> to the <a href="hw/s22-midterm.pdf">midterm</a> are available.  Each midterm problem has correct solutions that are not described in the handout; I may add more of these to the handout as I'm grading the exam.
+
+<dt> Feb 26
+<dd> <a href="hw/s22-hw2-sol.pdf">Homework 2 solutions</a> are available.
+<p> The midterm will be available on Gradescope tomorrow morning, and will be due Tuesday, March 1, at 8pm.  After you open the exam, Gradescope will give you <b class=dammit>2&frac12; hours</b> to write and upload your solutions.  You are welcome to use any official course materials linked directly from this web site, or anything you write yourself before you start the exam, but no other resources, either human, papaer, or electronic.  The exam covers the same material as the first two homeworks, or lectures through February 16.
+
+
+<dt> Feb 15
+<dd> <a href="hw/s22-hw1-sol.pdf">Homework 1 solutions</a> are available.
+<br> <a href="hw/s22-hw2.pdf">Homework 2</a> is due next Thursday, February 24.
+
+
+<dt> Feb 1
+<dd> <a href="https://massmail.illinois.edu/massmail/2123696836.html">
+	Due to heavy winter weather, all classes are being held remotely for the rest of this week.</a>
+	Lectures on Wednesday, February 2 and Friday February 4 will be
+	<a href="https://illinois.zoom.us/j/88278939392?pwd=NGc4UTFpMmx6czFZNE1PNnZKQUVHZz09">streamed over
+	Zoom</a> at the usual time.
+
+
+<dt> Jan 30
+<dd> <a href="hw/s22-hw1.pdf">Homework 1</a> is due next Thursday, February 10.  (Sorry for releasing this  so late.)
+
+
+<dt> Jan 10
+<dd> Welcome, everyone!  Please pardon the dust while I get everything set up.</p>
+	
+<ul>
+	<li>
+	Following unviersity COVID policy, the first week of lectures will be held remotely via Zoom; see the links below.  The first in-person lecture will be held on Wednesday, January 26.
+	<ul class=tight>
+		<li> <a href="https://massmail.illinois.edu/massmail/14133126.html">Announcement for undergraduates</a>
+		<li> <a href="https://massmail.illinois.edu/massmail/1520829566.html">Announcement for graduate students, faculty, and staff</a>
+		<li> <a href="https://massmail.illinois.edu/massmail/1595945978.html">January 5 update</a>
+	</ul>
+	All lectures will be streamed over <a href="https://illinois.zoom.us/j/88278939392?pwd=NGc4UTFpMmx6czFZNE1PNnZKQUVHZz09">Zoom</a>, and recordings will be available on <a href="https://mediaspace.illinois.edu/channel/foo/241832232">MediaSpace</a>.
+
+	<li> 
+	We are using <a href="https://www.gradescope.com/courses/351310">Gradescope</a>
+	for homework submission.  Please enroll yourself using the enrollment code
+	<b class=dammit>6P3BWP</b>.
+	If you are <b>not</b> using your university email address to enroll on Gradescope,
+	please also fill out <a href="https://forms.illinois.edu/sec/3319672">this
+	registration form</a>.
+	
+	<li> 
+	As an experiment, we are using <a href="https://edstem.org/us/join/dquTrn">Ed</a> for official course discussions instead of Piazza or CampusWire.  Please enroll yourself, and please post something to familiarize yourself with the platform!
+	
+	<li>
+	If you require accommodations of any kind, please work with
+		<a href="https://www.disability.illinois.edu">DRES</a> to provide an
+		<a href="https://www.disability.illinois.edu/accommodations/academic-accommodations/letter-accommodation">accommodation letter</a>
+		as soon as possible.  In particular, exam accommodations require an accomodation
+		letter at least one week in advance.  Please ask me for further details.
+
+</dl>
+
+<hr width=75%>
+
+
+<h3 id="about"> About this class </h3>
+
+<p>
+This class is an introduction to the design, analysis, and applications of algorithms for fundamental problems where the input are naturally interepreted as geometric objects.  Specific problems we may consider include <a href="https://medium.com/@harshitsikchi/convex-hulls-explained-baab662c4e94">convex hulls</a>, <a href="https://www.youtube.com/watch?v=b_uvofsYl9s">Voronoi diagrams</a>, <a href="https://www.youtube.com/watch?v=58cO-fBMEWk">line segment intersection</a>, <a href="https://www.youtube.com/watch?v=2x4ioToqe_c">polygon triangulation</a>, <a href="https://en.wikipedia.org/wiki/Range_searching">geometric range searching</a>, <a href="https://en.wikipedia.org/wiki/LP-type_problem">low-dimensional linear programming</a>, <a href="https://en.wikipedia.org/wiki/Euclidean_shortest_path">geometric shortest paths</a>, and <a href="https://en.wikipedia.org/wiki/Visibility_graph">visibility</a>.   Computational geometry has immediate applications in many other research areas, including computer graphics, mesh generation, geographic information systems, VLSI design, and robotics.  While we may briefly consider these applications, the class will primarily focus on theoretical results and techniques.
+
+<p>
+In short, this is an algorithms class, with lots of pretty pictures!  Lectures, homeworks, and exams will assume a solid background in algorithms, at least at the level of CS 374.
+
+<p>
+For more information, please see the <a href="syllabus.html">course syllabus</a>. -->
+
+
+<hr width=75%>
+<p>&nbsp;</p>
+<div align=right>
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img align=top alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+  <a href="http://www.mathjax.org/">&nbsp;
+  <img align=top title="Powered by MathJax"
+    src="https://www.mathjax.org/badge/mj_logo.png"
+    border="0" alt="Powered by MathJax" />
+</a></div>
+</body>
+</html>

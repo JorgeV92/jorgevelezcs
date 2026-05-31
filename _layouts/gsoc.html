@@ -1,0 +1,318 @@
+<html>
+<head>
+<title>Google Summer of Code OpenCV </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700&subset=latin-ext" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet">
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+
+<body>
+	
+<h1>Google Summer of Code OpenCV</h1>
+<h2 class=subtitle> 
+	<a href="https://summerofcode.withgoogle.com/programs/2025/projects/79SW6eNK">GSoC</a>, Summer 2025
+</h2>
+
+<div id="intro" style="align:center; width:100%">
+<div id="stuff" style="float:left;">
+<dl>
+<dt> Contributor
+<dd> <a href="https://jorgevelezcs.com/">Jorge Velez</a>
+	 (<a href="mailto:jorgevmg31@gmial.com">jorgevmg31@gmail.com</a>)
+
+<dt> Org.
+<dd> </a>
+	<a href="https://opencv.org/">OpenCV</a>
+
+
+<dt> Updates
+<dd> Everyday 10-11 pm CT
+
+<dt> Links
+<dd> <ul class=announce-tight>
+<li> <a href="https://github.com/opencv/opencv/wiki/GSoC_2025">OpenCV Project Ideas List</a>
+<li> <a href="https://gist.github.com/JorgeV92/5382b8819794ab7ed9036879576618d3">Proposal</a>: orginal drafted project proposal.  
+<!-- <li> <a href="https://mediaspace.illinois.edu/channel/channelid/285535262">
+		Lecture videos</a>
+<li> <a href="https://edstem.org/us/join/mQvt6z">Ed Discussion site</a>
+<li> <a href="notes/homework.html">Practice exercises</a> (<a href="notes/homework.pdf">pdf</a>)
+<li> <a href="projects.html">Projects</a>
+<li> <a href="gallery.html">Historical gallery</a>
+<li> <b>Past offerings of this course:
+		<a href="../comptop/2020">2020</a>,
+		<a href="../comptop/2017">2017</a>,
+		<a href="../comptop/2013">2013</a>,
+		<a href="../comptop/2009">2009</a></b>
+<li> <a href="#others">Similar classes elsewhere</a> -->
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<br style="clear:both;">
+
+<hr width=75%>
+
+<h3 id="announce"> Announcements </h3>
+
+<dl>
+
+<dt> May 10
+<dd> The following was completed and start:
+    <ul>
+        <li>Set up git fork of OpenCV.</li>
+        <li>Read all content sent gy GSoC contibution and Community guide.</li>
+        <li>Read OpenCV Code Style Guide</li>
+    </ul>
+
+<dt> May 11
+<dd> Worked on the following:
+<dt> May 12
+<dd> TODO 
+<dt> May 13
+<dd> TODO
+<dt> May 14
+<dd> Attended the virtual info session 
+<dt> May 15
+<dd> Review  <b>HuggingFace's</b> <a href="https://github.com/huggingface/tokenizers">Tokenizer</a> specifically the <b>BPE</b> implemnetaion to draft ideas for the opencv <b class=dammit>cv::dnn::Tokenizer</b>
+<!-- <dt> May 5
+<dd> Final project presentations will be held Monday, May 8 and Tuesday, May 9, both days from 2:00 to 4:00-ish, in 2124 Siebel. 🔒<a href="secure/presentations.html">The presentation schedule</a> is available in the secure directory.
+
+<dt> Apr 5
+<dd> 🔒<a href="secure/all-proposals.pdf">All submitted project proposals</a> are available in the secure directory (same password as before).  🔒<a href="https://mediaspace.illinois.edu/media/t/1_43d4g4h2">Video of my walkthrough</a> will be available as soon as I add everybody to the private MediaSpace channel.
+
+<dt> Mar 29
+<dd> <a href="projects.html">Project proposals</a> are due Next Monday, April 3.  Despite what I said om class last Friday, proposals should be <b>2–3 pages</b> long.  I will have extra office hours tomorrow (Thursday, March 30) from 4:15 to 5:30 for people who want to discuss potential projects.
+
+<dt> Mar 23
+<dd> 🔒<a href="secure/all-paper-chases.pdf">All submitted paper chases</a> are available in a secure directory.  (I sent email to all registered students with the password.)
+
+<dt> Mar 7
+<dd> As expected, this week's lectures will be held over <a href="https://illinois.zoom.us/j/84012385436?pwd=SjBjMzMzSEVYNmh6MjdkWWRrcUlsZz09">Zoom</a>.
+	
+<dt> Mar 2
+<dd> I am sick with COVID.  Class on Friday March 3 is cancelled, and next week's lectures (March 9 and 11) will likely be held over Zoom.  Stay tuned for more info.
+
+<dt> Feb 22
+<dd> <a href="https://www.gradescope.com/courses/515894">The Gradescope site for this class is open</a> and accepting submissions for the <a href="writing.pdf">paper chase assignment</a>.  Everyone registered for the class should already be enrolled, but if I missed you, you can self-enroll with the entry code <b>6ZW4D7</b>.
+	
+<dt> Feb 2
+<dd> <ul class=announce>
+<li>
+The <a href="writing.pdf">paper chase assignment</a> is due <b>Tuesday, February 28</b>.  (I've updated the list of suggested strting points to include only papers published in 2021 or later.)  This is the first part of the <a href="projects.html">semester project</a>.
+<li>
+	Starting next week, I will have office hours every Tuesday 3-4.  (I'm also usually free immediately after class on Wednesday and Friday.)
+</ul>
+
+
+<dt> Jan 8
+<dd> Hello and welcome!  I'm still setting up the class; please forgive the dust, construction noises, and dead links.  First some logistics:
+<ul>
+<li> Formally, registration is currently <a href="https://cs.illinois.edu/academics/undergraduate/registration/cs-course-restrictions-enrollment-caps">restricted</a> to graduate students in computer science.  
+<ul>
+<li>
+Graduate students in other fields, especially mathematics, are definitely welcome.  Registration should open to non-CS graduate students by the end of the day on January 9, but this is a manual process driven by overworked academic office staff, so please be patient.  Please talk to me after class if you are still unable to register by the end of the first week (January 20).
+<li>
+Undergraduates interested in taking this course should submit a <a href="https://my.cs.illinois.edu/ugpetitions/">petition to register</a> <b>as soon as possible</b>, but absolutely no later than January 20.  Petitions can take several weeks to process (because they must be processed individually by overworked academic office staff).
+</ul>
+	
+<li> We are using <a href="https://edstem.org/us/join/mQvt6z">Ed Discussion site</a> as an online discussion forum.  You can enroll yourself using your university login credentials; no enrollment code is necessary.
+
+<li> I plan to maintain a list of <a href="homework.html">"homework" exercises</a>.  At least for now, these are meant only for your practice and understanding; homework will not be graded.  I <em>strongly</em> encourage discussing these exercises (and any similar problems that occur to you) on Ed Discussion.
+	 -->
+</dl>
+
+<hr width=75%>
+
+<h3 id="about"> LLM Tokenization </h3>
+
+<p> Hello everyone, in this section we are going to look at tokenization for Large Language Models (LLMs) some of the thoery and idea behind it necessary for our understanding when its time for us to implement this 
+idea in opencv's dnn module  <b class=dammit>dnn:Tokenization</b>. </p> 
+<p>One natural question that comes to mind is what is tokenization?</p>
+<p>Tokenization if the crucial step that translates human-readable text into the <b>tokens</b> that Large Language Models (LLMs) consume. It acts as a bridge between raw strings and the numneric <b>IDs</b> that the model processes. In LLMs, tokenization often means breaking text into subword units rather than whole words or characters, striking a balance between efficiency and expressiveness. 
+Over the years, various tokenization algoeithms have been developed. This writeup looks at four major methods <b>Byte Pair Encoding (BPE)</b>, <b>WordPiece</b>, <b>SentencePiece</b>, and the <b>Unigram model</b> which explains how each works and why one might be chosen over another. For now I look into how thse tokenizers integrate with vision-language pipeline, specifically using <b>OpenCV/s DNN</b> module for tasks like <b>OCR (Optical Character Recognition)</b> and feeding text into transformers.</p>
+
+<p>Modern LLms almost universally rely on <b>subword tokenization</b>. Unlike character-level tokenizers (such as in Karpathy's makemore project, which treats each character as a token), subword methods break text into pieces that are often larger than a single character but smaller than a word. This yields shorter sequences than character models while still handling unkown or rare words gracefully for example 
+by breaking them into familiar pieces.</p>
+
+<h4>Byte Pair Encoding (BPE)</h4>
+
+<p>Byte pair encoding is one of the earliest and most influential subword tokenization methods for LLMs. BPE was originally a data compression algorithm that got adopted for NLP in a 2015 paper by Sennrich et al. The idea is simple: start with an initial <b>vocabulary</b> of all individual characters or bytes, then iteratively merge the most frequent pair of adjacent symbols into a new token. Each merge adds one new token to the vocabulary, which can represent a commonly occurring subword. This process repeats until a target vocabulary size is reached.</p>
+
+<p>How it works: Suppose we have words like <b>hug</b>, <b>hugs</b>, <b>bun</b> in the training corpus. We'd start with single characters: <b>h</b>, <b>u</b>, <b>g</b>, <b>s</b>, <b>b</b>, <b>n</b>. BPE finds the most frequent pair of symbols in this example, <b>"u" + "g"</b> appears often in <b>hug</b>, <b>pug</b> and merges them into a new token <b>"ug"</b>. Now <b>hug</b> would be tokenized as <b>["h", "ug"]</b> <b>"hugs"</b>, as <b>["h", "ug", "s"]</b>, and so on. The algorithm continues merging frequent pairs <b>("u" + "n" -> "un"), ...</b>, until the vocobulary has grown to the desired size.</p>
+
+<h4>Byte-Level BPE</h4>
+<p>OpenAI's GPT-2 introduced a subtle but important tweak: applying BPE at the byte level instead of Unicode characters. By treating every byte, 256 possible values, as a base symbol, the tokenizer can encode any text, including emojis or unkown characters, without ever producing an out-of-vocabulary token. GPT-2's tokenizer starts with 256 byte values and then has ~50,000 merges learned from data. This ensures losless, reversible encoding for arbitrary text, eliminating the need for an <b>&lt;unk&gt;</b> token for unseen characters.</p>
+
+<p>Why use BPE: BPE was popularized in LLMs by GPT-2 and remains widely used in models like GPT-3, GPT-4, LLaMA, and more. It has some good benefit to it such as it's reversible and lossless, it works on arbitrary text, and it compresses text efficiently, yielding token sequences that are on average 4 times shorter than raw characters. Another benefit is that BPE tends to group common substrings, so the model sees meaningful chuncks. <b>(e.g splitting "encoding" into "encod"  + "ing")</b> letting the model recognize the common suffix.  This helps the model generalize by exposing frquent subword patterns. BPE's simplicity and effectiveness made it the <b>de facto starting point</b> for tokenization in LLMs</p>
+<p>Many libraries provide BPE implementations. OpenAI's <b>tiktoken</b> is a fast BPE tokenizer for GPT models. HuggingFace's <b>GPT2TokenizerFast</b>, built on the tokenizers libraray, also implements byte-level BPE. Karpathy's <b>minBPE</b> project I am using as a basic template and inspiration for ways to plan a layout for <b class=dammit>cv::dnn::Tokenizer</b>. In practice, if you use a model like GPT-2 or GPT-3 via HuggingFace's <b>AutoTokenizer</b>, it will automatically apply BPE under the hood which I plan to review and study of how this process happens.</p>
+
+<h4>WordPiece</h4>
+
+<p>WordPiece is another subword tokenization method, orginally developed at Google for speech and text models (Schuster et al., 2012) and famously used in <b>BERT</b>. At first glance it is similar to BPE is also builds a vocabulary of subwords by iteratively adding tokens-but it uses a different criterion for which pair to merge next. Instead of merging the most frequent pair as BPE does, WordPiece chooses the pair that maximizes the likelihood of the training corpus when that pair is added to the vocabulary. In pratice, this often means WordPiece will avoid merging very high-frequency pairs if their components are also high-frequency in other contexts. It perfers merges that give a big jump in explaninng the data. One way to think of it is WordPiece evaluates what <b>information</b> would be lost by not merging a pair, and only merges if the gain outweighs the loss.</p>
+
+<p>How it works: WordPiecew also starts with all individual characters in the vocab. It then tries potential merges and calculates a score, often frequency of the pair divided by frequencies of its parts. The pair with the best score-meaning it is disproportionately frequent together gets merges first. This process continues until the vocab is a desired size or likelihood gain falls off. The end result is a set of subword tokens. To tokenize a new word, WordPiece uses a <b>greedy longest-match</b> algorithm: e.g. for <b>"hugging"</b>, it would try to match the longest subword in the vocabulary that is a prefix of the word, then continues with the remainder. BERT's WordPiece vocabulary, for instance contains tokens like <b>"hug"</b>, <b>"##ging"</b>, where <b>"##"</b> is a marker indicating the token is a continuation of a word. So <b>"hugging"</b> becomes <b>"hug" + "##ging"</b>.</p>
+
+<p>Why use WordPiece: WordPiece was chosen for <b>BERT</b> and its descendants such as <b>DistilBERT, Electra</b>, and more, ans has been proven to work well in practice. Compared to <b>BPE</b>, its merge decisions might yield a slightly different vocabulary often WordPiece avoids very common affixes being fused with stems if those affixes appear broadly. In other words, WordPiece is a bit more conservative in merging, trying not to overfit to particular training words. The difference between <b>BPE</b> and <b>WordPiece</b>, however, are subtle; in fact, both algorithms often produce quite similar segmentations for most words. One notable difference is that WordPiece does not need to store the merge list once training is done, all it needs is the final vocabulary. This can simplify the runtime tokenization:  a new word is broken by finding the longest vocab entry that fits, then the next, etc., which is straightforward to implement. BPE, on the other hand, 
+typically merges in a fixed orde, though one can also simulate it with longest-match since the merges produce a deterministic vocabulary. </p>
+
+<h4>SentencePiece</h4>
+
+<p><b>SentencePiece</b> is not exactly a new algorithm, but rather an open-source tokenizer library from Google that supports multiple approaches, BPR, Unigram, and more, with some useful innovations. It was introduced by <b>Kudo and Richardson (2018)</b> to provide language-independent tokenization. One key feature is that <b>SentencePiece</b> treats the input as a stream of characters without pre-segmentation on whitespace. It uses a special symbol, <b>_ by default</b>, to represent spaces. This means you don't need to preprocess the text to split by spaces or punctuation. SentencePiece handles it internally. This is helpful for languages without clear word boundaries and simplifies training pipelines. By default, the algorithm behind <b>SentencePiece</b> is the <b>Unigram language model</b>, described next. However, SentencePiece can also train a BPE model if requested, and it will output a smiliar merges list and vocab as other BPE implementations. When SentencePiece is refered in context of LLMs like T5 or GPT-J, it often means the Unigram-bases tokenizer trained via the SentencePiece library.</p>
+<p>Why use SentencePiece: The library became popular because it's easy to use and very flexible. It's used in many Google models such as <b>ALBERT, T5, mT5, Pegaus</b>, and other like the <b>BigScience BLOOM tokenizer</b>, and more, but often with the Unigram method. Advantages include: handling of whitespace and Unicode seamlessly, direct training on raw text, no need for prior tokenization, and support for the sampling strategies, subword regulariztion, that the Unigram model enables. </p>
+
+<h4>Unigram Model</h4>
+
+<p>The <b>Unigram</b> tokenization algorithm, often used via SentencePiece, takes a fundamentally different approach from BPE or WordPiece. Instead of starting with minimal units and merging to grow the vocabulary, Unigram starts with a large vocabulary and prunes it down to the disered size. It was introduced by Kudo (2018) as part of the <b>Subword Regularization</b> research. Let's go through how it works: We being with a a very large pool of candidate tokens - this courld be all substrings up to a certain length, or all BPE tokens from an overly large vocab, or all whole words plus pieces. The exact init doesn't matter too much, as long as it's comprehensive. Then we assume a probabilistic <b>unigram language model</b> over tokens: each token in the voacb has a probability. Any string can be tokenized in many ways as a sequence of these tokens, and we can assign the string a likelihood equal to the product of the token's probabilities. The training objective is to maximize the likelihood of the training corpus under this model.  In pratice, Unigram training proceeds by an iterative pruning: evaluate how important each token is to the corpus likelihood, and remove the least useful tokens in batches e.g., remove 10% of tokens that cause the smallest increase in loss. After each pruning step, the remaining tokens probabilites are re-estimated with maximum likelihood given the corpus segmentation. 
+This repeats until the vocab size reaches the target. Notably, the algorithm ensures that basic characters remain in the vocab so that any input text can still be represented even if it means spelling out a word character by character. At the end of training, we have a vocabulary and an associated probability for each token. To tokenize new text, we choose the token segmentation that maximizes the product of token probabilites. In other words, we break the text into tokens in the way that the model finds most probable. For example, given a Unigram model with vocab containing <b>"hug", "ug", ...</b> the word <b>"hugs"</b> could be segmented as <b>["hug", "s"]</b> or <b>["h", "ug", "s"]</b> or <b>["h", "u", "g", "s"]</b>. The model will calculate the probability of each segmentation and choose the highes-likely <b>"hug" + "s"</b> is  a learned token.</p>
+
+<p>Why use Unigram: The Unigram model often yields tokenizations similar to BPE/WordPiece in practice, but it has a couple of advantages. First, by evaluating token combinations with a probability model, it can theoretically find a more optimal set of tokens that greedy merges might. Second, it naturally supports <b>multipke valid tokenizations</b> of the same text with different probabilites. This means during training of a language model, one can sample different tokenizations, according to their probabilites, for data augmentation - this is the subword regularization idea. That can make the model more robust with some cost of added complexity. </p>
+
+<h4>
+    HuggingFace & OpenAI
+</h4>
+
+<p>HuggingFace's <b>Transformers</b> library provides a unified interface: one can simply do <b class=dammit>tokenizer = AutoTokenizer.from_pretrained(model_name)</b> and it will download the appropriate tokenizer (BPE, WordPiece, or SentencePiece) for that model. For example, <b class=dammit> AutoTokenizer.from_pretrained("bert-case-uncases")</b> will give a WordPiece tokenizer, whereas <b>"gpt2"</b> gives a byte-level <b>BPE</b> tokenizer. The heavy lifting is done by the <b>Tokenizers</b> librabry, whic is developed in Rust that we can use as a reference when developing the OpenCV c++ version. Since I aim to develop a tokenizer that is fast with parallelism which the HuggingFace tokenizer accomplish its a great place to look and reference the techniques fo the rust implementation more on this as the project progresses.
+OpenAI's <b>tiktoken</b> library is another specialized tool, tailored to OpenAI's models, <b>GPT-3, GPT-4</b> and more. It implements the GPT-2/GPT-3 BPE extremely fast in Python and I believe with some Rust also. For instance, tiktoken's <b class=dammit> cl00k_base</b> encoding is used for GPT-4 and is essentially BPE with some OpenAI-specific quirks. For how to train certain models we can see how HuggingFace's <b class=dammit> Tokenizers</b> is used to train BPE, WordPiece, or Unigram on certain data. I will reference some documentation provided by HugginFace to train using BPE, WordPiece, and Unigram. But will focus mainly on <b>BPE</b> to start with as the first model. On the other hand Google's SentencePiece tool can be used standalone to train a tokenizer and then the model can load it. Threre is another good resource as well in <b class=dammit>llama.cpp</b></p>
+
+
+<hr width=75%>
+
+<h3>OpenCV's DNN Module and Vision-Language</h3>
+
+<p>Beyond text, we often need to handle <b>vision-language</b> inputs e.g., reading text from images and feeding it into an LLM, or using an LLM to reason about visual data. OpenCV is known for computer vision but has now included a <b>DNN module</b> that can run deep learning models, and it can be part of a pipeline that bridges images to text tokens.</p>
+<p>OpenCV's DNN module allows loading and running pretrained neural networks within the opencv env. It supports models from various frameworks, <b>Caffe, TensorFlow, ONNX, PyTorch,</b> and more, and can run them on CPU or GPU. I further discuss the topic here <a href="/opencvdnn/">OpenCV DNN</a></p>
+
+<hr width=75%>
+
+<h3 id="about"> Better LLMs Support in OpenCV </h3>
+
+
+<p>
+I propose to integrate native text tokenization support into OpenCV’s DNN module so that Large Language Models (LLMs) can be run end-to-end directly in OpenCV. Currently, to feed text into models like GPT-2 or GPT-3, users must rely on external libraries (e.g. tiktoken) for tokenization. My project will create a built-in tokenizer utility—implemented in C++ with Python bindings—that can convert raw text into token IDs and decode model outputs back into text. The core deliverable is a new cv::dnn::Tokenizer class supporting Byte Pair Encoding (BPE), along with the ability to load typical vocabulary/merges files and handle special tokens. Once implemented, this will allow a seamless pipeline for text-based or multimodal models within OpenCV: raw text -> tokens -> DNN inference -> tokens -> decoded text. I will also write comprehensive documentation and test this functionality against known tokenizer outputs (e.g., Hugging Face), ensuring correctness and good performance. By adding native tokenization, OpenCV’s DNN module becomes more versatile for cutting-edge AI tasks involving both vision and language. This reduces external dependencies, makes it easier to deploy LLMs in pure C++ or Python environments, and helps unify image and text processing in a single library—further strengthening OpenCV as a comprehensive open-source toolkit.
+</p>
+<hr width=75%>
+
+<h3 id="others"> Research iterate</h3>
+    <p> I will outline useful research papers and relevant material that covers what we must know and use to build the outline of the project based on <b>theory</b> and <b>architecture</b>.</p>
+
+<!-- <p>The selection of topics in this class is necessarily limited by the finiteness of a single semester and by my own interests and expertise.  Important topics in computational topology that I will <em>not</em> cover this semester, except perhaps briefly in passing, include automatic groups, knot theory, 3-manifolds, cell complexes (simplicial, cubical, Delta, CW, simplicial sets), algorithms for CAT(0)-complexes, discrete Morse theory, normal surface theory, configuration spaces, dynamical systems, persistent homology and its generalizations, surface reconstruction, manifold learning, topological data analysis, embedding obstructions, higher-order homotopy, discrete differential geometry, applied Hodge theory, fixed-point theorems, PPAD-completeness,  algebraic complexity, $\exists\mathbb{R}$-hardness and "Murphy's Law" universality, evasiveness of graph properties, impossibility results in distributed computing, and topological quantum computing.  The full diversity of techniques, results, applications, and even <em>definitions</em> of computational topology could easily fill a dozen courses.</p>
+
+<p>Here is an <b class=dammit>incomplete</b> list of other recent courses in computational topology with publicly available course materials (beyond just a syllabus).  <b>Please let me know if you'd like to add your course!</b></p>
+
+<ul>
+<li>
+Henry Adams, Colorado State: 
+	<a href="https://www.math.colostate.edu/~adams/teaching/dsci475spr2021/">Spring 2021</a>
+	<a href="https://www.math.colostate.edu/~adams/teaching/UCR2017/">Summer 2017 (Universidad de Costa Rica)</a>,
+	<a href="https://www.math.colostate.edu/~adams/teaching/math580a2spr2017/">Spring 2017</a>
+<li>
+	Luca Castelli Aleardi, Arnaud de Mesmay, and Vincent Pilaud, ENS Paris:
+	<a href="https://wikimpri.dptinfo.ens-cachan.fr/doku.php?id=cours:c-2-38-1">2022-23</a>
+	— <a href="http://monge.univ-mlv.fr/~colinde/cours/all-algo-embedded-graphs.pdf">course notes 1</a>,
+	<a href="http://www.lix.polytechnique.fr/~pilaud/enseignement/MPRI/notesCoursMPRI16.pdf">course notes 2</a>
+<li>
+Hsien-Chih Chang, Dartmouth:
+	<a href="https://hcsoso.github.io/teaching/topology-f21/index.html">Fall 2021</a>,
+	<a href="https://hcsoso.github.io/teaching/topology-f20/index.html">Fall 2020</a>
+<li>
+Frederic Chazal and Julien Tierny, Université de Sorbonne:
+	<a href="https://julien-tierny.github.io/topologicalDataAnalysisClass.html">Fall 2022</a>
+<li>
+Keenan Crane, CMU:
+	<a href="http://geometry.cs.cmu.edu/ddg">most recent</a>,
+	<a href="https://brickisland.net/DDGSpring2022/">Spring 2022</a>,
+	<a href="https://brickisland.net/DDGSpring2021/">Spring 2021</a>
+	(<a href="https://www.youtube.com/watch?v=mas-PUA3OvA&list=PL9_jI1bdZmz0hIrNCMQW1YmZysAiIYSSS">videos</a>),
+	<a href="https://brickisland.net/DDGSpring2020/">Spring 2020</a>	
+	— <a href="https://www.cs.cmu.edu/~kmcrane/Projects/DDG/">course materials</a>
+<li>
+Isabel Darcy, University of Iowa:
+	<a href="http://homepage.math.uiowa.edu/~idarcy/AT/schedule.html">Fall 2013</a>,
+	<a href="http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING15/TDAschedule.html">Spring 2015</a>,
+	<a href="http://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING17/7450.html">Spring 2017</a>,
+	<a href="https://homepage.divms.uiowa.edu/~idarcy/COURSES/TDA/SPRING18/3900.html">Spring 2018</a>
+<li>
+Erik Demaine, Shay Mozes, Christian Sommer, and Siamak Tazari, MIT:
+	<a href="http://courses.csail.mit.edu/6.889/fall11/">Fall 2011</a>
+<li>
+Tamal Dey:
+	<a href="https://www.cs.purdue.edu/homes/tamaldey/course/CTDA/CTDA.html">Spring 2021 (Purdue)</a>,
+	<a href="http://web.cse.ohio-state.edu/~dey.8/course/CTDA/CTDA.html">Fall 2013 (OSU)</a> — 
+	<a href="https://www.cs.purdue.edu/homes/tamaldey/book/CTDAbook/CTDAbook.html">textbook (with Yusu Wang)</a>
+<li>
+Kyle Fox, UT Dallas:
+	<a href="https://personal.utdallas.edu/~kyle.fox/courses/cs7301.003.20f/">Fall 2020</a>
+<li>
+Leo Guibas, Stanford: 
+	<a href="http://graphics.stanford.edu/courses/cs233-21-spring/">Spring 2021</a>
+<li>
+Spike Hughes, Brown University:
+	<a href="https://cs.brown.edu/courses/csci1950-h/home.html">Spring 2015</a>
+<li>
+Misha Kazhdan, Johns Hopkins:
+	<a href="http://www.cs.jhu.edu/~misha/Fall09/">Fall 2009</a>
+<li>
+Philip Klein, Brown University:
+	<a href="http://cs.brown.edu/courses/cs250/">Spring 2017</a>
+	— <a href="http://planarity.org/">book draft (with Shay Mozes)</a>
+<li>
+Bala Krishnamoorthy, Washington State University:
+	<a href="https://www.math.wsu.edu/faculty/bkrishna/Math529.html">Spring 2022</a>,
+	<a href="http://www.math.wsu.edu/faculty/bkrishna/CT_Math574_S12.html">Spring 2016</a>
+<li>
+Francis Lazarus and Arnaud de Mesmay, Université de Grenoble and ENS Lyon:
+	<a href="http://www.gipsa-lab.fr/~francis.lazarus/Enseignement/compuTopo.html">Fall 2016</a>
+<li>
+Shay Mozes, Reichman University:
+	<a href="https://cs.idc.ac.il/~smozes/planaralgo/index.html">Fall 2015</a>
+<li>
+Vidit Nanda, Oxford:
+	<a href="https://people.maths.ox.ac.uk/nanda/cat/">Hilary 2022</a>
+<li>
+Bradley Nelson, University of Chicago:
+	<a href="https://stat37411.github.io/">Winter 2022</a>
+<li>
+Steve Oudot, École polytechnique:
+	<a href="http://www.enseignement.polytechnique.fr/informatique/INF556/index.html">2022-23</a>
+<li>
+Bei Wang Phillips, Utah:
+	<a href="http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2021.html">Spring 2021</a>,
+	<a href="http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2019.html">Spring 2019</a>,
+	<a href="http://www.sci.utah.edu/~beiwang/teaching/cs6170-spring-2017.html">Spring 2017</a>
+<li>
+Michael Robinson, American University:
+	<a href="http://www.drmichaelrobinson.net/math496spring2016.html">Spring 2016</a>
+<li>
+Hal Schenk, Auburn:
+	<a href="http://webhome.auburn.edu/~hks0015/AuburnTDA.html">Summer 2020</a> —
+	<a href="http://webhome.auburn.edu/~hks0015/data2.pdf">textbook draft</a>
+<li>
+Yusu Wang, UCSD:
+	<a href="https://sites.google.com/ucsd.edu/dsc291-190-tda">Spring 2022</a>
+</ul> -->
+
+<hr width=75%>
+<p>&nbsp;</p>
+<div align=right>
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img align=top alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+  <a href="http://www.mathjax.org/">&nbsp;
+  <img align=top title="Powered by MathJax"
+    src="https://www.mathjax.org/badge/mj_logo.png"
+    border="0" alt="Powered by MathJax" />
+</a></div>
+</body>
+</html>

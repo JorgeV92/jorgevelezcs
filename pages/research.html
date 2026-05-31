@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Jeff Erickson's Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700&subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/jeffe.css" />
+
+  <!-- Code -->
+   <!-- ❶ GitHub-coloured theme -->
+    <link  rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+
+    <!-- ❷ Core library -->
+    <script defer
+            src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <!-- ❸ Tell it to scan and colour all code blocks after the page loads -->
+    <script defer>window.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+</head>
+
+<body bgcolor="ffffff" onLoad="if (self != top) top.location = self.location">
+
+<blockquote>
+<h1><a href="/">Jorge Velez</a>'s Research</h1>
+
+<b>My main research interests are algorithms, computational geometry, computional toplogy, machine learning, deep learning, artificial intelligence, computer vision, computational complexity theory, theoritcal computer science, and more but I dont want to cluter eveything I am interested in. </b>
+I also like to continue to engage in areas in mathematics like linear algebra, probability, vector calculus, discrete math, graph theory and more but these are more specific areas I like to spend more time in. 
+
+<h3>Pytorch nn</h3>
+
+<pre><code class="language-python">
+class SimpleNet(nn.Module):
+    def __init__(self).__init__()
+        self.fc1 = nn.Linear(28*28, 128)
+        self.relu = nn.ReLu()
+        self.fc2 = nn.Linear(128, 10)
+
+    def forward(self, x):
+        x = x.view(x.size(0), -1)   # flatten 28x28 -> 784
+        x = self.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+model = SimpleNet()
+</code></pre>
+
+
+<h3>C++ nn</h3>
+
+<pre><code class="language-cpp">
+struct Net : torch::nn::Module {
+    Net()
+        : fc1(28*28, 128),
+          fc2(128, 10)
+    {
+        register_module("fc1", fc1);
+        register_module("fc2", fc2);
+    }
+
+    torch::Tensor forward(torch::Tensor x) {
+        x = x.view({ x.size(0), 28*28 }); // flatten
+        x = torch::relu(fc1(x));
+        return x;
+    }
+
+    torch::nn::Linear fc1, fc2;
+};
+</code></pre>
+
+
+<hr>
+
+<!---- Begin new nested-blockquote -->
+<blockquote><blockquote><small>
+
+<!-- Image (512 px wide) with license attribution in the <a> title -->
+<p align="center">
+  <a title="Diagram by Behnam Esfahbod, CC BY-SA 3.0" 
+     href="https://commons.wikimedia.org/wiki/File:P_np_np-complete_np-hard.svg">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/P_np_np-complete_np-hard.svg/512px-P_np_np-complete_np-hard.svg.png?20250417154839"
+      alt="Diagram showing relationships among P, NP, NP-complete, and NP-hard"
+      width="512">
+  </a>
+</p>
+
+<!-- Your new quote -->
+<b>
+  “This one picture captures a century-old mystery:  
+  <i>P</i> is the cozy cottage, <i>NP</i> the bustling city,  
+  <i>NP-complete</i> the city’s hardest riddles,  
+  and <i>NP-hard</i> everything lurking outside the gates.”
+</b>
+<br>
+<div align="right">— Complexity-theory folklore</div>
+
+</small></blockquote></blockquote>
+<!---- End new nested-blockquote -->
+
+
+</body>
+</html>

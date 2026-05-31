@@ -1,3 +1,0 @@
-
-<h1 class=post>String Induction</h1> 
-<span class='meta'>Nov 22, 2023</span>

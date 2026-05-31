@@ -1,0 +1,196 @@
+/* ========== ML Compilers theme (Google Sites–like) ========== */
+:root{
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #5f6368;      /* subtle gray similar to Material text */
+  --link: #1a73e8;       /* Google blue */
+  --border: #e0e0e0;
+  --card: #fafafa;
+  --maxw: 860px;         /* narrow reading column */
+  --radius: 10px;
+}
+
+html{ box-sizing:border-box; }
+*,*::before,*::after{ box-sizing:inherit; }
+
+html,body{
+  height:100%;
+  background:var(--bg);
+  color:var(--fg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+body{
+  margin:0;
+  font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-weight: 400;
+  line-height: 1.65;
+  font-size: 17px;
+}
+
+/* Containers */
+.container{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header (simple bar with large title) */
+.site-header{
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.site-header .site-title{
+  margin: 0;
+  padding: 22px 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Footer */
+.site-footer{
+  margin-top: 48px;
+  border-top: 1px solid var(--border);
+  background:#fff;
+  color: var(--muted);
+}
+.site-footer small{
+  display:block;
+  padding: 18px 0;
+  font-size: 14px;
+}
+
+/* Layout: sidebar + content */
+.layout{
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 28px;
+}
+@media (max-width: 960px){
+  .layout{ grid-template-columns: 1fr; }
+}
+
+/* Sidebar card */
+.sidebar .card.profile{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.avatar{
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display:block;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.profile .name{
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.profile .role{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.profile .links{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.profile .links li + li{ margin-top: 6px; }
+
+/* Main content */
+.content{
+  min-width: 0; /* prevent overflow from long links */
+}
+
+/* Typography */
+h1,h2,h3,h4{
+  line-height: 1.25;
+  margin: 1.2em 0 0.4em;
+  font-weight: 700;
+}
+h1{ font-size: 32px; }
+h2{ font-size: 24px; }
+h3{ font-size: 20px; }
+h4{ font-size: 18px; color: var(--muted); font-weight:600; }
+
+p{ margin: 0.7em 0; }
+
+code, pre, kbd, samp{
+  font-family: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+pre{
+  background: #f6f8fa;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow:auto;
+  font-size: 0.95em;
+}
+
+/* Links: Google Sites-like blue with underlines on hover/focus */
+a{
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover, a:focus{
+  text-decoration: underline;
+}
+
+/* Lists: comfortable spacing like in the example page */
+ul, ol{
+  padding-left: 1.4em;
+  margin: 0.6em 0 1.0em;
+}
+li + li{ margin-top: 6px; }
+ol{ list-style: decimal; }
+ul{ list-style: disc; }
+
+/* Tables (if you add publication tables later) */
+table{
+  width:100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.98em;
+}
+th, td{
+  border-bottom: 1px solid var(--border);
+  padding: 10px 8px;
+  vertical-align: top;
+}
+th{
+  text-align: left;
+  font-weight: 700;
+  background: #fafafa;
+}
+
+/* Utility blocks */
+blockquote{
+  border-left: 4px solid var(--border);
+  padding: 8px 14px;
+  margin: 1em 0;
+  color: var(--muted);
+  background: #fbfbfb;
+}
+
+/* Images and iframes responsive */
+img, iframe{
+  max-width: 100%;
+  height: auto;
+}
+
+/* Small helpers */
+hr{
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}

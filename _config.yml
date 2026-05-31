@@ -1,0 +1,10 @@
+title: Theoretical Machine Learning
+description: A site inspired by Jeff Erickson's research layout
+markdown: kramdown
+theme: null
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - netlify.toml
+  - vendor

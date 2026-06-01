@@ -12,7 +12,7 @@ bundle exec jekyll serve
 
 <!-- Edit locally 
 
-rbenv exec bundle exec jekyll serve --livereload
+jekyll serve --host 127.0.0.1 --port 4001 --livereload
 
  -->
 

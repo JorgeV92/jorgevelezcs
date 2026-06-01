@@ -1,0 +1,7 @@
+<h1 align=center><a href="{{ page.section_url | default: page.url }}">{{ page.section_title | default: page.title }}</a></h1>
+
+<h2 align=center>by <a href="/">Jorge Velez</a></h2>
+
+{% if page.description %}
+{{ page.description }}
+{% endif %}

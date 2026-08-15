@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>All about GPUs</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700&amp;subset=latin-ext" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet">
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+
+<h1>All about GPUs</h1>
+<h2 class="subtitle">
+  A learning journey, August 15, 2026&ndash;August 2027
+</h2>
+
+<div id="intro" style="align:center; width:100%">
+<div id="stuff" style="float:left;">
+<dl>
+<dt>Author</dt>
+<dd><a href="https://jorgevelezcs.com/">Jorge Velez</a>
+  (<a href="mailto:jorgevmg31@gmail.com">jorgevmg31@gmail.com</a>)</dd>
+
+<dt>Focus</dt>
+<dd>GPU architecture, programming, compilers, systems, and performance</dd>
+
+<dt>Updates</dt>
+<dd>As I learn, experiment, and build</dd>
+
+<dt>Links</dt>
+<dd>
+  <ul class="announce-tight">
+    <li><a href="#journal">Learning journal</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#projects">Projects and experiments</a></li>
+  </ul>
+</dd>
+</dl>
+</div>
+</div>
+<br style="clear:both;">
+
+<hr width="75%">
+
+<h3 id="journal">Learning journal</h3>
+
+<dl>
+<dt class="today">Aug 15, 2026</dt>
+<dd class="today">
+  I started <b>All about GPUs</b>, a year-long journal for documenting what I learn,
+  the questions I run into, the experiments I try, and how my understanding changes.
+  I also outlined the roadmap below. My starting point is the foundation: how GPU
+  hardware turns massive parallelism into throughput and how software exposes that
+  hardware to programmers.
+</dd>
+</dl>
+
+<p>
+  New entries will appear here in reverse chronological order. Each entry will record
+  what I studied, what I built, what surprised me, and what I still need to understand.
+</p>
+
+<hr width="75%">
+
+<h3 id="about">About this journey</h3>
+
+<p>
+  From today through August 2027, I want to learn GPUs from the transistors and memory
+  hierarchy up through kernels, runtimes, compilers, and real applications. This page
+  is my public notebook for that process. The goal is not just to collect definitions,
+  but to develop an intuition for <b>why GPUs are designed the way they are</b>, how to
+  reason about performance, and how to write software that uses the hardware well.
+</p>
+
+<p>
+  I will learn by alternating between theory and practice: reading architecture and
+  programming material, implementing small kernels, measuring them, inspecting the
+  generated code, and explaining the results in my own words. When my understanding is
+  incomplete or changes, I will document that too.
+</p>
+
+<hr width="75%">
+
+<h3 id="roadmap">Roadmap</h3>
+
+<p>
+  This roadmap follows the progression of
+  <a href="https://www.oreilly.com/library/view/programming-massively-parallel/9780323984638/"><i>Programming Massively Parallel Processors</i>, Fourth Edition</a>
+  (PMPP), with practical extensions from the
+  <a href="https://github.com/gpu-mode/lectures">GPU MODE lectures</a>.
+  A linked topic opens a dedicated notes page so this overview can stay compact.
+</p>
+
+<h4>Part I &mdash; Fundamental concepts <small>(August&ndash;October 2026)</small></h4>
+<ul class="compact">
+  <li><b>PMPP Chapters 1&ndash;3:</b>
+    <a href="/gpu/fundamentals/">Heterogeneous parallel computing and CUDA foundations</a>
+    &mdash; data parallelism, CUDA program structure, grids, and matrix multiplication.
+    <small>[GPU MODE Lectures 2&ndash;3]</small></li>
+  <li><b>PMPP Chapters 4&ndash;6:</b> GPU architecture, scheduling, memory locality, and performance considerations.
+    <small>[GPU MODE Lectures 4, 8, 16, and 37]</small></li>
+</ul>
+
+<h4>Part II &mdash; Parallel patterns <small>(November 2026&ndash;January 2027)</small></h4>
+<ul class="compact">
+  <li><b>PMPP Chapters 7&ndash;9:</b> Convolution, stencil computations, histograms, caching, and atomic operations.</li>
+  <li><b>PMPP Chapters 10&ndash;12:</b> Reduction, prefix sum, merge, divergence, and work efficiency.
+    <small>[GPU MODE Lectures 9, 20&ndash;21, and 24]</small></li>
+</ul>
+
+<h4>Part III &mdash; Advanced patterns and applications <small>(February&ndash;April 2027)</small></h4>
+<ul class="compact">
+  <li><b>PMPP Chapters 13&ndash;15:</b> Sorting, sparse matrix computation, and graph traversal.</li>
+  <li><b>PMPP Chapters 16&ndash;19:</b> Deep-learning kernels, application case studies, and computational thinking.
+    <small>[GPU MODE Lectures 11&ndash;12 and 23]</small></li>
+</ul>
+
+<h4>Part IV &mdash; Advanced practices <small>(May&ndash;June 2027)</small></h4>
+<ul class="compact">
+  <li><b>PMPP Chapters 20&ndash;23:</b> CUDA streams, heterogeneous clusters, dynamic parallelism, and host/device execution.</li>
+  <li><b>Multi-GPU systems:</b> Collective communication, NCCL, NVSHMEM, and overlapping communication with computation.
+    <small>[GPU MODE Lectures 17, 67, 70, and 78]</small></li>
+</ul>
+
+<h4>PyTorch and <code>torch.compile</code> <small>(ongoing alongside Parts II&ndash;IV)</small></h4>
+<ul class="compact">
+  <li><b>Framework foundations:</b> Tensors, autograd, modules, operators, dispatch, and the eager execution model.</li>
+  <li><b>Compiler stack:</b>
+    <a href="/gpu/pytorch-compile/">PyTorch, <code>torch.compile</code>, and GPU code generation</a>
+    &mdash; TorchDynamo, FX graphs, AOTAutograd, TorchInductor, and Triton.</li>
+  <li><b>Correctness and performance:</b> Graph breaks, guards, recompilation, dynamic shapes, profiling, benchmarking, and custom operators.
+    <small>[GPU MODE Lectures 1, 6, 8, 18, 29, 39, and 42]</small></li>
+</ul>
+
+<h4>Applied GPU systems track <small>(July&ndash;August 2027)</small></h4>
+<ul class="compact">
+  <li><b>Profiling and production CUDA:</b> Integrating custom kernels, diagnosing bottlenecks, and building production-ready CUDA libraries.
+    <small>[GPU MODE Lectures 8, 10, and 16]</small></li>
+  <li><b>Kernels and compilers:</b> Triton, CUTLASS, fused kernels, Tensor Cores, SASS, and compiler-driven optimization.
+    <small>[GPU MODE Lectures 14&ndash;15, 18, 23, 29, 36&ndash;37, 42, 57, and 79]</small></li>
+  <li><b>ML systems:</b> Attention, quantization, inference, distributed training, and a measured final project.
+    <small>[GPU MODE Lectures 12&ndash;13, 30, 32, 35, and 39&ndash;40]</small></li>
+</ul>
+
+<hr width="75%">
+
+<h3 id="projects">Projects and experiments</h3>
+
+<p>
+  This section will collect small kernels, benchmarks, visual explanations, profiler
+  traces, and larger projects as the journey develops. For every experiment, I plan to
+  record the hardware and software setup, the question being tested, the result, and the
+  lesson I can carry into the next project.
+</p>
+
+<ul>
+  <li><b class="dammit">Coming first:</b> a small set of baseline kernels that compare serial CPU execution with parallel GPU execution.</li>
+</ul>
+
+<hr width="75%">
+
+<p>&nbsp;</p>
+<div align="right">
+  <a href="/">Home</a>&nbsp;&middot;&nbsp;
+  <a href="/gsoc/">Google Summer of Code</a>
+</div>
+</body>
+</html>

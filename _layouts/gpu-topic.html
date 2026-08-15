@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>{{ page.title }} | All about GPUs</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700&amp;subset=latin-ext" rel="stylesheet">
+  <link href="/assets/style.css" rel="stylesheet">
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+</head>
+
+<body>
+
+<h1>{{ page.title }}</h1>
+<h2 class="subtitle">{{ page.subtitle }}</h2>
+
+<div id="intro" style="align:center; width:100%">
+<div id="stuff" style="float:left;">
+<dl>
+<dt>Series</dt>
+<dd><a href="/gpu/">All about GPUs</a></dd>
+
+<dt>Roadmap</dt>
+<dd>{{ page.roadmap }}</dd>
+
+<dt>Updated</dt>
+<dd>{{ page.updated }}</dd>
+
+<dt>Navigation</dt>
+<dd><a href="/gpu/#roadmap">Back to the roadmap</a></dd>
+</dl>
+</div>
+</div>
+<br style="clear:both;">
+
+<hr width="75%">
+
+{{ content }}
+
+<hr width="75%">
+<p>&nbsp;</p>
+<div align="right">
+  <a href="/gpu/#roadmap">GPU roadmap</a>&nbsp;&middot;&nbsp;
+  <a href="/gpu/">All about GPUs</a>&nbsp;&middot;&nbsp;
+  <a href="/">Home</a>
+</div>
+</body>
+</html>
